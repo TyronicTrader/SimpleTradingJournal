@@ -85,37 +85,37 @@ namespace TradingJournal
 
         private void btnJournal_Click(object sender, EventArgs e)
         {
-            ActivateButton(sender);
+            OpenChildForm(new Forms.FormJournal(), sender);
         }
 
         private void btnMetrics_Click(object sender, EventArgs e)
         {
-            ActivateButton(sender);
-
+            OpenChildForm(new Forms.FormMetrics(), sender);
         }
 
         private void btnEvents_Click(object sender, EventArgs e)
         {
-            ActivateButton(sender);
-
+            OpenChildForm(new Forms.FormEvents(), sender);
         }
 
         private void btnRSS_Click(object sender, EventArgs e)
         {
-            ActivateButton(sender);
-
+            OpenChildForm(new Forms.FormRSS(), sender);
         }
 
         private void btnSettings_Click(object sender, EventArgs e)
         {
-            ActivateButton(sender);
-
+            OpenChildForm(new Forms.FormSettings(), sender);
         }
 
         private void btnInfo_Click(object sender, EventArgs e)
         {
-            ActivateButton(sender);
+            OpenChildForm(new Forms.FormInfo(), sender);
+        }
 
+        private void btnSearch_Click(object sender, EventArgs e)
+        {
+            OpenChildForm(new Forms.FormSearch(), sender);
         }
     }
 }
