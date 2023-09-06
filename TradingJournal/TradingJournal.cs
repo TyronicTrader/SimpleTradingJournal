@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Xml.Serialization;
 
 namespace TradingJournal
 {
@@ -16,6 +17,7 @@ namespace TradingJournal
         private Button currentButton;
         private Random random;
         private int tempIndex;
+        private Form activeForm;
 
 
         public TradingJournal()
@@ -45,6 +47,8 @@ namespace TradingJournal
                 currentButton = (Button)btnSender;
                 currentButton.BackColor = color;
                 currentButton.ForeColor = Color.White;
+                panelTitleBar.BackColor = color;
+                panelLogo.BackColor = ThemeColor.ChangeColorBrightness(color, -0.3);
             }
         }
 
@@ -58,6 +62,25 @@ namespace TradingJournal
                     previousBtn.ForeColor = Color.Gainsboro;
                 }
             }
+        }
+
+        private void OpenChildForm(Form childForm, object btnSender)
+        {
+            if (activeForm != null)
+            {
+                activeForm.Close();
+            }
+            ActivateButton(btnSender);
+            activeForm = childForm;
+            childForm.TopLevel = false;
+            childForm.FormBorderStyle = FormBorderStyle.None;
+            childForm.Dock = DockStyle.Fill;
+            this.panelWorkArea.Controls.Add(childForm);
+            this.panelWorkArea.Tag = childForm;
+            childForm.BringToFront();
+            childForm.Show();
+            lblTitle.Text = childForm.Text;
+
         }
 
         private void btnJournal_Click(object sender, EventArgs e)
