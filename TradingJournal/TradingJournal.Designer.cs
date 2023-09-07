@@ -178,9 +178,9 @@
             this.lblTitle.ForeColor = System.Drawing.Color.White;
             this.lblTitle.Location = new System.Drawing.Point(526, 25);
             this.lblTitle.Name = "lblTitle";
-            this.lblTitle.Size = new System.Drawing.Size(115, 26);
+            this.lblTitle.Size = new System.Drawing.Size(126, 26);
             this.lblTitle.TabIndex = 0;
-            this.lblTitle.Text = "JOURNAL";
+            this.lblTitle.Text = "WELCOME";
             // 
             // panelWorkArea
             // 

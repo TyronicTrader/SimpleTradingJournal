@@ -26,6 +26,8 @@ namespace TradingJournal
             random = new Random();
         }
 
+
+        #region THEME Section
         private Color SelectThemeColor()
         {
             int index = random.Next(ThemeColor.ColorList.Count);
@@ -49,6 +51,8 @@ namespace TradingJournal
                 currentButton.ForeColor = Color.White;
                 panelTitleBar.BackColor = color;
                 panelLogo.BackColor = ThemeColor.ChangeColorBrightness(color, -0.3);
+                ThemeColor.PrimaryColor = color;
+                ThemeColor.SecondaryColor = ThemeColor.ChangeColorBrightness(color, -0.3);
             }
         }
 
@@ -82,6 +86,8 @@ namespace TradingJournal
             lblTitle.Text = childForm.Text;
 
         }
+        #endregion
+
 
         private void btnJournal_Click(object sender, EventArgs e)
         {
