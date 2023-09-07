@@ -37,16 +37,35 @@ namespace TradingJournal.Forms
                     btn.FlatAppearance.BorderColor = ThemeColor.SecondaryColor;
                     btn.FlatStyle = FlatStyle.Flat;
                 }
-                lblNameImg.ForeColor = ThemeColor.SecondaryColor;
-                lblName.ForeColor = ThemeColor.SecondaryColor;
-                lblType.ForeColor = ThemeColor.SecondaryColor;
-                toolStriplblTemplate.ForeColor = Color.White;
+                //Labels
+                if (btns.GetType() == typeof(Label))
+                {
+                    Label btn = (Label)btns;
+                    btn.ForeColor = ThemeColor.SecondaryColor;
+                }
+                lblBackground.BackColor = ThemeColor.SecondaryColor;
+                lblHealth.BackColor = ThemeColor.SecondaryColor;
+                lblHealth.ForeColor = Color.White;
+                lblHTF.BackColor = ThemeColor.SecondaryColor;
+                lblHTF.ForeColor = Color.White;
+                ////Treeview
                 treeViewNotes.BackColor = ThemeColor.SecondaryColor;
                 treeViewNotes.ForeColor = Color.White;
+                //ToolStrip
+                toolStriplblTemplate.ForeColor = Color.White;
                 toolStrip1.BackColor = ThemeColor.SecondaryColor;
-                toolStripSeparator1.BackColor = ThemeColor.SecondaryColor;
-                toolStripSeparator2.ForeColor = ThemeColor.SecondaryColor;
-                toolStripSeparator3.ForeColor = ThemeColor.SecondaryColor;
+                //Radio Buttons
+                if (btns.GetType() == typeof(RadioButton))
+                {
+                    RadioButton btn = (RadioButton)btns;
+                    btn.BackColor = ThemeColor.SecondaryColor;
+                }
+
+                if(btns.GetType() == typeof(GroupBox))
+                {
+                    GroupBox btn = (GroupBox)btns;
+                    btn.BackColor = ThemeColor.SecondaryColor;
+                }
 
 
             }

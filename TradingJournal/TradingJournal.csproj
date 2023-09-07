@@ -180,6 +180,10 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="images\alert.png" />
+    <Content Include="images\arrow-down-right.png" />
+    <Content Include="images\arrow-down.png" />
+    <Content Include="images\arrow-up-right.png" />
+    <Content Include="images\arrow-up.png" />
     <Content Include="images\copy.png" />
     <Content Include="images\cut.png" />
     <Content Include="images\graph.png" />
