@@ -64,25 +64,25 @@
             this.lblName = new System.Windows.Forms.Label();
             this.lblBody = new System.Windows.Forms.Label();
             this.lblMind = new System.Windows.Forms.Label();
-            this.rbnBodyYes = new System.Windows.Forms.RadioButton();
-            this.rbnBodyNo = new System.Windows.Forms.RadioButton();
             this.lblBackground = new System.Windows.Forms.Label();
-            this.rbnMindYes = new System.Windows.Forms.RadioButton();
-            this.rbnMindNo = new System.Windows.Forms.RadioButton();
-            this.rbnMonthlyNo = new System.Windows.Forms.RadioButton();
-            this.rbnMonthlyYes = new System.Windows.Forms.RadioButton();
             this.lblMonthly = new System.Windows.Forms.Label();
             this.lblHealth = new System.Windows.Forms.Label();
-            this.rbnEmotionNo = new System.Windows.Forms.RadioButton();
-            this.rbnEmotionYes = new System.Windows.Forms.RadioButton();
             this.lblEmotion = new System.Windows.Forms.Label();
             this.lblHTF = new System.Windows.Forms.Label();
             this.lblWeekly = new System.Windows.Forms.Label();
-            this.rbnWeeklyYes = new System.Windows.Forms.RadioButton();
-            this.rbnWeeklyNo = new System.Windows.Forms.RadioButton();
             this.lblDaily = new System.Windows.Forms.Label();
-            this.rbnDailyYes = new System.Windows.Forms.RadioButton();
-            this.rbnDailyNo = new System.Windows.Forms.RadioButton();
+            this.chbBodyYes = new System.Windows.Forms.CheckBox();
+            this.chbMindYes = new System.Windows.Forms.CheckBox();
+            this.chbEmotionsYes = new System.Windows.Forms.CheckBox();
+            this.chbBodyNo = new System.Windows.Forms.CheckBox();
+            this.chbMindNo = new System.Windows.Forms.CheckBox();
+            this.chbEmotionsNo = new System.Windows.Forms.CheckBox();
+            this.chbMonthlyUp = new System.Windows.Forms.CheckBox();
+            this.chbWeeklyUp = new System.Windows.Forms.CheckBox();
+            this.chbDailyUp = new System.Windows.Forms.CheckBox();
+            this.chbMonthlyDown = new System.Windows.Forms.CheckBox();
+            this.chbWeeklyDown = new System.Windows.Forms.CheckBox();
+            this.chbDailyDown = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer)).BeginInit();
             this.splitContainer.Panel1.SuspendLayout();
@@ -287,8 +287,9 @@
             // 
             // toolStriplblTemplate
             // 
+            this.toolStriplblTemplate.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.toolStriplblTemplate.Name = "toolStriplblTemplate";
-            this.toolStriplblTemplate.Size = new System.Drawing.Size(55, 22);
+            this.toolStriplblTemplate.Size = new System.Drawing.Size(61, 22);
             this.toolStriplblTemplate.Text = "Template";
             // 
             // toolStripCmbTemplate
@@ -385,16 +386,17 @@
             this.pictureBox.Location = new System.Drawing.Point(0, 0);
             this.pictureBox.Name = "pictureBox";
             this.pictureBox.Size = new System.Drawing.Size(474, 283);
-            this.pictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.pictureBox.TabIndex = 0;
             this.pictureBox.TabStop = false;
             // 
             // dateTimePicker1
             // 
             this.dateTimePicker1.CalendarFont = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dateTimePicker1.Location = new System.Drawing.Point(289, 19);
+            this.dateTimePicker1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dateTimePicker1.Location = new System.Drawing.Point(261, 19);
             this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(213, 20);
+            this.dateTimePicker1.Size = new System.Drawing.Size(241, 22);
             this.dateTimePicker1.TabIndex = 14;
             // 
             // cmbType
@@ -454,36 +456,6 @@
             this.lblMind.TabIndex = 21;
             this.lblMind.Text = "Mind";
             // 
-            // rbnBodyYes
-            // 
-            this.rbnBodyYes.AutoSize = true;
-            this.rbnBodyYes.BackColor = System.Drawing.SystemColors.ActiveBorder;
-            this.rbnBodyYes.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rbnBodyYes.Image = ((System.Drawing.Image)(resources.GetObject("rbnBodyYes.Image")));
-            this.rbnBodyYes.Location = new System.Drawing.Point(352, 158);
-            this.rbnBodyYes.Name = "rbnBodyYes";
-            this.rbnBodyYes.Size = new System.Drawing.Size(53, 28);
-            this.rbnBodyYes.TabIndex = 22;
-            this.rbnBodyYes.TabStop = true;
-            this.rbnBodyYes.Tag = "Body";
-            this.rbnBodyYes.Text = "     ";
-            this.rbnBodyYes.UseVisualStyleBackColor = false;
-            // 
-            // rbnBodyNo
-            // 
-            this.rbnBodyNo.AutoSize = true;
-            this.rbnBodyNo.BackColor = System.Drawing.SystemColors.ActiveBorder;
-            this.rbnBodyNo.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rbnBodyNo.Image = ((System.Drawing.Image)(resources.GetObject("rbnBodyNo.Image")));
-            this.rbnBodyNo.Location = new System.Drawing.Point(419, 158);
-            this.rbnBodyNo.Name = "rbnBodyNo";
-            this.rbnBodyNo.Size = new System.Drawing.Size(53, 28);
-            this.rbnBodyNo.TabIndex = 23;
-            this.rbnBodyNo.TabStop = true;
-            this.rbnBodyNo.Tag = "Body";
-            this.rbnBodyNo.Text = "     ";
-            this.rbnBodyNo.UseVisualStyleBackColor = false;
-            // 
             // lblBackground
             // 
             this.lblBackground.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -495,66 +467,6 @@
             this.lblBackground.Size = new System.Drawing.Size(175, 503);
             this.lblBackground.TabIndex = 0;
             this.lblBackground.Tag = "";
-            // 
-            // rbnMindYes
-            // 
-            this.rbnMindYes.AutoSize = true;
-            this.rbnMindYes.BackColor = System.Drawing.SystemColors.ActiveBorder;
-            this.rbnMindYes.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rbnMindYes.Image = ((System.Drawing.Image)(resources.GetObject("rbnMindYes.Image")));
-            this.rbnMindYes.Location = new System.Drawing.Point(352, 194);
-            this.rbnMindYes.Name = "rbnMindYes";
-            this.rbnMindYes.Size = new System.Drawing.Size(53, 28);
-            this.rbnMindYes.TabIndex = 24;
-            this.rbnMindYes.TabStop = true;
-            this.rbnMindYes.Tag = "Mind";
-            this.rbnMindYes.Text = "     ";
-            this.rbnMindYes.UseVisualStyleBackColor = false;
-            // 
-            // rbnMindNo
-            // 
-            this.rbnMindNo.AutoSize = true;
-            this.rbnMindNo.BackColor = System.Drawing.SystemColors.ActiveBorder;
-            this.rbnMindNo.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rbnMindNo.Image = ((System.Drawing.Image)(resources.GetObject("rbnMindNo.Image")));
-            this.rbnMindNo.Location = new System.Drawing.Point(419, 194);
-            this.rbnMindNo.Name = "rbnMindNo";
-            this.rbnMindNo.Size = new System.Drawing.Size(53, 28);
-            this.rbnMindNo.TabIndex = 25;
-            this.rbnMindNo.TabStop = true;
-            this.rbnMindNo.Tag = "Mind";
-            this.rbnMindNo.Text = "     ";
-            this.rbnMindNo.UseVisualStyleBackColor = false;
-            // 
-            // rbnMonthlyNo
-            // 
-            this.rbnMonthlyNo.AutoSize = true;
-            this.rbnMonthlyNo.BackColor = System.Drawing.SystemColors.ActiveBorder;
-            this.rbnMonthlyNo.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rbnMonthlyNo.Image = ((System.Drawing.Image)(resources.GetObject("rbnMonthlyNo.Image")));
-            this.rbnMonthlyNo.Location = new System.Drawing.Point(419, 296);
-            this.rbnMonthlyNo.Name = "rbnMonthlyNo";
-            this.rbnMonthlyNo.Size = new System.Drawing.Size(58, 28);
-            this.rbnMonthlyNo.TabIndex = 28;
-            this.rbnMonthlyNo.TabStop = true;
-            this.rbnMonthlyNo.Tag = "Monthly";
-            this.rbnMonthlyNo.Text = "      ";
-            this.rbnMonthlyNo.UseVisualStyleBackColor = false;
-            // 
-            // rbnMonthlyYes
-            // 
-            this.rbnMonthlyYes.AutoSize = true;
-            this.rbnMonthlyYes.BackColor = System.Drawing.SystemColors.ActiveBorder;
-            this.rbnMonthlyYes.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rbnMonthlyYes.Image = ((System.Drawing.Image)(resources.GetObject("rbnMonthlyYes.Image")));
-            this.rbnMonthlyYes.Location = new System.Drawing.Point(352, 296);
-            this.rbnMonthlyYes.Name = "rbnMonthlyYes";
-            this.rbnMonthlyYes.Size = new System.Drawing.Size(53, 28);
-            this.rbnMonthlyYes.TabIndex = 27;
-            this.rbnMonthlyYes.TabStop = true;
-            this.rbnMonthlyYes.Tag = "Monthly";
-            this.rbnMonthlyYes.Text = "     ";
-            this.rbnMonthlyYes.UseVisualStyleBackColor = false;
             // 
             // lblMonthly
             // 
@@ -578,36 +490,6 @@
             this.lblHealth.TabIndex = 29;
             this.lblHealth.Text = "Health";
             // 
-            // rbnEmotionNo
-            // 
-            this.rbnEmotionNo.AutoSize = true;
-            this.rbnEmotionNo.BackColor = System.Drawing.SystemColors.ActiveBorder;
-            this.rbnEmotionNo.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rbnEmotionNo.Image = ((System.Drawing.Image)(resources.GetObject("rbnEmotionNo.Image")));
-            this.rbnEmotionNo.Location = new System.Drawing.Point(419, 230);
-            this.rbnEmotionNo.Name = "rbnEmotionNo";
-            this.rbnEmotionNo.Size = new System.Drawing.Size(53, 28);
-            this.rbnEmotionNo.TabIndex = 32;
-            this.rbnEmotionNo.TabStop = true;
-            this.rbnEmotionNo.Tag = "Emotion";
-            this.rbnEmotionNo.Text = "     ";
-            this.rbnEmotionNo.UseVisualStyleBackColor = false;
-            // 
-            // rbnEmotionYes
-            // 
-            this.rbnEmotionYes.AutoSize = true;
-            this.rbnEmotionYes.BackColor = System.Drawing.SystemColors.ActiveBorder;
-            this.rbnEmotionYes.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rbnEmotionYes.Image = ((System.Drawing.Image)(resources.GetObject("rbnEmotionYes.Image")));
-            this.rbnEmotionYes.Location = new System.Drawing.Point(352, 230);
-            this.rbnEmotionYes.Name = "rbnEmotionYes";
-            this.rbnEmotionYes.Size = new System.Drawing.Size(53, 28);
-            this.rbnEmotionYes.TabIndex = 31;
-            this.rbnEmotionYes.TabStop = true;
-            this.rbnEmotionYes.Tag = "Emotion";
-            this.rbnEmotionYes.Text = "     ";
-            this.rbnEmotionYes.UseVisualStyleBackColor = false;
-            // 
             // lblEmotion
             // 
             this.lblEmotion.AutoSize = true;
@@ -624,11 +506,11 @@
             this.lblHTF.BackColor = System.Drawing.SystemColors.ActiveBorder;
             this.lblHTF.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblHTF.ForeColor = System.Drawing.Color.White;
-            this.lblHTF.Location = new System.Drawing.Point(394, 267);
+            this.lblHTF.Location = new System.Drawing.Point(374, 267);
             this.lblHTF.Name = "lblHTF";
-            this.lblHTF.Size = new System.Drawing.Size(40, 18);
+            this.lblHTF.Size = new System.Drawing.Size(81, 18);
             this.lblHTF.TabIndex = 33;
-            this.lblHTF.Text = "HTF";
+            this.lblHTF.Text = "HTF BIAS";
             // 
             // lblWeekly
             // 
@@ -640,36 +522,6 @@
             this.lblWeekly.TabIndex = 34;
             this.lblWeekly.Text = "Weekly";
             // 
-            // rbnWeeklyYes
-            // 
-            this.rbnWeeklyYes.AutoSize = true;
-            this.rbnWeeklyYes.BackColor = System.Drawing.SystemColors.ActiveBorder;
-            this.rbnWeeklyYes.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rbnWeeklyYes.Image = ((System.Drawing.Image)(resources.GetObject("rbnWeeklyYes.Image")));
-            this.rbnWeeklyYes.Location = new System.Drawing.Point(352, 335);
-            this.rbnWeeklyYes.Name = "rbnWeeklyYes";
-            this.rbnWeeklyYes.Size = new System.Drawing.Size(53, 28);
-            this.rbnWeeklyYes.TabIndex = 35;
-            this.rbnWeeklyYes.TabStop = true;
-            this.rbnWeeklyYes.Tag = "Weekly";
-            this.rbnWeeklyYes.Text = "     ";
-            this.rbnWeeklyYes.UseVisualStyleBackColor = false;
-            // 
-            // rbnWeeklyNo
-            // 
-            this.rbnWeeklyNo.AutoSize = true;
-            this.rbnWeeklyNo.BackColor = System.Drawing.SystemColors.ActiveBorder;
-            this.rbnWeeklyNo.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rbnWeeklyNo.Image = ((System.Drawing.Image)(resources.GetObject("rbnWeeklyNo.Image")));
-            this.rbnWeeklyNo.Location = new System.Drawing.Point(419, 335);
-            this.rbnWeeklyNo.Name = "rbnWeeklyNo";
-            this.rbnWeeklyNo.Size = new System.Drawing.Size(58, 28);
-            this.rbnWeeklyNo.TabIndex = 36;
-            this.rbnWeeklyNo.TabStop = true;
-            this.rbnWeeklyNo.Tag = "Weekly";
-            this.rbnWeeklyNo.Text = "      ";
-            this.rbnWeeklyNo.UseVisualStyleBackColor = false;
-            // 
             // lblDaily
             // 
             this.lblDaily.AutoSize = true;
@@ -680,59 +532,197 @@
             this.lblDaily.TabIndex = 37;
             this.lblDaily.Text = "Daily";
             // 
-            // rbnDailyYes
+            // chbBodyYes
             // 
-            this.rbnDailyYes.AutoSize = true;
-            this.rbnDailyYes.BackColor = System.Drawing.SystemColors.ActiveBorder;
-            this.rbnDailyYes.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rbnDailyYes.Image = ((System.Drawing.Image)(resources.GetObject("rbnDailyYes.Image")));
-            this.rbnDailyYes.Location = new System.Drawing.Point(352, 374);
-            this.rbnDailyYes.Name = "rbnDailyYes";
-            this.rbnDailyYes.Size = new System.Drawing.Size(53, 28);
-            this.rbnDailyYes.TabIndex = 38;
-            this.rbnDailyYes.TabStop = true;
-            this.rbnDailyYes.Tag = "Daily";
-            this.rbnDailyYes.Text = "     ";
-            this.rbnDailyYes.UseVisualStyleBackColor = false;
+            this.chbBodyYes.AutoSize = true;
+            this.chbBodyYes.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.chbBodyYes.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chbBodyYes.Image = ((System.Drawing.Image)(resources.GetObject("chbBodyYes.Image")));
+            this.chbBodyYes.Location = new System.Drawing.Point(351, 159);
+            this.chbBodyYes.Name = "chbBodyYes";
+            this.chbBodyYes.Size = new System.Drawing.Size(54, 28);
+            this.chbBodyYes.TabIndex = 40;
+            this.chbBodyYes.Text = "     ";
+            this.chbBodyYes.UseVisualStyleBackColor = false;
+            this.chbBodyYes.CheckedChanged += new System.EventHandler(this.chbBodyYes_CheckedChanged);
             // 
-            // rbnDailyNo
+            // chbMindYes
             // 
-            this.rbnDailyNo.AutoSize = true;
-            this.rbnDailyNo.BackColor = System.Drawing.SystemColors.ActiveBorder;
-            this.rbnDailyNo.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rbnDailyNo.Image = ((System.Drawing.Image)(resources.GetObject("rbnDailyNo.Image")));
-            this.rbnDailyNo.Location = new System.Drawing.Point(419, 374);
-            this.rbnDailyNo.Name = "rbnDailyNo";
-            this.rbnDailyNo.Size = new System.Drawing.Size(58, 28);
-            this.rbnDailyNo.TabIndex = 39;
-            this.rbnDailyNo.TabStop = true;
-            this.rbnDailyNo.Tag = "Daily";
-            this.rbnDailyNo.Text = "      ";
-            this.rbnDailyNo.UseVisualStyleBackColor = false;
+            this.chbMindYes.AutoSize = true;
+            this.chbMindYes.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.chbMindYes.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chbMindYes.Image = ((System.Drawing.Image)(resources.GetObject("chbMindYes.Image")));
+            this.chbMindYes.Location = new System.Drawing.Point(351, 195);
+            this.chbMindYes.Name = "chbMindYes";
+            this.chbMindYes.Size = new System.Drawing.Size(54, 28);
+            this.chbMindYes.TabIndex = 41;
+            this.chbMindYes.Text = "     ";
+            this.chbMindYes.UseVisualStyleBackColor = false;
+            this.chbMindYes.CheckedChanged += new System.EventHandler(this.chbMindYes_CheckedChanged);
+            // 
+            // chbEmotionsYes
+            // 
+            this.chbEmotionsYes.AutoSize = true;
+            this.chbEmotionsYes.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.chbEmotionsYes.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chbEmotionsYes.Image = ((System.Drawing.Image)(resources.GetObject("chbEmotionsYes.Image")));
+            this.chbEmotionsYes.Location = new System.Drawing.Point(351, 231);
+            this.chbEmotionsYes.Name = "chbEmotionsYes";
+            this.chbEmotionsYes.Size = new System.Drawing.Size(54, 28);
+            this.chbEmotionsYes.TabIndex = 42;
+            this.chbEmotionsYes.Text = "     ";
+            this.chbEmotionsYes.UseVisualStyleBackColor = false;
+            this.chbEmotionsYes.CheckedChanged += new System.EventHandler(this.chbEmotionsYes_CheckedChanged);
+            // 
+            // chbBodyNo
+            // 
+            this.chbBodyNo.AutoSize = true;
+            this.chbBodyNo.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.chbBodyNo.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chbBodyNo.Image = ((System.Drawing.Image)(resources.GetObject("chbBodyNo.Image")));
+            this.chbBodyNo.Location = new System.Drawing.Point(423, 159);
+            this.chbBodyNo.Name = "chbBodyNo";
+            this.chbBodyNo.Size = new System.Drawing.Size(54, 28);
+            this.chbBodyNo.TabIndex = 43;
+            this.chbBodyNo.Text = "     ";
+            this.chbBodyNo.UseVisualStyleBackColor = false;
+            this.chbBodyNo.CheckedChanged += new System.EventHandler(this.chbBodyNo_CheckedChanged);
+            // 
+            // chbMindNo
+            // 
+            this.chbMindNo.AutoSize = true;
+            this.chbMindNo.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.chbMindNo.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chbMindNo.Image = ((System.Drawing.Image)(resources.GetObject("chbMindNo.Image")));
+            this.chbMindNo.Location = new System.Drawing.Point(423, 194);
+            this.chbMindNo.Name = "chbMindNo";
+            this.chbMindNo.Size = new System.Drawing.Size(54, 28);
+            this.chbMindNo.TabIndex = 44;
+            this.chbMindNo.Text = "     ";
+            this.chbMindNo.UseVisualStyleBackColor = false;
+            this.chbMindNo.CheckedChanged += new System.EventHandler(this.chbMindNo_CheckedChanged);
+            // 
+            // chbEmotionsNo
+            // 
+            this.chbEmotionsNo.AutoSize = true;
+            this.chbEmotionsNo.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.chbEmotionsNo.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chbEmotionsNo.Image = ((System.Drawing.Image)(resources.GetObject("chbEmotionsNo.Image")));
+            this.chbEmotionsNo.Location = new System.Drawing.Point(423, 230);
+            this.chbEmotionsNo.Name = "chbEmotionsNo";
+            this.chbEmotionsNo.Size = new System.Drawing.Size(54, 28);
+            this.chbEmotionsNo.TabIndex = 45;
+            this.chbEmotionsNo.Text = "     ";
+            this.chbEmotionsNo.UseVisualStyleBackColor = false;
+            this.chbEmotionsNo.CheckedChanged += new System.EventHandler(this.chbEmotionsNo_CheckedChanged);
+            // 
+            // chbMonthlyUp
+            // 
+            this.chbMonthlyUp.AutoSize = true;
+            this.chbMonthlyUp.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.chbMonthlyUp.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chbMonthlyUp.Image = ((System.Drawing.Image)(resources.GetObject("chbMonthlyUp.Image")));
+            this.chbMonthlyUp.Location = new System.Drawing.Point(351, 297);
+            this.chbMonthlyUp.Name = "chbMonthlyUp";
+            this.chbMonthlyUp.Size = new System.Drawing.Size(54, 28);
+            this.chbMonthlyUp.TabIndex = 46;
+            this.chbMonthlyUp.Text = "     ";
+            this.chbMonthlyUp.UseVisualStyleBackColor = false;
+            this.chbMonthlyUp.CheckedChanged += new System.EventHandler(this.chbMonthlyUp_CheckedChanged);
+            // 
+            // chbWeeklyUp
+            // 
+            this.chbWeeklyUp.AutoSize = true;
+            this.chbWeeklyUp.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.chbWeeklyUp.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chbWeeklyUp.Image = ((System.Drawing.Image)(resources.GetObject("chbWeeklyUp.Image")));
+            this.chbWeeklyUp.Location = new System.Drawing.Point(351, 336);
+            this.chbWeeklyUp.Name = "chbWeeklyUp";
+            this.chbWeeklyUp.Size = new System.Drawing.Size(54, 28);
+            this.chbWeeklyUp.TabIndex = 47;
+            this.chbWeeklyUp.Text = "     ";
+            this.chbWeeklyUp.UseVisualStyleBackColor = false;
+            this.chbWeeklyUp.CheckedChanged += new System.EventHandler(this.chbWeeklyUp_CheckedChanged);
+            // 
+            // chbDailyUp
+            // 
+            this.chbDailyUp.AutoSize = true;
+            this.chbDailyUp.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.chbDailyUp.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chbDailyUp.Image = ((System.Drawing.Image)(resources.GetObject("chbDailyUp.Image")));
+            this.chbDailyUp.Location = new System.Drawing.Point(351, 375);
+            this.chbDailyUp.Name = "chbDailyUp";
+            this.chbDailyUp.Size = new System.Drawing.Size(54, 28);
+            this.chbDailyUp.TabIndex = 48;
+            this.chbDailyUp.Text = "     ";
+            this.chbDailyUp.UseVisualStyleBackColor = false;
+            this.chbDailyUp.CheckedChanged += new System.EventHandler(this.chbDailyUp_CheckedChanged);
+            // 
+            // chbMonthlyDown
+            // 
+            this.chbMonthlyDown.AutoSize = true;
+            this.chbMonthlyDown.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.chbMonthlyDown.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chbMonthlyDown.Image = ((System.Drawing.Image)(resources.GetObject("chbMonthlyDown.Image")));
+            this.chbMonthlyDown.Location = new System.Drawing.Point(423, 297);
+            this.chbMonthlyDown.Name = "chbMonthlyDown";
+            this.chbMonthlyDown.Size = new System.Drawing.Size(54, 28);
+            this.chbMonthlyDown.TabIndex = 49;
+            this.chbMonthlyDown.Text = "     ";
+            this.chbMonthlyDown.UseVisualStyleBackColor = false;
+            this.chbMonthlyDown.CheckedChanged += new System.EventHandler(this.chbMonthlyDown_CheckedChanged);
+            // 
+            // chbWeeklyDown
+            // 
+            this.chbWeeklyDown.AutoSize = true;
+            this.chbWeeklyDown.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.chbWeeklyDown.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chbWeeklyDown.Image = ((System.Drawing.Image)(resources.GetObject("chbWeeklyDown.Image")));
+            this.chbWeeklyDown.Location = new System.Drawing.Point(424, 335);
+            this.chbWeeklyDown.Name = "chbWeeklyDown";
+            this.chbWeeklyDown.Size = new System.Drawing.Size(54, 28);
+            this.chbWeeklyDown.TabIndex = 50;
+            this.chbWeeklyDown.Text = "     ";
+            this.chbWeeklyDown.UseVisualStyleBackColor = false;
+            this.chbWeeklyDown.CheckedChanged += new System.EventHandler(this.chbWeeklyDown_CheckedChanged);
+            // 
+            // chbDailyDown
+            // 
+            this.chbDailyDown.AutoSize = true;
+            this.chbDailyDown.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.chbDailyDown.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chbDailyDown.Image = ((System.Drawing.Image)(resources.GetObject("chbDailyDown.Image")));
+            this.chbDailyDown.Location = new System.Drawing.Point(423, 374);
+            this.chbDailyDown.Name = "chbDailyDown";
+            this.chbDailyDown.Size = new System.Drawing.Size(54, 28);
+            this.chbDailyDown.TabIndex = 51;
+            this.chbDailyDown.Text = "     ";
+            this.chbDailyDown.UseVisualStyleBackColor = false;
+            this.chbDailyDown.CheckedChanged += new System.EventHandler(this.chbDailyDown_CheckedChanged);
             // 
             // FormJournal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1173, 562);
-            this.Controls.Add(this.rbnDailyNo);
-            this.Controls.Add(this.rbnDailyYes);
+            this.Controls.Add(this.chbDailyDown);
+            this.Controls.Add(this.chbWeeklyDown);
+            this.Controls.Add(this.chbMonthlyDown);
+            this.Controls.Add(this.chbDailyUp);
+            this.Controls.Add(this.chbWeeklyUp);
+            this.Controls.Add(this.chbMonthlyUp);
+            this.Controls.Add(this.chbEmotionsNo);
+            this.Controls.Add(this.chbMindNo);
+            this.Controls.Add(this.chbBodyNo);
+            this.Controls.Add(this.chbEmotionsYes);
+            this.Controls.Add(this.chbMindYes);
+            this.Controls.Add(this.chbBodyYes);
             this.Controls.Add(this.lblDaily);
-            this.Controls.Add(this.rbnWeeklyNo);
-            this.Controls.Add(this.rbnWeeklyYes);
             this.Controls.Add(this.lblWeekly);
             this.Controls.Add(this.lblHTF);
-            this.Controls.Add(this.rbnEmotionNo);
-            this.Controls.Add(this.rbnEmotionYes);
             this.Controls.Add(this.lblEmotion);
             this.Controls.Add(this.lblHealth);
-            this.Controls.Add(this.rbnMonthlyNo);
-            this.Controls.Add(this.rbnMonthlyYes);
             this.Controls.Add(this.lblMonthly);
-            this.Controls.Add(this.rbnMindNo);
-            this.Controls.Add(this.rbnMindYes);
-            this.Controls.Add(this.rbnBodyNo);
-            this.Controls.Add(this.rbnBodyYes);
             this.Controls.Add(this.lblMind);
             this.Controls.Add(this.lblBody);
             this.Controls.Add(this.lblName);
@@ -809,24 +799,24 @@
         private System.Windows.Forms.Label lblName;
         private System.Windows.Forms.Label lblBody;
         private System.Windows.Forms.Label lblMind;
-        private System.Windows.Forms.RadioButton rbnBodyYes;
-        private System.Windows.Forms.RadioButton rbnBodyNo;
         private System.Windows.Forms.Label lblBackground;
-        private System.Windows.Forms.RadioButton rbnMindYes;
-        private System.Windows.Forms.RadioButton rbnMindNo;
-        private System.Windows.Forms.RadioButton rbnMonthlyNo;
-        private System.Windows.Forms.RadioButton rbnMonthlyYes;
         private System.Windows.Forms.Label lblMonthly;
         private System.Windows.Forms.Label lblHealth;
-        private System.Windows.Forms.RadioButton rbnEmotionNo;
-        private System.Windows.Forms.RadioButton rbnEmotionYes;
         private System.Windows.Forms.Label lblEmotion;
         private System.Windows.Forms.Label lblHTF;
         private System.Windows.Forms.Label lblWeekly;
-        private System.Windows.Forms.RadioButton rbnWeeklyYes;
-        private System.Windows.Forms.RadioButton rbnWeeklyNo;
         private System.Windows.Forms.Label lblDaily;
-        private System.Windows.Forms.RadioButton rbnDailyYes;
-        private System.Windows.Forms.RadioButton rbnDailyNo;
+        private System.Windows.Forms.CheckBox chbBodyYes;
+        private System.Windows.Forms.CheckBox chbMindYes;
+        private System.Windows.Forms.CheckBox chbEmotionsYes;
+        private System.Windows.Forms.CheckBox chbBodyNo;
+        private System.Windows.Forms.CheckBox chbMindNo;
+        private System.Windows.Forms.CheckBox chbEmotionsNo;
+        private System.Windows.Forms.CheckBox chbMonthlyUp;
+        private System.Windows.Forms.CheckBox chbWeeklyUp;
+        private System.Windows.Forms.CheckBox chbDailyUp;
+        private System.Windows.Forms.CheckBox chbMonthlyDown;
+        private System.Windows.Forms.CheckBox chbWeeklyDown;
+        private System.Windows.Forms.CheckBox chbDailyDown;
     }
 }

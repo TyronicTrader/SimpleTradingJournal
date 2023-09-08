@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SQLite;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
@@ -13,6 +15,8 @@ namespace TradingJournal.Forms
 {
     public partial class FormJournal : Form
     {
+        private CheckBox currentCheckbox;
+        private CheckBox oldCheckbox;
 
         public FormJournal()
         {
@@ -54,22 +58,19 @@ namespace TradingJournal.Forms
                 //ToolStrip
                 toolStriplblTemplate.ForeColor = Color.White;
                 toolStrip1.BackColor = ThemeColor.SecondaryColor;
-                //Radio Buttons
-                if (btns.GetType() == typeof(RadioButton))
+                //Checkboxes
+                if (btns.GetType() == typeof(CheckBox))
                 {
-                    RadioButton btn = (RadioButton)btns;
+                    CheckBox btn = (CheckBox)btns;
                     btn.BackColor = ThemeColor.SecondaryColor;
                 }
-
-                if(btns.GetType() == typeof(GroupBox))
-                {
-                    GroupBox btn = (GroupBox)btns;
-                    btn.BackColor = ThemeColor.SecondaryColor;
-                }
-
 
             }
         }
+
+        
+
+
 
         #region ToolStrip Items
 
@@ -110,6 +111,84 @@ namespace TradingJournal.Forms
             }
         }
         #endregion
+
+
+        #region CHECKBOXES
+
+        //changing the matching checkboxes from one to other being checked
+        private void changeCheckbox(object chbSender, object chbOther)
+        {
+            currentCheckbox = (CheckBox)chbSender;
+            oldCheckbox = (CheckBox)chbOther;
+            if(oldCheckbox.Checked != false)
+            {
+                oldCheckbox.Checked = false;
+                currentCheckbox.Checked = true;
+            }
+        }
+
+        private void chbBodyYes_CheckedChanged(object sender, EventArgs e)
+        {
+            changeCheckbox(sender,  chbBodyNo);
+        }
+
+        private void chbBodyNo_CheckedChanged(object sender, EventArgs e)
+        {
+            changeCheckbox(sender, chbBodyYes);
+        }
+
+        private void chbMindYes_CheckedChanged(object sender, EventArgs e)
+        {
+            changeCheckbox(sender, chbMindNo);
+        }
+
+        private void chbMindNo_CheckedChanged(object sender, EventArgs e)
+        {
+            changeCheckbox(sender, chbMindYes);
+        }
+
+        private void chbEmotionsYes_CheckedChanged(object sender, EventArgs e)
+        {
+            changeCheckbox(sender, chbEmotionsNo);
+        }
+
+        private void chbEmotionsNo_CheckedChanged(object sender, EventArgs e)
+        {
+            changeCheckbox(sender, chbEmotionsYes);
+        }
+
+        private void chbMonthlyUp_CheckedChanged(object sender, EventArgs e)
+        {
+            changeCheckbox(sender, chbMonthlyDown);
+        }
+
+        private void chbMonthlyDown_CheckedChanged(object sender, EventArgs e)
+        {
+            changeCheckbox(sender, chbMonthlyUp);
+        }
+
+        private void chbWeeklyUp_CheckedChanged(object sender, EventArgs e)
+        {
+            changeCheckbox(sender, chbWeeklyDown);
+        }
+
+        private void chbWeeklyDown_CheckedChanged(object sender, EventArgs e)
+        {
+            changeCheckbox(sender, chbWeeklyUp);
+        }
+
+        private void chbDailyUp_CheckedChanged(object sender, EventArgs e)
+        {
+            changeCheckbox(sender, chbDailyDown);
+        }
+
+        private void chbDailyDown_CheckedChanged(object sender, EventArgs e)
+        {
+            changeCheckbox(sender, chbDailyUp);
+        }
+
+        #endregion
+
 
     }
 }

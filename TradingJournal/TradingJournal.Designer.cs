@@ -30,17 +30,17 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TradingJournal));
             this.panelMenu = new System.Windows.Forms.Panel();
+            this.btnSearch = new System.Windows.Forms.Button();
+            this.btnSettings = new System.Windows.Forms.Button();
+            this.btnInfo = new System.Windows.Forms.Button();
+            this.btnRSS = new System.Windows.Forms.Button();
+            this.btnEvents = new System.Windows.Forms.Button();
+            this.btnMetrics = new System.Windows.Forms.Button();
             this.btnJournal = new System.Windows.Forms.Button();
             this.panelLogo = new System.Windows.Forms.Panel();
-            this.btnMetrics = new System.Windows.Forms.Button();
-            this.btnEvents = new System.Windows.Forms.Button();
-            this.btnRSS = new System.Windows.Forms.Button();
-            this.btnInfo = new System.Windows.Forms.Button();
-            this.btnSettings = new System.Windows.Forms.Button();
             this.panelTitleBar = new System.Windows.Forms.Panel();
             this.lblTitle = new System.Windows.Forms.Label();
             this.panelWorkArea = new System.Windows.Forms.Panel();
-            this.btnSearch = new System.Windows.Forms.Button();
             this.panelMenu.SuspendLayout();
             this.panelTitleBar.SuspendLayout();
             this.SuspendLayout();
@@ -61,6 +61,92 @@
             this.panelMenu.Name = "panelMenu";
             this.panelMenu.Size = new System.Drawing.Size(75, 681);
             this.panelMenu.TabIndex = 0;
+            // 
+            // btnSearch
+            // 
+            this.btnSearch.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnSearch.FlatAppearance.BorderSize = 0;
+            this.btnSearch.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSearch.ForeColor = System.Drawing.Color.Gainsboro;
+            this.btnSearch.Image = ((System.Drawing.Image)(resources.GetObject("btnSearch.Image")));
+            this.btnSearch.Location = new System.Drawing.Point(0, 380);
+            this.btnSearch.Name = "btnSearch";
+            this.btnSearch.Size = new System.Drawing.Size(75, 75);
+            this.btnSearch.TabIndex = 5;
+            this.btnSearch.UseVisualStyleBackColor = true;
+            this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
+            // 
+            // btnSettings
+            // 
+            this.btnSettings.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.btnSettings.FlatAppearance.BorderSize = 0;
+            this.btnSettings.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSettings.Font = new System.Drawing.Font("Microsoft Sans Serif", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSettings.ForeColor = System.Drawing.Color.Gainsboro;
+            this.btnSettings.Image = ((System.Drawing.Image)(resources.GetObject("btnSettings.Image")));
+            this.btnSettings.Location = new System.Drawing.Point(0, 531);
+            this.btnSettings.Name = "btnSettings";
+            this.btnSettings.Size = new System.Drawing.Size(75, 75);
+            this.btnSettings.TabIndex = 6;
+            this.btnSettings.UseVisualStyleBackColor = true;
+            this.btnSettings.Click += new System.EventHandler(this.btnSettings_Click);
+            // 
+            // btnInfo
+            // 
+            this.btnInfo.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.btnInfo.FlatAppearance.BorderSize = 0;
+            this.btnInfo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnInfo.Font = new System.Drawing.Font("Microsoft Sans Serif", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnInfo.ForeColor = System.Drawing.Color.Gainsboro;
+            this.btnInfo.Location = new System.Drawing.Point(0, 606);
+            this.btnInfo.Name = "btnInfo";
+            this.btnInfo.Size = new System.Drawing.Size(75, 75);
+            this.btnInfo.TabIndex = 7;
+            this.btnInfo.Text = "?";
+            this.btnInfo.UseVisualStyleBackColor = true;
+            this.btnInfo.Click += new System.EventHandler(this.btnInfo_Click);
+            // 
+            // btnRSS
+            // 
+            this.btnRSS.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnRSS.FlatAppearance.BorderSize = 0;
+            this.btnRSS.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnRSS.ForeColor = System.Drawing.Color.Gainsboro;
+            this.btnRSS.Image = ((System.Drawing.Image)(resources.GetObject("btnRSS.Image")));
+            this.btnRSS.Location = new System.Drawing.Point(0, 305);
+            this.btnRSS.Name = "btnRSS";
+            this.btnRSS.Size = new System.Drawing.Size(75, 75);
+            this.btnRSS.TabIndex = 4;
+            this.btnRSS.UseVisualStyleBackColor = true;
+            this.btnRSS.Click += new System.EventHandler(this.btnRSS_Click);
+            // 
+            // btnEvents
+            // 
+            this.btnEvents.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnEvents.FlatAppearance.BorderSize = 0;
+            this.btnEvents.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnEvents.ForeColor = System.Drawing.Color.Gainsboro;
+            this.btnEvents.Image = ((System.Drawing.Image)(resources.GetObject("btnEvents.Image")));
+            this.btnEvents.Location = new System.Drawing.Point(0, 230);
+            this.btnEvents.Name = "btnEvents";
+            this.btnEvents.Size = new System.Drawing.Size(75, 75);
+            this.btnEvents.TabIndex = 3;
+            this.btnEvents.UseVisualStyleBackColor = true;
+            this.btnEvents.Click += new System.EventHandler(this.btnEvents_Click);
+            // 
+            // btnMetrics
+            // 
+            this.btnMetrics.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnMetrics.FlatAppearance.BorderSize = 0;
+            this.btnMetrics.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnMetrics.ForeColor = System.Drawing.Color.Gainsboro;
+            this.btnMetrics.Image = ((System.Drawing.Image)(resources.GetObject("btnMetrics.Image")));
+            this.btnMetrics.Location = new System.Drawing.Point(0, 155);
+            this.btnMetrics.Name = "btnMetrics";
+            this.btnMetrics.Size = new System.Drawing.Size(75, 75);
+            this.btnMetrics.TabIndex = 2;
+            this.btnMetrics.UseVisualStyleBackColor = true;
+            this.btnMetrics.Click += new System.EventHandler(this.btnMetrics_Click);
             // 
             // btnJournal
             // 
@@ -87,78 +173,6 @@
             this.panelLogo.Size = new System.Drawing.Size(75, 80);
             this.panelLogo.TabIndex = 1;
             // 
-            // btnMetrics
-            // 
-            this.btnMetrics.Dock = System.Windows.Forms.DockStyle.Top;
-            this.btnMetrics.FlatAppearance.BorderSize = 0;
-            this.btnMetrics.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnMetrics.ForeColor = System.Drawing.Color.Gainsboro;
-            this.btnMetrics.Image = ((System.Drawing.Image)(resources.GetObject("btnMetrics.Image")));
-            this.btnMetrics.Location = new System.Drawing.Point(0, 155);
-            this.btnMetrics.Name = "btnMetrics";
-            this.btnMetrics.Size = new System.Drawing.Size(75, 75);
-            this.btnMetrics.TabIndex = 2;
-            this.btnMetrics.UseVisualStyleBackColor = true;
-            this.btnMetrics.Click += new System.EventHandler(this.btnMetrics_Click);
-            // 
-            // btnEvents
-            // 
-            this.btnEvents.Dock = System.Windows.Forms.DockStyle.Top;
-            this.btnEvents.FlatAppearance.BorderSize = 0;
-            this.btnEvents.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnEvents.ForeColor = System.Drawing.Color.Gainsboro;
-            this.btnEvents.Image = ((System.Drawing.Image)(resources.GetObject("btnEvents.Image")));
-            this.btnEvents.Location = new System.Drawing.Point(0, 230);
-            this.btnEvents.Name = "btnEvents";
-            this.btnEvents.Size = new System.Drawing.Size(75, 75);
-            this.btnEvents.TabIndex = 3;
-            this.btnEvents.UseVisualStyleBackColor = true;
-            this.btnEvents.Click += new System.EventHandler(this.btnEvents_Click);
-            // 
-            // btnRSS
-            // 
-            this.btnRSS.Dock = System.Windows.Forms.DockStyle.Top;
-            this.btnRSS.FlatAppearance.BorderSize = 0;
-            this.btnRSS.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnRSS.ForeColor = System.Drawing.Color.Gainsboro;
-            this.btnRSS.Image = ((System.Drawing.Image)(resources.GetObject("btnRSS.Image")));
-            this.btnRSS.Location = new System.Drawing.Point(0, 305);
-            this.btnRSS.Name = "btnRSS";
-            this.btnRSS.Size = new System.Drawing.Size(75, 75);
-            this.btnRSS.TabIndex = 4;
-            this.btnRSS.UseVisualStyleBackColor = true;
-            this.btnRSS.Click += new System.EventHandler(this.btnRSS_Click);
-            // 
-            // btnInfo
-            // 
-            this.btnInfo.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.btnInfo.FlatAppearance.BorderSize = 0;
-            this.btnInfo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnInfo.Font = new System.Drawing.Font("Microsoft Sans Serif", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnInfo.ForeColor = System.Drawing.Color.Gainsboro;
-            this.btnInfo.Location = new System.Drawing.Point(0, 606);
-            this.btnInfo.Name = "btnInfo";
-            this.btnInfo.Size = new System.Drawing.Size(75, 75);
-            this.btnInfo.TabIndex = 7;
-            this.btnInfo.Text = "?";
-            this.btnInfo.UseVisualStyleBackColor = true;
-            this.btnInfo.Click += new System.EventHandler(this.btnInfo_Click);
-            // 
-            // btnSettings
-            // 
-            this.btnSettings.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.btnSettings.FlatAppearance.BorderSize = 0;
-            this.btnSettings.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSettings.Font = new System.Drawing.Font("Microsoft Sans Serif", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSettings.ForeColor = System.Drawing.Color.Gainsboro;
-            this.btnSettings.Image = ((System.Drawing.Image)(resources.GetObject("btnSettings.Image")));
-            this.btnSettings.Location = new System.Drawing.Point(0, 531);
-            this.btnSettings.Name = "btnSettings";
-            this.btnSettings.Size = new System.Drawing.Size(75, 75);
-            this.btnSettings.TabIndex = 6;
-            this.btnSettings.UseVisualStyleBackColor = true;
-            this.btnSettings.Click += new System.EventHandler(this.btnSettings_Click);
-            // 
             // panelTitleBar
             // 
             this.panelTitleBar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(150)))), ((int)(((byte)(136)))));
@@ -178,9 +192,9 @@
             this.lblTitle.ForeColor = System.Drawing.Color.White;
             this.lblTitle.Location = new System.Drawing.Point(526, 25);
             this.lblTitle.Name = "lblTitle";
-            this.lblTitle.Size = new System.Drawing.Size(126, 26);
+            this.lblTitle.Size = new System.Drawing.Size(153, 26);
             this.lblTitle.TabIndex = 0;
-            this.lblTitle.Text = "WELCOME";
+            this.lblTitle.Text = "DASHBOARD";
             // 
             // panelWorkArea
             // 
@@ -189,20 +203,6 @@
             this.panelWorkArea.Name = "panelWorkArea";
             this.panelWorkArea.Size = new System.Drawing.Size(1189, 601);
             this.panelWorkArea.TabIndex = 2;
-            // 
-            // btnSearch
-            // 
-            this.btnSearch.Dock = System.Windows.Forms.DockStyle.Top;
-            this.btnSearch.FlatAppearance.BorderSize = 0;
-            this.btnSearch.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSearch.ForeColor = System.Drawing.Color.Gainsboro;
-            this.btnSearch.Image = ((System.Drawing.Image)(resources.GetObject("btnSearch.Image")));
-            this.btnSearch.Location = new System.Drawing.Point(0, 380);
-            this.btnSearch.Name = "btnSearch";
-            this.btnSearch.Size = new System.Drawing.Size(75, 75);
-            this.btnSearch.TabIndex = 5;
-            this.btnSearch.UseVisualStyleBackColor = true;
-            this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
             // 
             // TradingJournal
             // 
