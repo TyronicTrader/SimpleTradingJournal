@@ -1,24 +1,32 @@
-﻿using System.IO;            // for creating db file
+﻿using System;
+using System.Collections.Generic;
 using System.Data.SQLite;
+using System.IO;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace TradingJournal
 {
-    internal class dbConn
+    internal class DBCon
     {
         public SQLiteConnection Conn;
         public string dbfileName = "./TheDatabase.sqlite3";
-        public string dbschemaFile = "./DatabaseSchema6.sql";
+        public string dbschemaFile = "../../SQLiteSchema.sql";
+
         public string connectionstring { get; set; }
 
         string connection;
+
         public void getconnection()
         {
             connection = $"Data Source={dbfileName};Version=3;Compress=True;FailIfMissing=True;UTF16Encoding=True;UseUTF16Encoding=True;Synchronous=OFF;Journal Mode=WAL;";
             connectionstring = connection;
             System.Console.WriteLine(connectionstring);
         }
-        public dbConn()
+
+        public DBCon()
         {
             getconnection();
             Conn = new SQLiteConnection(connectionstring);
@@ -43,16 +51,19 @@ namespace TradingJournal
                 System.Console.WriteLine($"DB ALREADY EXISTING SQLite Version: {version} DATABASE FILE AND WILL USE IT");
             }
         }
+
         public void ConnOpen()
         {
             if (Conn.State != System.Data.ConnectionState.Open)
                 Conn.Open();
         }
+
         public void ConnClose()
         {
             if (Conn.State != System.Data.ConnectionState.Closed)
                 Conn.Close();
         }
+
         public void ApplySchema()
         {
             if (!File.Exists($"{dbschemaFile}"))
@@ -68,7 +79,6 @@ namespace TradingJournal
                 schemaInit.ExecuteNonQuery();
                 ConnClose();
             }
-
             //System.Console.WriteLine(dbschema);
             string version = Conn.ServerVersion;
             System.Console.WriteLine($"JUST CREATED A SQLite Version: {version} DATABASE FOR YOU");

@@ -41,7 +41,7 @@
             this.btnSaveImg = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.lblNameImg = new System.Windows.Forms.Label();
-            this.txtImageName = new System.Windows.Forms.TextBox();
+            this.txtNameImg = new System.Windows.Forms.TextBox();
             this.splitContainer = new System.Windows.Forms.SplitContainer();
             this.richTextBox1 = new System.Windows.Forms.RichTextBox();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
@@ -60,8 +60,8 @@
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.cmbType = new System.Windows.Forms.ComboBox();
             this.lblType = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.lblName = new System.Windows.Forms.Label();
+            this.txtNameRec = new System.Windows.Forms.TextBox();
+            this.lblNameRec = new System.Windows.Forms.Label();
             this.lblBody = new System.Windows.Forms.Label();
             this.lblMind = new System.Windows.Forms.Label();
             this.lblBackground = new System.Windows.Forms.Label();
@@ -83,6 +83,14 @@
             this.chbMonthlyDown = new System.Windows.Forms.CheckBox();
             this.chbWeeklyDown = new System.Windows.Forms.CheckBox();
             this.chbDailyDown = new System.Windows.Forms.CheckBox();
+            this.lblCurRec = new System.Windows.Forms.Label();
+            this.lblInstrument = new System.Windows.Forms.Label();
+            this.txtInstrument = new System.Windows.Forms.TextBox();
+            this.lblPnL = new System.Windows.Forms.Label();
+            this.txtPnL = new System.Windows.Forms.TextBox();
+            this.txtTags = new System.Windows.Forms.TextBox();
+            this.lblTags = new System.Windows.Forms.Label();
+            this.lblTagTip = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer)).BeginInit();
             this.splitContainer.Panel1.SuspendLayout();
@@ -97,10 +105,11 @@
             this.monthCalendar.BackColor = System.Drawing.SystemColors.Window;
             this.monthCalendar.Location = new System.Drawing.Point(13, 13);
             this.monthCalendar.MaxSelectionCount = 43;
-            this.monthCalendar.MinDate = new System.DateTime(2000, 1, 1, 0, 0, 0, 0);
+            this.monthCalendar.MinDate = new System.DateTime(1969, 7, 20, 0, 0, 0, 0);
             this.monthCalendar.Name = "monthCalendar";
             this.monthCalendar.TabIndex = 0;
             this.monthCalendar.TitleBackColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.monthCalendar.DateSelected += new System.Windows.Forms.DateRangeEventHandler(this.monthCalendar_DateSelected);
             // 
             // treeViewNotes
             // 
@@ -111,17 +120,19 @@
             this.treeViewNotes.Name = "treeViewNotes";
             this.treeViewNotes.Size = new System.Drawing.Size(227, 324);
             this.treeViewNotes.TabIndex = 1;
+            this.treeViewNotes.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.treeViewNotes_AfterSelect);
             // 
             // btnDelRec
             // 
             this.btnDelRec.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnDelRec.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnDelRec.Location = new System.Drawing.Point(51, 527);
+            this.btnDelRec.Location = new System.Drawing.Point(53, 527);
             this.btnDelRec.Name = "btnDelRec";
             this.btnDelRec.Size = new System.Drawing.Size(150, 30);
             this.btnDelRec.TabIndex = 2;
             this.btnDelRec.Text = "Delete Record";
             this.btnDelRec.UseVisualStyleBackColor = true;
+            this.btnDelRec.Click += new System.EventHandler(this.btnDelRec_Click);
             // 
             // btnDelImg
             // 
@@ -133,6 +144,7 @@
             this.btnDelImg.TabIndex = 3;
             this.btnDelImg.Text = "Delete Image";
             this.btnDelImg.UseVisualStyleBackColor = true;
+            this.btnDelImg.Click += new System.EventHandler(this.btnDelImg_Click);
             // 
             // btnNewRec
             // 
@@ -145,6 +157,7 @@
             this.btnNewRec.TabIndex = 4;
             this.btnNewRec.Text = "New Record";
             this.btnNewRec.UseVisualStyleBackColor = true;
+            this.btnNewRec.Click += new System.EventHandler(this.btnNewRec_Click);
             // 
             // btnSaveRec
             // 
@@ -156,6 +169,7 @@
             this.btnSaveRec.TabIndex = 5;
             this.btnSaveRec.Text = "Save Record";
             this.btnSaveRec.UseVisualStyleBackColor = true;
+            this.btnSaveRec.Click += new System.EventHandler(this.btnSaveRec_Click);
             // 
             // btnFileSaveImg
             // 
@@ -167,6 +181,7 @@
             this.btnFileSaveImg.TabIndex = 6;
             this.btnFileSaveImg.Text = "Save Image to File";
             this.btnFileSaveImg.UseVisualStyleBackColor = true;
+            this.btnFileSaveImg.Click += new System.EventHandler(this.btnFileSaveImg_Click);
             // 
             // btnLoadImg
             // 
@@ -178,6 +193,7 @@
             this.btnLoadImg.TabIndex = 7;
             this.btnLoadImg.Text = "Load Image from File";
             this.btnLoadImg.UseVisualStyleBackColor = true;
+            this.btnLoadImg.Click += new System.EventHandler(this.btnLoadImg_Click);
             // 
             // btnPasteImg
             // 
@@ -189,6 +205,7 @@
             this.btnPasteImg.TabIndex = 8;
             this.btnPasteImg.Text = "Paste Clipboard Image";
             this.btnPasteImg.UseVisualStyleBackColor = true;
+            this.btnPasteImg.Click += new System.EventHandler(this.btnPasteImg_Click);
             // 
             // btnSaveImg
             // 
@@ -200,6 +217,7 @@
             this.btnSaveImg.TabIndex = 9;
             this.btnSaveImg.Text = "Add Image to Record";
             this.btnSaveImg.UseVisualStyleBackColor = true;
+            this.btnSaveImg.Click += new System.EventHandler(this.btnSaveImg_Click);
             // 
             // dataGridView1
             // 
@@ -210,6 +228,7 @@
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.Size = new System.Drawing.Size(150, 240);
             this.dataGridView1.TabIndex = 10;
+            this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
             // lblNameImg
             // 
@@ -222,14 +241,14 @@
             this.lblNameImg.TabIndex = 11;
             this.lblNameImg.Text = "Image Name";
             // 
-            // txtImageName
+            // txtNameImg
             // 
-            this.txtImageName.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtImageName.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtImageName.Location = new System.Drawing.Point(1008, 241);
-            this.txtImageName.Name = "txtImageName";
-            this.txtImageName.Size = new System.Drawing.Size(150, 22);
-            this.txtImageName.TabIndex = 12;
+            this.txtNameImg.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtNameImg.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtNameImg.Location = new System.Drawing.Point(1008, 241);
+            this.txtNameImg.Name = "txtNameImg";
+            this.txtNameImg.Size = new System.Drawing.Size(150, 24);
+            this.txtNameImg.TabIndex = 12;
             // 
             // splitContainer
             // 
@@ -389,6 +408,7 @@
             this.pictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.pictureBox.TabIndex = 0;
             this.pictureBox.TabStop = false;
+            this.pictureBox.Click += new System.EventHandler(this.pictureBox_Click);
             // 
             // dateTimePicker1
             // 
@@ -412,35 +432,35 @@
             // 
             this.lblType.AutoSize = true;
             this.lblType.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblType.Location = new System.Drawing.Point(277, 60);
+            this.lblType.Location = new System.Drawing.Point(283, 60);
             this.lblType.Name = "lblType";
             this.lblType.Size = new System.Drawing.Size(44, 18);
             this.lblType.TabIndex = 16;
             this.lblType.Text = "Type";
             // 
-            // textBox1
+            // txtNameRec
             // 
-            this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox1.Location = new System.Drawing.Point(339, 90);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(150, 22);
-            this.textBox1.TabIndex = 17;
+            this.txtNameRec.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtNameRec.Location = new System.Drawing.Point(339, 90);
+            this.txtNameRec.Name = "txtNameRec";
+            this.txtNameRec.Size = new System.Drawing.Size(150, 24);
+            this.txtNameRec.TabIndex = 17;
             // 
-            // lblName
+            // lblNameRec
             // 
-            this.lblName.AutoSize = true;
-            this.lblName.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblName.Location = new System.Drawing.Point(269, 92);
-            this.lblName.Name = "lblName";
-            this.lblName.Size = new System.Drawing.Size(52, 18);
-            this.lblName.TabIndex = 18;
-            this.lblName.Text = "Name";
+            this.lblNameRec.AutoSize = true;
+            this.lblNameRec.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblNameRec.Location = new System.Drawing.Point(275, 92);
+            this.lblNameRec.Name = "lblNameRec";
+            this.lblNameRec.Size = new System.Drawing.Size(52, 18);
+            this.lblNameRec.TabIndex = 18;
+            this.lblNameRec.Text = "Name";
             // 
             // lblBody
             // 
             this.lblBody.AutoSize = true;
             this.lblBody.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblBody.Location = new System.Drawing.Point(275, 163);
+            this.lblBody.Location = new System.Drawing.Point(281, 147);
             this.lblBody.Name = "lblBody";
             this.lblBody.Size = new System.Drawing.Size(46, 18);
             this.lblBody.TabIndex = 20;
@@ -450,7 +470,7 @@
             // 
             this.lblMind.AutoSize = true;
             this.lblMind.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblMind.Location = new System.Drawing.Point(277, 199);
+            this.lblMind.Location = new System.Drawing.Point(283, 180);
             this.lblMind.Name = "lblMind";
             this.lblMind.Size = new System.Drawing.Size(44, 18);
             this.lblMind.TabIndex = 21;
@@ -472,7 +492,7 @@
             // 
             this.lblMonthly.AutoSize = true;
             this.lblMonthly.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblMonthly.Location = new System.Drawing.Point(254, 301);
+            this.lblMonthly.Location = new System.Drawing.Point(260, 272);
             this.lblMonthly.Name = "lblMonthly";
             this.lblMonthly.Size = new System.Drawing.Size(67, 18);
             this.lblMonthly.TabIndex = 26;
@@ -484,7 +504,7 @@
             this.lblHealth.BackColor = System.Drawing.SystemColors.ActiveBorder;
             this.lblHealth.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblHealth.ForeColor = System.Drawing.Color.White;
-            this.lblHealth.Location = new System.Drawing.Point(386, 124);
+            this.lblHealth.Location = new System.Drawing.Point(386, 121);
             this.lblHealth.Name = "lblHealth";
             this.lblHealth.Size = new System.Drawing.Size(56, 18);
             this.lblHealth.TabIndex = 29;
@@ -494,7 +514,7 @@
             // 
             this.lblEmotion.AutoSize = true;
             this.lblEmotion.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblEmotion.Location = new System.Drawing.Point(241, 235);
+            this.lblEmotion.Location = new System.Drawing.Point(247, 213);
             this.lblEmotion.Name = "lblEmotion";
             this.lblEmotion.Size = new System.Drawing.Size(80, 18);
             this.lblEmotion.TabIndex = 30;
@@ -506,7 +526,7 @@
             this.lblHTF.BackColor = System.Drawing.SystemColors.ActiveBorder;
             this.lblHTF.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblHTF.ForeColor = System.Drawing.Color.White;
-            this.lblHTF.Location = new System.Drawing.Point(374, 267);
+            this.lblHTF.Location = new System.Drawing.Point(374, 244);
             this.lblHTF.Name = "lblHTF";
             this.lblHTF.Size = new System.Drawing.Size(81, 18);
             this.lblHTF.TabIndex = 33;
@@ -516,7 +536,7 @@
             // 
             this.lblWeekly.AutoSize = true;
             this.lblWeekly.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblWeekly.Location = new System.Drawing.Point(258, 340);
+            this.lblWeekly.Location = new System.Drawing.Point(264, 308);
             this.lblWeekly.Name = "lblWeekly";
             this.lblWeekly.Size = new System.Drawing.Size(63, 18);
             this.lblWeekly.TabIndex = 34;
@@ -526,7 +546,7 @@
             // 
             this.lblDaily.AutoSize = true;
             this.lblDaily.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDaily.Location = new System.Drawing.Point(276, 379);
+            this.lblDaily.Location = new System.Drawing.Point(282, 346);
             this.lblDaily.Name = "lblDaily";
             this.lblDaily.Size = new System.Drawing.Size(45, 18);
             this.lblDaily.TabIndex = 37;
@@ -538,7 +558,7 @@
             this.chbBodyYes.BackColor = System.Drawing.SystemColors.ActiveBorder;
             this.chbBodyYes.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.chbBodyYes.Image = ((System.Drawing.Image)(resources.GetObject("chbBodyYes.Image")));
-            this.chbBodyYes.Location = new System.Drawing.Point(351, 159);
+            this.chbBodyYes.Location = new System.Drawing.Point(353, 142);
             this.chbBodyYes.Name = "chbBodyYes";
             this.chbBodyYes.Size = new System.Drawing.Size(54, 28);
             this.chbBodyYes.TabIndex = 40;
@@ -552,7 +572,7 @@
             this.chbMindYes.BackColor = System.Drawing.SystemColors.ActiveBorder;
             this.chbMindYes.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.chbMindYes.Image = ((System.Drawing.Image)(resources.GetObject("chbMindYes.Image")));
-            this.chbMindYes.Location = new System.Drawing.Point(351, 195);
+            this.chbMindYes.Location = new System.Drawing.Point(353, 175);
             this.chbMindYes.Name = "chbMindYes";
             this.chbMindYes.Size = new System.Drawing.Size(54, 28);
             this.chbMindYes.TabIndex = 41;
@@ -566,7 +586,7 @@
             this.chbEmotionsYes.BackColor = System.Drawing.SystemColors.ActiveBorder;
             this.chbEmotionsYes.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.chbEmotionsYes.Image = ((System.Drawing.Image)(resources.GetObject("chbEmotionsYes.Image")));
-            this.chbEmotionsYes.Location = new System.Drawing.Point(351, 231);
+            this.chbEmotionsYes.Location = new System.Drawing.Point(353, 208);
             this.chbEmotionsYes.Name = "chbEmotionsYes";
             this.chbEmotionsYes.Size = new System.Drawing.Size(54, 28);
             this.chbEmotionsYes.TabIndex = 42;
@@ -580,7 +600,7 @@
             this.chbBodyNo.BackColor = System.Drawing.SystemColors.ActiveBorder;
             this.chbBodyNo.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.chbBodyNo.Image = ((System.Drawing.Image)(resources.GetObject("chbBodyNo.Image")));
-            this.chbBodyNo.Location = new System.Drawing.Point(423, 159);
+            this.chbBodyNo.Location = new System.Drawing.Point(425, 142);
             this.chbBodyNo.Name = "chbBodyNo";
             this.chbBodyNo.Size = new System.Drawing.Size(54, 28);
             this.chbBodyNo.TabIndex = 43;
@@ -594,7 +614,7 @@
             this.chbMindNo.BackColor = System.Drawing.SystemColors.ActiveBorder;
             this.chbMindNo.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.chbMindNo.Image = ((System.Drawing.Image)(resources.GetObject("chbMindNo.Image")));
-            this.chbMindNo.Location = new System.Drawing.Point(423, 194);
+            this.chbMindNo.Location = new System.Drawing.Point(425, 175);
             this.chbMindNo.Name = "chbMindNo";
             this.chbMindNo.Size = new System.Drawing.Size(54, 28);
             this.chbMindNo.TabIndex = 44;
@@ -608,7 +628,7 @@
             this.chbEmotionsNo.BackColor = System.Drawing.SystemColors.ActiveBorder;
             this.chbEmotionsNo.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.chbEmotionsNo.Image = ((System.Drawing.Image)(resources.GetObject("chbEmotionsNo.Image")));
-            this.chbEmotionsNo.Location = new System.Drawing.Point(423, 230);
+            this.chbEmotionsNo.Location = new System.Drawing.Point(425, 208);
             this.chbEmotionsNo.Name = "chbEmotionsNo";
             this.chbEmotionsNo.Size = new System.Drawing.Size(54, 28);
             this.chbEmotionsNo.TabIndex = 45;
@@ -622,7 +642,7 @@
             this.chbMonthlyUp.BackColor = System.Drawing.SystemColors.ActiveBorder;
             this.chbMonthlyUp.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.chbMonthlyUp.Image = ((System.Drawing.Image)(resources.GetObject("chbMonthlyUp.Image")));
-            this.chbMonthlyUp.Location = new System.Drawing.Point(351, 297);
+            this.chbMonthlyUp.Location = new System.Drawing.Point(353, 267);
             this.chbMonthlyUp.Name = "chbMonthlyUp";
             this.chbMonthlyUp.Size = new System.Drawing.Size(54, 28);
             this.chbMonthlyUp.TabIndex = 46;
@@ -636,7 +656,7 @@
             this.chbWeeklyUp.BackColor = System.Drawing.SystemColors.ActiveBorder;
             this.chbWeeklyUp.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.chbWeeklyUp.Image = ((System.Drawing.Image)(resources.GetObject("chbWeeklyUp.Image")));
-            this.chbWeeklyUp.Location = new System.Drawing.Point(351, 336);
+            this.chbWeeklyUp.Location = new System.Drawing.Point(353, 303);
             this.chbWeeklyUp.Name = "chbWeeklyUp";
             this.chbWeeklyUp.Size = new System.Drawing.Size(54, 28);
             this.chbWeeklyUp.TabIndex = 47;
@@ -650,7 +670,7 @@
             this.chbDailyUp.BackColor = System.Drawing.SystemColors.ActiveBorder;
             this.chbDailyUp.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.chbDailyUp.Image = ((System.Drawing.Image)(resources.GetObject("chbDailyUp.Image")));
-            this.chbDailyUp.Location = new System.Drawing.Point(351, 375);
+            this.chbDailyUp.Location = new System.Drawing.Point(353, 341);
             this.chbDailyUp.Name = "chbDailyUp";
             this.chbDailyUp.Size = new System.Drawing.Size(54, 28);
             this.chbDailyUp.TabIndex = 48;
@@ -664,7 +684,7 @@
             this.chbMonthlyDown.BackColor = System.Drawing.SystemColors.ActiveBorder;
             this.chbMonthlyDown.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.chbMonthlyDown.Image = ((System.Drawing.Image)(resources.GetObject("chbMonthlyDown.Image")));
-            this.chbMonthlyDown.Location = new System.Drawing.Point(423, 297);
+            this.chbMonthlyDown.Location = new System.Drawing.Point(425, 267);
             this.chbMonthlyDown.Name = "chbMonthlyDown";
             this.chbMonthlyDown.Size = new System.Drawing.Size(54, 28);
             this.chbMonthlyDown.TabIndex = 49;
@@ -678,7 +698,7 @@
             this.chbWeeklyDown.BackColor = System.Drawing.SystemColors.ActiveBorder;
             this.chbWeeklyDown.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.chbWeeklyDown.Image = ((System.Drawing.Image)(resources.GetObject("chbWeeklyDown.Image")));
-            this.chbWeeklyDown.Location = new System.Drawing.Point(424, 335);
+            this.chbWeeklyDown.Location = new System.Drawing.Point(426, 303);
             this.chbWeeklyDown.Name = "chbWeeklyDown";
             this.chbWeeklyDown.Size = new System.Drawing.Size(54, 28);
             this.chbWeeklyDown.TabIndex = 50;
@@ -692,7 +712,7 @@
             this.chbDailyDown.BackColor = System.Drawing.SystemColors.ActiveBorder;
             this.chbDailyDown.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.chbDailyDown.Image = ((System.Drawing.Image)(resources.GetObject("chbDailyDown.Image")));
-            this.chbDailyDown.Location = new System.Drawing.Point(423, 374);
+            this.chbDailyDown.Location = new System.Drawing.Point(425, 341);
             this.chbDailyDown.Name = "chbDailyDown";
             this.chbDailyDown.Size = new System.Drawing.Size(54, 28);
             this.chbDailyDown.TabIndex = 51;
@@ -700,11 +720,104 @@
             this.chbDailyDown.UseVisualStyleBackColor = false;
             this.chbDailyDown.CheckedChanged += new System.EventHandler(this.chbDailyDown_CheckedChanged);
             // 
+            // lblCurRec
+            // 
+            this.lblCurRec.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.lblCurRec.AutoSize = true;
+            this.lblCurRec.BackColor = System.Drawing.SystemColors.Control;
+            this.lblCurRec.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.lblCurRec.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCurRec.Location = new System.Drawing.Point(3, 533);
+            this.lblCurRec.Name = "lblCurRec";
+            this.lblCurRec.Size = new System.Drawing.Size(17, 18);
+            this.lblCurRec.TabIndex = 52;
+            this.lblCurRec.Text = "0";
+            // 
+            // lblInstrument
+            // 
+            this.lblInstrument.AutoSize = true;
+            this.lblInstrument.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblInstrument.Location = new System.Drawing.Point(240, 385);
+            this.lblInstrument.Name = "lblInstrument";
+            this.lblInstrument.Size = new System.Drawing.Size(87, 18);
+            this.lblInstrument.TabIndex = 54;
+            this.lblInstrument.Text = "Instrument";
+            // 
+            // txtInstrument
+            // 
+            this.txtInstrument.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtInstrument.Location = new System.Drawing.Point(339, 384);
+            this.txtInstrument.Name = "txtInstrument";
+            this.txtInstrument.Size = new System.Drawing.Size(150, 24);
+            this.txtInstrument.TabIndex = 53;
+            // 
+            // lblPnL
+            // 
+            this.lblPnL.AutoSize = true;
+            this.lblPnL.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblPnL.Location = new System.Drawing.Point(290, 418);
+            this.lblPnL.Name = "lblPnL";
+            this.lblPnL.Size = new System.Drawing.Size(37, 18);
+            this.lblPnL.TabIndex = 56;
+            this.lblPnL.Text = "PnL";
+            // 
+            // txtPnL
+            // 
+            this.txtPnL.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtPnL.Location = new System.Drawing.Point(339, 417);
+            this.txtPnL.Name = "txtPnL";
+            this.txtPnL.Size = new System.Drawing.Size(150, 24);
+            this.txtPnL.TabIndex = 55;
+            this.txtPnL.Text = "0";
+            // 
+            // txtTags
+            // 
+            this.txtTags.AcceptsReturn = true;
+            this.txtTags.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.txtTags.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtTags.Location = new System.Drawing.Point(339, 451);
+            this.txtTags.Multiline = true;
+            this.txtTags.Name = "txtTags";
+            this.txtTags.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.txtTags.Size = new System.Drawing.Size(150, 90);
+            this.txtTags.TabIndex = 57;
+            this.txtTags.WordWrap = false;
+            this.txtTags.TextChanged += new System.EventHandler(this.txtTags_TextChanged);
+            // 
+            // lblTags
+            // 
+            this.lblTags.AutoSize = true;
+            this.lblTags.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTags.Location = new System.Drawing.Point(282, 451);
+            this.lblTags.Name = "lblTags";
+            this.lblTags.Size = new System.Drawing.Size(45, 18);
+            this.lblTags.TabIndex = 58;
+            this.lblTags.Text = "Tags";
+            // 
+            // lblTagTip
+            // 
+            this.lblTagTip.AutoSize = true;
+            this.lblTagTip.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTagTip.Location = new System.Drawing.Point(268, 481);
+            this.lblTagTip.Name = "lblTagTip";
+            this.lblTagTip.Size = new System.Drawing.Size(59, 60);
+            this.lblTagTip.TabIndex = 59;
+            this.lblTagTip.Text = "Pressing\r\nSpace\r\ncreates a\r\nNew Line";
+            // 
             // FormJournal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1173, 562);
+            this.Controls.Add(this.lblTagTip);
+            this.Controls.Add(this.lblTags);
+            this.Controls.Add(this.txtTags);
+            this.Controls.Add(this.lblPnL);
+            this.Controls.Add(this.txtPnL);
+            this.Controls.Add(this.lblInstrument);
+            this.Controls.Add(this.txtInstrument);
+            this.Controls.Add(this.lblCurRec);
             this.Controls.Add(this.chbDailyDown);
             this.Controls.Add(this.chbWeeklyDown);
             this.Controls.Add(this.chbMonthlyDown);
@@ -725,13 +838,13 @@
             this.Controls.Add(this.lblMonthly);
             this.Controls.Add(this.lblMind);
             this.Controls.Add(this.lblBody);
-            this.Controls.Add(this.lblName);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.lblNameRec);
+            this.Controls.Add(this.txtNameRec);
             this.Controls.Add(this.lblType);
             this.Controls.Add(this.cmbType);
             this.Controls.Add(this.dateTimePicker1);
             this.Controls.Add(this.splitContainer);
-            this.Controls.Add(this.txtImageName);
+            this.Controls.Add(this.txtNameImg);
             this.Controls.Add(this.lblNameImg);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.btnSaveImg);
@@ -776,7 +889,7 @@
         private System.Windows.Forms.Button btnSaveImg;
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.Label lblNameImg;
-        private System.Windows.Forms.TextBox txtImageName;
+        private System.Windows.Forms.TextBox txtNameImg;
         private System.Windows.Forms.SplitContainer splitContainer;
         private System.Windows.Forms.PictureBox pictureBox;
         private System.Windows.Forms.ToolStrip toolStrip1;
@@ -795,8 +908,8 @@
         private System.Windows.Forms.DateTimePicker dateTimePicker1;
         private System.Windows.Forms.ComboBox cmbType;
         private System.Windows.Forms.Label lblType;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.Label lblName;
+        private System.Windows.Forms.TextBox txtNameRec;
+        private System.Windows.Forms.Label lblNameRec;
         private System.Windows.Forms.Label lblBody;
         private System.Windows.Forms.Label lblMind;
         private System.Windows.Forms.Label lblBackground;
@@ -818,5 +931,13 @@
         private System.Windows.Forms.CheckBox chbMonthlyDown;
         private System.Windows.Forms.CheckBox chbWeeklyDown;
         private System.Windows.Forms.CheckBox chbDailyDown;
+        private System.Windows.Forms.Label lblCurRec;
+        private System.Windows.Forms.Label lblInstrument;
+        private System.Windows.Forms.TextBox txtInstrument;
+        private System.Windows.Forms.Label lblPnL;
+        private System.Windows.Forms.TextBox txtPnL;
+        private System.Windows.Forms.TextBox txtTags;
+        private System.Windows.Forms.Label lblTags;
+        private System.Windows.Forms.Label lblTagTip;
     }
 }
