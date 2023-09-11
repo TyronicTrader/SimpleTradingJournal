@@ -5,6 +5,8 @@ using System.Data;
 using System.Data.SQLite;
 using System.Drawing;
 using System.Linq;
+using System.Reflection.Emit;
+using System.Security.Policy;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -14,7 +16,6 @@ namespace TradingJournal
 {
     public partial class TradingJournal : Form
     {
-
         private Button currentButton;
         private Random random;
         private int tempIndex;
@@ -28,7 +29,10 @@ namespace TradingJournal
         }
 
 
+
         #region THEME Section
+
+
         private Color SelectThemeColor()
         {
             int index = random.Next(ThemeColor.ColorList.Count);
@@ -90,6 +94,9 @@ namespace TradingJournal
         #endregion
 
 
+        #region  LEFT BUTTONS
+
+
         private void btnJournal_Click(object sender, EventArgs e)
         {
             OpenChildForm(new Forms.FormJournal(), sender);
@@ -124,5 +131,9 @@ namespace TradingJournal
         {
             OpenChildForm(new Forms.FormSearch(), sender);
         }
+
+        #endregion
+
+
     }
 }

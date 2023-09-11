@@ -25,9 +25,9 @@ namespace TradingJournal.Forms
         string startDate = DateTime.Now.ToString("d");
         string endDate = DateTime.Now.ToString("d");
         public int activeRecordID = 0;
-
         private CheckBox currentCheckbox;
         private CheckBox oldCheckbox;
+
 
         public int ActiveRecordID
         {
@@ -39,12 +39,14 @@ namespace TradingJournal.Forms
             }
         }
 
+
         public FormJournal()
         {
             InitializeComponent();
             pictureBox.Image = pictureBox.InitialImage;
             lblCurRec.BorderStyle = BorderStyle.None;  
         }
+
 
         private void FormJournal_Load(object sender, EventArgs e)
         {
@@ -55,6 +57,7 @@ namespace TradingJournal.Forms
             FillTreeView(startDate, endDate);
             ActivateFields(false);
         }
+
 
         private void LoadTheme()
         {
@@ -764,22 +767,25 @@ namespace TradingJournal.Forms
 
         private void btnDelImg_Click(object sender, EventArgs e)
         {
-            try
+            if (MessageBox.Show("Are you sure you want to delete this image?", "Delete Image", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
-                if (dataGridView1.CurrentCell != null)
+                try
                 {
-                    int rowIndex = dataGridView1.CurrentCell.RowIndex;
-                    dataGridView1.Rows.RemoveAt(rowIndex);
-                    scb = new SQLiteCommandBuilder(sda);
-                    sda.Update(ds.Tables["Nmd_THUMB"]);
-                    FillGrid();
-                    txtNameImg.Text = null;
-                    pictureBox.Image = null;
+                    if (dataGridView1.CurrentCell != null)
+                    {
+                        int rowIndex = dataGridView1.CurrentCell.RowIndex;
+                        dataGridView1.Rows.RemoveAt(rowIndex);
+                        scb = new SQLiteCommandBuilder(sda);
+                        sda.Update(ds.Tables["Nmd_THUMB"]);
+                        FillGrid();
+                        txtNameImg.Text = null;
+                        pictureBox.Image = null;
+                    }
                 }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
             }
         }
 
@@ -802,6 +808,7 @@ namespace TradingJournal.Forms
             ActivateFields(false);
         }
         #endregion
+
 
         private void pictureBox_Click(object sender, EventArgs e)
         {
