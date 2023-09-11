@@ -129,7 +129,7 @@ namespace TradingJournal.Forms
         {
             treeViewNotes.Nodes.Clear();
             string treequery = $"Select Not_ID, Not_NAME, Not_DATETIME, Ntp_NAME from NOTES, NOTETYPES where Not_DATETIME >= '{startDate}' " +
-                $"AND Not_DATETIME <= '{endDate}' AND Ntp_ID = Not_Ntp_ID ORDER BY Not_DATETIME AND Ntp_NAME";
+                $"AND Not_DATETIME <= '{endDate}' AND Ntp_ID = Not_Ntp_ID ORDER BY Not_DATETIME, Ntp_NAME";
             sda = new SQLiteDataAdapter(treequery, dbCon.Conn);
             sda.Fill(ds, "Filltree");
             try
@@ -144,7 +144,7 @@ namespace TradingJournal.Forms
                     //TreeNode node2 = new TreeNode(dr["Not_NAME"].ToString());
                     TreeNode subsubNode = subNode.Nodes.Add(dr["Not_ID"].ToString(), dr["Not_NAME"].ToString());
                     //Console.WriteLine("I have found the record here " + treeViewNotes.Nodes.Find("Record22", true).ToString());
-                    //Console.WriteLine(topNode.Name.ToString() + " - " + subNode.Name.ToString() + " " + subsubNode.Name.ToString());
+                    Console.WriteLine(topNode.Text.ToString() + " - " + subNode.Text.ToString() + " " + subsubNode.Text.ToString());
                 }
                 treeViewNotes.EndUpdate();
             }
@@ -386,6 +386,10 @@ namespace TradingJournal.Forms
             FillTreeView(startDate, endDate);
             dateTimePicker1.Value = monthCalendar.SelectionStart;
 
+            //Update the fields 
+            ActiveRecordID = 0;
+            ResetFields();
+            ActivateFields(false);
         }
 
 
@@ -803,8 +807,8 @@ namespace TradingJournal.Forms
                 MessageBox.Show(ex.Message);
             }
             //Update the fields 
-            ResetFields();
             ActiveRecordID = 0;
+            ResetFields();
             ActivateFields(false);
         }
         #endregion
