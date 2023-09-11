@@ -26,7 +26,7 @@ namespace TradingJournal
         {
             InitializeComponent();
             random = new Random();
-        } 
+        }
 
 
 
