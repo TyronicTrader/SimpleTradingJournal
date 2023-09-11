@@ -1,5 +1,6 @@
 # SimpleTradingJournal
 
+Own Your Data....
 Simple WinForms/SQLite application for Journaling Trades and much more.
 Provides the ability to add multiple screenshots either from file or clipboard to each Journal Entry.
 Provides the ability to add HashTags to each Journal Entry though search features are not in place yet.
