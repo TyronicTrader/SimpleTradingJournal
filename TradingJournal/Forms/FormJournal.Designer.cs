@@ -179,7 +179,7 @@
             this.btnFileSaveImg.Name = "btnFileSaveImg";
             this.btnFileSaveImg.Size = new System.Drawing.Size(150, 30);
             this.btnFileSaveImg.TabIndex = 6;
-            this.btnFileSaveImg.Text = "Save Image to File";
+            this.btnFileSaveImg.Text = "Export Image to File";
             this.btnFileSaveImg.UseVisualStyleBackColor = true;
             this.btnFileSaveImg.Click += new System.EventHandler(this.btnFileSaveImg_Click);
             // 
@@ -269,19 +269,21 @@
             // 
             this.splitContainer.Panel2.Controls.Add(this.pictureBox);
             this.splitContainer.Size = new System.Drawing.Size(478, 541);
-            this.splitContainer.SplitterDistance = 246;
+            this.splitContainer.SplitterDistance = 345;
             this.splitContainer.SplitterWidth = 8;
             this.splitContainer.TabIndex = 13;
             // 
             // richTextBox1
             // 
+            this.richTextBox1.AcceptsTab = true;
             this.richTextBox1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.richTextBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.richTextBox1.Location = new System.Drawing.Point(0, 25);
             this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(474, 217);
+            this.richTextBox1.Size = new System.Drawing.Size(474, 316);
             this.richTextBox1.TabIndex = 1;
             this.richTextBox1.Text = "";
+            this.richTextBox1.EnabledChanged += new System.EventHandler(this.richTextBox1_EnabledChanged);
             // 
             // toolStrip1
             // 
@@ -404,10 +406,11 @@
             this.pictureBox.InitialImage = global::TradingJournal.Properties.Resources.placeholder;
             this.pictureBox.Location = new System.Drawing.Point(0, 0);
             this.pictureBox.Name = "pictureBox";
-            this.pictureBox.Size = new System.Drawing.Size(474, 283);
+            this.pictureBox.Size = new System.Drawing.Size(474, 184);
             this.pictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.pictureBox.TabIndex = 0;
             this.pictureBox.TabStop = false;
+            this.pictureBox.EnabledChanged += new System.EventHandler(this.pictureBox_EnabledChanged);
             this.pictureBox.Click += new System.EventHandler(this.pictureBox_Click);
             // 
             // dateTimePicker1

@@ -27,6 +27,8 @@ namespace TradingJournal.Forms
         public int activeRecordID = 0;
         private CheckBox currentCheckbox;
         private CheckBox oldCheckbox;
+        string strDefaultTextboxMessage = "HINTS:\r\n<-- If you want to create a Template you can chose New Record and the Type called Template and it will add a template to the above template menu\r\n<-- Change color theme by clicking on the Journal icon in the left column  Keep pressing until you find a color scheme you prefer\r\n-->  After you have Loaded or Pasted an Image to your Record/Note then give it a name and Click \"Add Image to Record\" to include it into the active Record/Note\r\n<-- Tags allow you to add HashTags to your Record/Note for reference and will be used in future updates for reporting and searching\r\n<--The Monthly Calendar will allow you to highlight multiple dates to fill the tree below it with records from those selected dates\r\n";
+
 
 
         public int ActiveRecordID
@@ -479,6 +481,7 @@ namespace TradingJournal.Forms
                 if (chbDailyDown.Checked) { intDaily = 2; }
 	            string strInstrument;
                 strInstrument = txtInstrument.Text;
+                if (txtPnL.Text.Length == 0 || txtPnL.Text == " ") { txtPnL.Text = "0"; }
                 decimal decPnL;
                 if( Decimal.TryParse(txtPnL.Text, out decPnL)) { } 
                 else { MessageBox.Show("Only Numbers with decimal point allowed for PnL " + decPnL.ToString()); }
@@ -524,6 +527,7 @@ namespace TradingJournal.Forms
             {
                 MessageBox.Show("You need to have an active record open.");
             }
+            MessageBox.Show("Record has been saved.");
         }
 
 
@@ -576,7 +580,9 @@ namespace TradingJournal.Forms
             txtPnL.Enabled = x;
             txtTags.Enabled = x;
             richTextBox1.Enabled = x;
-
+            pictureBox.Enabled = x;
+            if (!pictureBox.Enabled) { pictureBox.Image = pictureBox.InitialImage; }
+            if (!richTextBox1.Enabled) { richTextBox1.Text = strDefaultTextboxMessage; }
         }
 
         #endregion
@@ -836,6 +842,20 @@ namespace TradingJournal.Forms
                 s = s.Replace(" ", "");
                 txtTags.Text = "\r\n" + s;
             }
+        }
+
+        private void richTextBox1_EnabledChanged(object sender, EventArgs e)
+        {
+            if (!richTextBox1.Enabled)
+            {
+                richTextBox1.Text = strDefaultTextboxMessage; 
+            }
+        }
+
+        private void pictureBox_EnabledChanged(object sender, EventArgs e)
+        {
+            if(!pictureBox.Enabled) { pictureBox.Image = pictureBox.InitialImage; }
+            
         }
     }
 }
