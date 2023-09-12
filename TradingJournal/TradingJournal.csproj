@@ -184,6 +184,7 @@
     <Content Include="images\arrow-down.png" />
     <Content Include="images\arrow-up-right.png" />
     <Content Include="images\arrow-up.png" />
+    <Content Include="images\calendar-clock.png" />
     <Content Include="images\copy.png" />
     <Content Include="images\cut.png" />
     <Content Include="images\graph.png" />

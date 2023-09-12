@@ -28,8 +28,8 @@ namespace TradingJournal.Forms
         private CheckBox currentCheckbox;
         private CheckBox oldCheckbox;
         string strDefaultTextboxMessage = "HINTS:\r\n<-- If you want to create a Template you can chose New Record and the Type called Template and it will add a template to the above template menu\r\n<-- Change color theme by clicking on the Journal icon in the left column  Keep pressing until you find a color scheme you prefer\r\n-->  After you have Loaded or Pasted an Image to your Record/Note then give it a name and Click \"Add Image to Record\" to include it into the active Record/Note\r\n<-- Tags allow you to add HashTags to your Record/Note for reference and will be used in future updates for reporting and searching\r\n<--The Monthly Calendar will allow you to highlight multiple dates to fill the tree below it with records from those selected dates\r\n";
-
-
+        string strDefaultTagsExamples = "EXAMPLES:\r\n FOMC\r\n CPI\r\n GDP\r\n nonFarmPayroll";
+        string strDefaultInstrumentExample = "EUR/USD or BTC";
 
         public int ActiveRecordID
         {
@@ -573,6 +573,7 @@ namespace TradingJournal.Forms
             toolStripbtnRedo.Enabled = x;
             toolStripbtnUndo.Enabled = x;
             toolStripCmbTemplate.Enabled = x;
+            toolStripButtonTimestamp.Enabled = x;
             cmbType.Enabled = x;
             txtNameImg.Enabled = x;
             txtNameRec.Enabled = x;
@@ -581,8 +582,11 @@ namespace TradingJournal.Forms
             txtTags.Enabled = x;
             richTextBox1.Enabled = x;
             pictureBox.Enabled = x;
+
             if (!pictureBox.Enabled) { pictureBox.Image = pictureBox.InitialImage; }
             if (!richTextBox1.Enabled) { richTextBox1.Text = strDefaultTextboxMessage; }
+            if (!txtTags.Enabled) { txtTags.Text = strDefaultTagsExamples; }
+            if (!txtInstrument.Enabled) { txtInstrument.Text = strDefaultInstrumentExample; }
         }
 
         #endregion
@@ -856,6 +860,11 @@ namespace TradingJournal.Forms
         {
             if(!pictureBox.Enabled) { pictureBox.Image = pictureBox.InitialImage; }
             
+        }
+
+        private void toolStripButtonTimestamp_Click(object sender, EventArgs e)
+        {
+            richTextBox1.Text = richTextBox1.Text + "\r\n \r\n " + DateTime.Now.ToString();
         }
     }
 }

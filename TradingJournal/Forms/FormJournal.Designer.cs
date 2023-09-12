@@ -91,6 +91,7 @@
             this.txtTags = new System.Windows.Forms.TextBox();
             this.lblTags = new System.Windows.Forms.Label();
             this.lblTagTip = new System.Windows.Forms.Label();
+            this.toolStripButtonTimestamp = new System.Windows.Forms.ToolStripButton();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer)).BeginInit();
             this.splitContainer.Panel1.SuspendLayout();
@@ -299,7 +300,8 @@
             this.toolStripbtnCopy,
             this.toolStripbtnPaste,
             this.toolStripSeparator3,
-            this.toolStripbtnOrientation});
+            this.toolStripbtnOrientation,
+            this.toolStripButtonTimestamp});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.Size = new System.Drawing.Size(474, 25);
@@ -808,6 +810,17 @@
             this.lblTagTip.TabIndex = 59;
             this.lblTagTip.Text = "Pressing\r\nSpace\r\ncreates a\r\nNew Line";
             // 
+            // toolStripButtonTimestamp
+            // 
+            this.toolStripButtonTimestamp.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButtonTimestamp.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonTimestamp.Image")));
+            this.toolStripButtonTimestamp.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButtonTimestamp.Name = "toolStripButtonTimestamp";
+            this.toolStripButtonTimestamp.Size = new System.Drawing.Size(23, 22);
+            this.toolStripButtonTimestamp.Text = "TimeStamp";
+            this.toolStripButtonTimestamp.ToolTipText = "TimeStamp";
+            this.toolStripButtonTimestamp.Click += new System.EventHandler(this.toolStripButtonTimestamp_Click);
+            // 
             // FormJournal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -942,5 +955,6 @@
         private System.Windows.Forms.TextBox txtTags;
         private System.Windows.Forms.Label lblTags;
         private System.Windows.Forms.Label lblTagTip;
+        private System.Windows.Forms.ToolStripButton toolStripButtonTimestamp;
     }
 }
