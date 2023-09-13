@@ -91,10 +91,12 @@ namespace TradingJournal
             lblTitle.Text = childForm.Text;
 
         }
+
+
         #endregion
 
 
-        #region  LEFT BUTTONS
+        #region  LEFT NAVIGATION BUTTONS
 
 
         private void btnJournal_Click(object sender, EventArgs e)

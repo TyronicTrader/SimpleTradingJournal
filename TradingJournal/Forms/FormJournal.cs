@@ -615,7 +615,7 @@ namespace TradingJournal.Forms
             richTextBox1.Enabled = x;
             pictureBox.Enabled = x;
 
-            if (!pictureBox.Enabled) { pictureBox.Image = pictureBox.InitialImage; }
+            if (!pictureBox.Enabled) { pictureBox.Image = pictureBox.InitialImage; pictureBox.SizeMode = PictureBoxSizeMode.CenterImage; }
             if (!richTextBox1.Enabled) { richTextBox1.Text = strDefaultTextboxMessage; }
             if (!txtTags.Enabled) { txtTags.Text = strDefaultTagsExamples; }
             if (!txtInstrument.Enabled) { txtInstrument.Text = strDefaultInstrumentExample; }
