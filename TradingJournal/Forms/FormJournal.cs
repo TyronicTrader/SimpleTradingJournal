@@ -656,7 +656,7 @@ namespace TradingJournal.Forms
 
         private void toolStripbtnTimestamp_Click(object sender, EventArgs e)
         {
-            richTextBox1.Text = richTextBox1.Text + "\r\n \r\n " + DateTime.Now.ToString();
+            richTextBox1.Text = richTextBox1.Text + "\r\n" + DateTime.Now.ToString();
         }
 
         private void toolStripbtnOrientation_Click(object sender, EventArgs e)
@@ -844,6 +844,7 @@ namespace TradingJournal.Forms
                     MessageBox.Show(ex.Message);
                 }
             }
+            LoadFirstRecImage();
         }
 
         private void btnDelRec_Click(object sender, EventArgs e)
@@ -920,7 +921,6 @@ namespace TradingJournal.Forms
                 e.Handled = true;
 
                 //thank you Tommaso Belluzzo
-                MessageBox.Show("You can not paste directly to the text box\n\n      Type in the Image Name \n      Click on Add Image to Record");
 
 
                 txtNameImg.Clear();
@@ -931,6 +931,8 @@ namespace TradingJournal.Forms
                         pictureBox.SizeMode = PictureBoxSizeMode.Zoom;
                         pictureBox.Image = Clipboard.GetImage();
                         txtNameImg.Focus();
+
+                        MessageBox.Show("You can not paste directly to the text box\n\n      Type in the Image Name \n      Click on Add Image to Record");
                     }
                 }
                 catch (Exception ex)
