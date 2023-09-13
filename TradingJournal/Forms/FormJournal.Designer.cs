@@ -55,6 +55,7 @@
             this.toolStripbtnCopy = new System.Windows.Forms.ToolStripButton();
             this.toolStripbtnPaste = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripbtnTimestamp = new System.Windows.Forms.ToolStripButton();
             this.toolStripbtnOrientation = new System.Windows.Forms.ToolStripButton();
             this.pictureBox = new System.Windows.Forms.PictureBox();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
@@ -91,7 +92,6 @@
             this.txtTags = new System.Windows.Forms.TextBox();
             this.lblTags = new System.Windows.Forms.Label();
             this.lblTagTip = new System.Windows.Forms.Label();
-            this.toolStripButtonTimestamp = new System.Windows.Forms.ToolStripButton();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer)).BeginInit();
             this.splitContainer.Panel1.SuspendLayout();
@@ -244,6 +244,7 @@
             // 
             // txtNameImg
             // 
+            this.txtNameImg.AcceptsReturn = true;
             this.txtNameImg.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.txtNameImg.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtNameImg.Location = new System.Drawing.Point(1008, 241);
@@ -284,7 +285,7 @@
             this.richTextBox1.Size = new System.Drawing.Size(474, 316);
             this.richTextBox1.TabIndex = 1;
             this.richTextBox1.Text = "";
-            this.richTextBox1.EnabledChanged += new System.EventHandler(this.richTextBox1_EnabledChanged);
+            this.richTextBox1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.richTextBox1_KeyDown);
             // 
             // toolStrip1
             // 
@@ -300,8 +301,8 @@
             this.toolStripbtnCopy,
             this.toolStripbtnPaste,
             this.toolStripSeparator3,
-            this.toolStripbtnOrientation,
-            this.toolStripButtonTimestamp});
+            this.toolStripbtnTimestamp,
+            this.toolStripbtnOrientation});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.Size = new System.Drawing.Size(474, 25);
@@ -390,6 +391,17 @@
             this.toolStripSeparator3.Name = "toolStripSeparator3";
             this.toolStripSeparator3.Size = new System.Drawing.Size(6, 25);
             // 
+            // toolStripbtnTimestamp
+            // 
+            this.toolStripbtnTimestamp.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripbtnTimestamp.Image = ((System.Drawing.Image)(resources.GetObject("toolStripbtnTimestamp.Image")));
+            this.toolStripbtnTimestamp.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripbtnTimestamp.Name = "toolStripbtnTimestamp";
+            this.toolStripbtnTimestamp.Size = new System.Drawing.Size(23, 22);
+            this.toolStripbtnTimestamp.Text = "TimeStamp";
+            this.toolStripbtnTimestamp.ToolTipText = "TimeStamp";
+            this.toolStripbtnTimestamp.Click += new System.EventHandler(this.toolStripbtnTimestamp_Click);
+            // 
             // toolStripbtnOrientation
             // 
             this.toolStripbtnOrientation.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
@@ -412,7 +424,6 @@
             this.pictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.pictureBox.TabIndex = 0;
             this.pictureBox.TabStop = false;
-            this.pictureBox.EnabledChanged += new System.EventHandler(this.pictureBox_EnabledChanged);
             this.pictureBox.Click += new System.EventHandler(this.pictureBox_Click);
             // 
             // dateTimePicker1
@@ -810,17 +821,6 @@
             this.lblTagTip.TabIndex = 59;
             this.lblTagTip.Text = "Pressing\r\nSpace\r\ncreates a\r\nNew Line";
             // 
-            // toolStripButtonTimestamp
-            // 
-            this.toolStripButtonTimestamp.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButtonTimestamp.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonTimestamp.Image")));
-            this.toolStripButtonTimestamp.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButtonTimestamp.Name = "toolStripButtonTimestamp";
-            this.toolStripButtonTimestamp.Size = new System.Drawing.Size(23, 22);
-            this.toolStripButtonTimestamp.Text = "TimeStamp";
-            this.toolStripButtonTimestamp.ToolTipText = "TimeStamp";
-            this.toolStripButtonTimestamp.Click += new System.EventHandler(this.toolStripButtonTimestamp_Click);
-            // 
             // FormJournal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -955,6 +955,6 @@
         private System.Windows.Forms.TextBox txtTags;
         private System.Windows.Forms.Label lblTags;
         private System.Windows.Forms.Label lblTagTip;
-        private System.Windows.Forms.ToolStripButton toolStripButtonTimestamp;
+        private System.Windows.Forms.ToolStripButton toolStripbtnTimestamp;
     }
 }

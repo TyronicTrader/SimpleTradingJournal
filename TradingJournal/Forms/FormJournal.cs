@@ -30,6 +30,9 @@ namespace TradingJournal.Forms
         string strDefaultTextboxMessage = "HINTS:\r\n<-- If you want to create a Template you can chose New Record and the Type called Template and it will add a template to the above template menu\r\n<-- Change color theme by clicking on the Journal icon in the left column  Keep pressing until you find a color scheme you prefer\r\n-->  After you have Loaded or Pasted an Image to your Record/Note then give it a name and Click \"Add Image to Record\" to include it into the active Record/Note\r\n<-- Tags allow you to add HashTags to your Record/Note for reference and will be used in future updates for reporting and searching\r\n<--The Monthly Calendar will allow you to highlight multiple dates to fill the tree below it with records from those selected dates\r\n";
         string strDefaultTagsExamples = "EXAMPLES:\r\n FOMC\r\n CPI\r\n GDP\r\n nonFarmPayroll";
         string strDefaultInstrumentExample = "EUR/USD or BTC";
+        string strDefaultImageName = "Image Name here";
+        string strDefaultType = "Record Type here";
+        string strDefaultRecordName = "Record Name here";
 
         public int ActiveRecordID
         {
@@ -101,8 +104,8 @@ namespace TradingJournal.Forms
         }
 
 
-        #region THE WORK
 
+        #region THE WORK
 
 
 
@@ -227,7 +230,8 @@ namespace TradingJournal.Forms
             txtNameImg.Text = null;
             pictureBox.Image = null;
             //pictureBox2.Image = null;
-            ActivateFields(true);
+            ActivateFields(true); 
+            LoadFirstRecImage();
 
         }
 
@@ -279,6 +283,7 @@ namespace TradingJournal.Forms
             //MemoryStream ms2 = new MemoryStream(imgT);
             //pictureBox2.Image = Image.FromStream(ms2);
             //ms2.Close();
+            //Console.WriteLine( rowindex + "  " + columnindex + "  " + prevcolumn +"  " + picinfo);
 
         }
 
@@ -287,7 +292,6 @@ namespace TradingJournal.Forms
         {
             try
             {
-                
                 dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
                 dataGridView1.RowTemplate.Height = 90;
                 dataGridView1.AllowUserToResizeRows = false;
@@ -319,6 +323,34 @@ namespace TradingJournal.Forms
             }
         }
 
+        private void LoadFirstRecImage()
+        {
+            if (dataGridView1.RowCount > 0)
+            {
+                try
+                {
+                    txtNameImg.Clear();
+                    txtNameImg.Text = (string)dataGridView1.Rows[0].Cells[1].Value;
+                    Console.WriteLine(txtNameImg.Text);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+                try
+                {
+                    pictureBox.SizeMode = PictureBoxSizeMode.Zoom;
+                    byte[] img = (byte[])dataGridView1.Rows[0].Cells[2].Value;
+                    MemoryStream ms = new MemoryStream(img);
+                    pictureBox.Image = Image.FromStream(ms);
+                    ms.Close();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            }
+        }
 
         private void Picbox2db()
         {
@@ -573,7 +605,7 @@ namespace TradingJournal.Forms
             toolStripbtnRedo.Enabled = x;
             toolStripbtnUndo.Enabled = x;
             toolStripCmbTemplate.Enabled = x;
-            toolStripButtonTimestamp.Enabled = x;
+            toolStripbtnTimestamp.Enabled = x;
             cmbType.Enabled = x;
             txtNameImg.Enabled = x;
             txtNameRec.Enabled = x;
@@ -587,6 +619,9 @@ namespace TradingJournal.Forms
             if (!richTextBox1.Enabled) { richTextBox1.Text = strDefaultTextboxMessage; }
             if (!txtTags.Enabled) { txtTags.Text = strDefaultTagsExamples; }
             if (!txtInstrument.Enabled) { txtInstrument.Text = strDefaultInstrumentExample; }
+            if (!txtNameImg.Enabled) { txtNameImg.Text = strDefaultImageName; }
+            if (!cmbType.Enabled) { cmbType.Text = strDefaultType; }
+            if (!txtNameRec.Enabled) { txtNameRec.Text = strDefaultRecordName; }
         }
 
         #endregion
@@ -619,6 +654,11 @@ namespace TradingJournal.Forms
             richTextBox1.Paste();
         }
 
+        private void toolStripbtnTimestamp_Click(object sender, EventArgs e)
+        {
+            richTextBox1.Text = richTextBox1.Text + "\r\n \r\n " + DateTime.Now.ToString();
+        }
+
         private void toolStripbtnOrientation_Click(object sender, EventArgs e)
         {
             if (splitContainer.Orientation.Equals(Orientation.Vertical))
@@ -630,6 +670,8 @@ namespace TradingJournal.Forms
                 splitContainer.Orientation = Orientation.Vertical;
             }
         }
+
+
         #endregion
 
 
@@ -752,7 +794,7 @@ namespace TradingJournal.Forms
                     txtNameImg.Text = opf.FileName;
                 }
             }
-
+            txtNameImg.Focus();
         }
 
         private void btnPasteImg_Click(object sender, EventArgs e)
@@ -764,6 +806,7 @@ namespace TradingJournal.Forms
                 {
                     pictureBox.SizeMode = PictureBoxSizeMode.Zoom;
                     pictureBox.Image = Clipboard.GetImage();
+                    txtNameImg.Focus();
                 }
             }
             catch (Exception ex)
@@ -848,23 +891,36 @@ namespace TradingJournal.Forms
             }
         }
 
-        private void richTextBox1_EnabledChanged(object sender, EventArgs e)
+        private void richTextBox1_KeyDown(object sender, KeyEventArgs e)
         {
-            if (!richTextBox1.Enabled)
+            if (e.Control && e.KeyCode == Keys.V)
             {
-                richTextBox1.Text = strDefaultTextboxMessage; 
+                // suspend layout to avoid blinking
+                richTextBox1.SuspendLayout();
+
+                // get insertion point
+                int insPt = richTextBox1.SelectionStart;
+
+                // preserve text from after insertion pont to end of RTF content
+                string postRTFContent = richTextBox1.Text.Substring(insPt);
+
+                // remove the content after the insertion point
+                richTextBox1.Text = richTextBox1.Text.Substring(0, insPt);
+
+                // add the clipboard content and then the preserved postRTF content
+                richTextBox1.Text += (string)Clipboard.GetData("Text") + postRTFContent;
+
+                // adjust the insertion point to just after the inserted text
+                richTextBox1.SelectionStart = richTextBox1.TextLength - postRTFContent.Length;
+
+                // restore layout
+                richTextBox1.ResumeLayout();
+
+                // cancel the paste
+                e.Handled = true;
+
+                MessageBox.Show("You can not paste directly to the text box\n\n To add an image to your record\n Look to the right hand side and click \n      Paste Clipboard Image \n      Type in the Images Name \n      Click on Add Image to Record");
             }
-        }
-
-        private void pictureBox_EnabledChanged(object sender, EventArgs e)
-        {
-            if(!pictureBox.Enabled) { pictureBox.Image = pictureBox.InitialImage; }
-            
-        }
-
-        private void toolStripButtonTimestamp_Click(object sender, EventArgs e)
-        {
-            richTextBox1.Text = richTextBox1.Text + "\r\n \r\n " + DateTime.Now.ToString();
         }
     }
 }
