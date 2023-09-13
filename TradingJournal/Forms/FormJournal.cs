@@ -919,7 +919,24 @@ namespace TradingJournal.Forms
                 // cancel the paste
                 e.Handled = true;
 
-                MessageBox.Show("You can not paste directly to the text box\n\n To add an image to your record\n Look to the right hand side and click \n      Paste Clipboard Image \n      Type in the Images Name \n      Click on Add Image to Record");
+                //thank you Tommaso Belluzzo
+                MessageBox.Show("You can not paste directly to the text box\n\n      Type in the Image Name \n      Click on Add Image to Record");
+
+
+                txtNameImg.Clear();
+                try
+                {
+                    if (Clipboard.ContainsImage())
+                    {
+                        pictureBox.SizeMode = PictureBoxSizeMode.Zoom;
+                        pictureBox.Image = Clipboard.GetImage();
+                        txtNameImg.Focus();
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message + "\n\nTry again and if it dosen't work then\n maybe something is wrong with the image source or my code");
+                }
             }
         }
     }
