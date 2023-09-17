@@ -43,10 +43,12 @@ namespace TradingJournal
                 {
                     SQLiteConnection.CreateFile($"{dbfileName}");
                     ApplySchema();
+                    SchemaUpdate();
                 }
             }
             else
             {
+                SchemaUpdate();
                 string version = Conn.ServerVersion;
                 System.Console.WriteLine($"DB ALREADY EXISTING SQLite Version: {version} DATABASE FILE AND WILL USE IT");
             }
@@ -82,6 +84,17 @@ namespace TradingJournal
             //System.Console.WriteLine(dbschema);
             string version = Conn.ServerVersion;
             System.Console.WriteLine($"JUST CREATED A SQLite Version: {version} DATABASE FOR YOU");
+        }
+
+        private void SchemaUpdate()
+        {
+            ConnOpen();
+            string dbschemaUpdate = @"CREATE TRIGGER IF NOT EXISTS cleanupEmptyNotes AFTER UPDATE on NOTES BEGIN DELETE from NOTES where Not_NAME = 'Blank Record' AND Not_NOTES = 'Blank Record'; END";
+            var schemaInit = Conn.CreateCommand();
+            schemaInit.CommandText = dbschemaUpdate;
+            schemaInit.ExecuteNonQuery();
+            ConnClose();
+
         }
     }
 }

@@ -92,6 +92,7 @@
             this.txtTags = new System.Windows.Forms.TextBox();
             this.lblTags = new System.Windows.Forms.Label();
             this.lblTagTip = new System.Windows.Forms.Label();
+            this.chbDM = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer)).BeginInit();
             this.splitContainer.Panel1.SuspendLayout();
@@ -278,6 +279,7 @@
             // richTextBox1
             // 
             this.richTextBox1.AcceptsTab = true;
+            this.richTextBox1.BackColor = System.Drawing.SystemColors.Window;
             this.richTextBox1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.richTextBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.richTextBox1.Location = new System.Drawing.Point(0, 25);
@@ -286,6 +288,7 @@
             this.richTextBox1.TabIndex = 1;
             this.richTextBox1.Text = "";
             this.richTextBox1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.richTextBox1_KeyDown);
+            this.richTextBox1.Leave += new System.EventHandler(this.richTextBox1_Leave);
             // 
             // toolStrip1
             // 
@@ -318,6 +321,7 @@
             // 
             // toolStripCmbTemplate
             // 
+            this.toolStripCmbTemplate.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.toolStripCmbTemplate.Name = "toolStripCmbTemplate";
             this.toolStripCmbTemplate.Size = new System.Drawing.Size(121, 25);
             this.toolStripCmbTemplate.ToolTipText = "Select Template";
@@ -437,6 +441,7 @@
             // 
             // cmbType
             // 
+            this.cmbType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbType.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbType.FormattingEnabled = true;
             this.cmbType.Location = new System.Drawing.Point(339, 57);
@@ -741,11 +746,10 @@
             this.lblCurRec.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.lblCurRec.AutoSize = true;
             this.lblCurRec.BackColor = System.Drawing.SystemColors.Control;
-            this.lblCurRec.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.lblCurRec.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblCurRec.Location = new System.Drawing.Point(3, 533);
             this.lblCurRec.Name = "lblCurRec";
-            this.lblCurRec.Size = new System.Drawing.Size(17, 18);
+            this.lblCurRec.Size = new System.Drawing.Size(15, 16);
             this.lblCurRec.TabIndex = 52;
             this.lblCurRec.Text = "0";
             // 
@@ -815,17 +819,30 @@
             // 
             this.lblTagTip.AutoSize = true;
             this.lblTagTip.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTagTip.Location = new System.Drawing.Point(268, 481);
+            this.lblTagTip.Location = new System.Drawing.Point(268, 472);
             this.lblTagTip.Name = "lblTagTip";
             this.lblTagTip.Size = new System.Drawing.Size(59, 60);
             this.lblTagTip.TabIndex = 59;
             this.lblTagTip.Text = "Pressing\r\nSpace\r\ncreates a\r\nNew Line";
+            // 
+            // chbDM
+            // 
+            this.chbDM.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.chbDM.AutoSize = true;
+            this.chbDM.Location = new System.Drawing.Point(215, 539);
+            this.chbDM.Name = "chbDM";
+            this.chbDM.Size = new System.Drawing.Size(76, 17);
+            this.chbDM.TabIndex = 60;
+            this.chbDM.Text = "DarkMode";
+            this.chbDM.UseVisualStyleBackColor = true;
+            this.chbDM.CheckedChanged += new System.EventHandler(this.chbDM_CheckedChanged);
             // 
             // FormJournal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1173, 562);
+            this.Controls.Add(this.chbDM);
             this.Controls.Add(this.lblTagTip);
             this.Controls.Add(this.lblTags);
             this.Controls.Add(this.txtTags);
@@ -956,5 +973,6 @@
         private System.Windows.Forms.Label lblTags;
         private System.Windows.Forms.Label lblTagTip;
         private System.Windows.Forms.ToolStripButton toolStripbtnTimestamp;
+        private System.Windows.Forms.CheckBox chbDM;
     }
 }

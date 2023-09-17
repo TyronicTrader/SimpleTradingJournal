@@ -39,28 +39,29 @@ namespace TradingJournal.Forms
             get { return activeRecordID; }
             set
             {
+                SaveTheRecord();
                 activeRecordID = value;
                 lblCurRec.Text = activeRecordID.ToString();
             }
         }
 
 
+
         public FormJournal()
         {
             InitializeComponent();
             pictureBox.Image = pictureBox.InitialImage;
-            lblCurRec.BorderStyle = BorderStyle.None;  
+            FillCombo();
+            HighlightMonthCalendar();
+            FillTreeView(startDate, endDate);
+            ActivateFields(false);
         }
 
 
         private void FormJournal_Load(object sender, EventArgs e)
         {
             LoadTheme();
-            FillGrid();
-            FillCombo();
-            HighlightMonthCalendar();
-            FillTreeView(startDate, endDate);
-            ActivateFields(false);
+            btnSaveRec.Visible = false;
         }
 
 
@@ -98,6 +99,7 @@ namespace TradingJournal.Forms
                 {
                     CheckBox btn = (CheckBox)btns;
                     btn.BackColor = ThemeColor.SecondaryColor;
+                    btn.ForeColor= Color.White;
                 }
 
             }
@@ -119,14 +121,28 @@ namespace TradingJournal.Forms
                 foreach (DataRow dr in ds.Tables["boldDates"].Rows)
                 {
                     monthCalendar.AddBoldedDate(DateTime.Parse(dr["Not_DATETIME"].ToString()));
-                    monthCalendar.UpdateBoldedDates();
                 }
+                monthCalendar.UpdateBoldedDates();
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
             ds.Tables.Remove("boldDates");
+        }
+
+
+        private void monthCalendar_DateSelected(object sender, DateRangeEventArgs e)
+        {
+            startDate = monthCalendar.SelectionStart.ToString("d");
+            endDate = monthCalendar.SelectionEnd.ToString("d");
+            FillTreeView(startDate, endDate);
+
+            //Update the fields 
+            ActiveRecordID = 0;
+            ResetFields();
+            ActivateFields(false);
+            dateTimePicker1.Value = monthCalendar.SelectionStart;
         }
 
 
@@ -142,14 +158,22 @@ namespace TradingJournal.Forms
                 treeViewNotes.BeginUpdate();
                 foreach (DataRow dr in ds.Tables["Filltree"].Rows)
                 {
-                    //TreeNode topNode = new TreeNode( dr["Not_DATETIME"].ToString(), dr["Not_DATETIME"].ToString());
-                    TreeNode topNode = treeViewNotes.Nodes.Add(dr["Not_ID"].ToString(), dr["Not_DATETIME"].ToString());
-                    //node = new TreeNode( dr["Ntp_NAME"].ToString());
-                    TreeNode subNode = topNode.Nodes.Add(dr["Not_ID"].ToString(), dr["Ntp_NAME"].ToString());
-                    //TreeNode node2 = new TreeNode(dr["Not_NAME"].ToString());
-                    TreeNode subsubNode = subNode.Nodes.Add(dr["Not_ID"].ToString(), dr["Not_NAME"].ToString());
-                    //Console.WriteLine("I have found the record here " + treeViewNotes.Nodes.Find("Record22", true).ToString());
-                    Console.WriteLine(topNode.Text.ToString() + " - " + subNode.Text.ToString() + " " + subsubNode.Text.ToString());
+                    if(dr["Not_NAME"].ToString() == "Blank Record")
+                    {
+
+                    }
+                    else
+                    {
+                        //TreeNode topNode = new TreeNode( dr["Not_DATETIME"].ToString(), dr["Not_DATETIME"].ToString());
+                        TreeNode topNode = treeViewNotes.Nodes.Add(dr["Not_ID"].ToString(), dr["Not_DATETIME"].ToString());
+                        //node = new TreeNode( dr["Ntp_NAME"].ToString());
+                        TreeNode subNode = topNode.Nodes.Add(dr["Not_ID"].ToString(), dr["Ntp_NAME"].ToString());
+                        //TreeNode node2 = new TreeNode(dr["Not_NAME"].ToString());
+                        TreeNode subsubNode = subNode.Nodes.Add(dr["Not_ID"].ToString(), dr["Not_NAME"].ToString());
+                        //Console.WriteLine("I have found the record here " + treeViewNotes.Nodes.Find("Record22", true).ToString());
+                        //Console.WriteLine(topNode.Text.ToString() + " - " + subNode.Text.ToString() + " " + subsubNode.Text.ToString());
+
+                    }
                 }
                 treeViewNotes.EndUpdate();
             }
@@ -192,8 +216,10 @@ namespace TradingJournal.Forms
             */
             #endregion
 
-
+            //SaveTheRecord();
             ActiveRecordID = Convert.ToInt32(treeViewNotes.SelectedNode.Name);
+            dateTimePicker1.Value = monthCalendar.SelectionStart;
+            // Using this ForEach instead of the Reset() because it will lose focus of selected record
             foreach (Control btns in this.Controls)
             {
                 if (btns.GetType() == typeof(CheckBox))
@@ -229,7 +255,6 @@ namespace TradingJournal.Forms
             FillGrid();
             txtNameImg.Text = null;
             pictureBox.Image = null;
-            //pictureBox2.Image = null;
             ActivateFields(true); 
             LoadFirstRecImage();
 
@@ -292,6 +317,7 @@ namespace TradingJournal.Forms
         {
             try
             {
+                #region GRIDVIEW SETUP
                 dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
                 dataGridView1.RowTemplate.Height = 90;
                 dataGridView1.AllowUserToResizeRows = false;
@@ -301,6 +327,8 @@ namespace TradingJournal.Forms
                 dataGridView1.ColumnHeadersHeight = 4;
                 dataGridView1.ColumnHeadersVisible = false;
                 dataGridView1.AllowUserToResizeColumns = false;
+                #endregion
+
                 //Using command builder here to also use in the delete process 
                 string insertMediaQuery = $"SELECT * FROM NOTEMEDIA WHERE Nmd_Not_ID = {ActiveRecordID}";
                 sda = new SQLiteDataAdapter(insertMediaQuery, dbCon.Conn);
@@ -309,6 +337,8 @@ namespace TradingJournal.Forms
                 scb.DataAdapter = sda;
                 sda.Fill(ds, "Nmd_THUMB");
                 dataGridView1.DataSource = ds.Tables["Nmd_THUMB"];
+
+                #region ONLY DIPLAY THUMBNAIL
                 //Only want the Thumbnail immage to show up
                 dataGridView1.Columns[0].Visible = false;
                 dataGridView1.Columns[1].Visible = false;
@@ -316,12 +346,40 @@ namespace TradingJournal.Forms
                 dataGridView1.Columns[3].Visible = true;
                 dataGridView1.Columns[4].Visible = false;
                 dataGridView1.Columns[5].Visible = false;
+                #endregion
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
         }
+
+
+        private void DelFromGrid()
+        {
+
+            if (MessageBox.Show("Are you sure you want to delete this image?", "Delete Image", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+                try
+                {
+                    if (dataGridView1.CurrentCell != null)
+                    {
+                        int rowIndex = dataGridView1.CurrentCell.RowIndex;
+                        dataGridView1.Rows.RemoveAt(rowIndex);
+                        scb = new SQLiteCommandBuilder(sda);
+                        sda.Update(ds.Tables["Nmd_THUMB"]);
+                        FillGrid();
+                        txtNameImg.Text = null;
+                        pictureBox.Image = null;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            }
+        }
+
 
         private void LoadFirstRecImage()
         {
@@ -331,7 +389,6 @@ namespace TradingJournal.Forms
                 {
                     txtNameImg.Clear();
                     txtNameImg.Text = (string)dataGridView1.Rows[0].Cells[1].Value;
-                    Console.WriteLine(txtNameImg.Text);
                 }
                 catch (Exception ex)
                 {
@@ -352,6 +409,7 @@ namespace TradingJournal.Forms
             }
         }
 
+
         private void Picbox2db()
         {
             // write image to database
@@ -363,7 +421,7 @@ namespace TradingJournal.Forms
                     pictureBox.Image.Save(ms, System.Drawing.Imaging.ImageFormat.Png);
                     byte[] img = ms.ToArray();
                     ms.Close();
-                    Bitmap image = (Bitmap)pictureBox.Image.GetThumbnailImage(160, 90, new Image.GetThumbnailImageAbort(() => false), new IntPtr());
+                    Bitmap image = (Bitmap)pictureBox.Image.GetThumbnailImage(148, 84, new Image.GetThumbnailImageAbort(() => false), new IntPtr());
 
                     MemoryStream ms2 = new MemoryStream();
                     image.Save(ms2, System.Drawing.Imaging.ImageFormat.Png);
@@ -413,40 +471,17 @@ namespace TradingJournal.Forms
         }
 
 
-        private void monthCalendar_DateSelected(object sender, DateRangeEventArgs e)
-        {
-            startDate = monthCalendar.SelectionStart.ToString("d");
-            endDate = monthCalendar.SelectionEnd.ToString("d");
-            FillTreeView(startDate, endDate);
-            dateTimePicker1.Value = monthCalendar.SelectionStart;
-
-            //Update the fields 
-            ActiveRecordID = 0;
-            ResetFields();
-            ActivateFields(false);
-        }
-
-
         private void CreateTheRecord()
         {
+            SaveTheRecord();
+            //activate and clear all the fields for a new record
             ActivateFields(true);
-            //clear all the fields for a new record
-            //dateTimePicker1.Text = string.Empty ;
-            cmbType.Text = string.Empty;
-            richTextBox1.Text = string.Empty;
-            txtNameRec.Clear();
-            txtNameImg.Clear();
-            pictureBox.Image = null;
-            txtInstrument.Text = string.Empty;
-            txtPnL.Text = string.Empty;
-            txtTags.Clear();
-            //pictureBox2.Image = null;
+            ResetFields();
 
-            //create a new database record
+            //insert the new database record
             string thedatetime = dateTimePicker1.Value.ToString("d");
             string insertQuery = "INSERT INTO NOTES('Not_NAME', 'Not_NOTES', 'Not_DATETIME', 'Not_Usr_ID', 'Not_Ntp_ID') VALUES (@name, @note, @thedatetime, @notusrid, (select Ntp_ID from NOTETYPES where Ntp_NAME = @nottypid))";
             cmd = new SQLiteCommand(insertQuery, dbCon.Conn);
-            dbCon.ConnOpen();
             cmd.Parameters.AddWithValue("@name", "Blank Record");
             cmd.Parameters.AddWithValue("@note", "Blank Record");
             cmd.Parameters.AddWithValue("@thedatetime", thedatetime);
@@ -454,13 +489,14 @@ namespace TradingJournal.Forms
             cmd.Parameters.AddWithValue("@nottypid", "Other");
             try
             {
+                dbCon.ConnOpen();
                 cmd.ExecuteNonQuery();
+                dbCon.ConnClose();
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
-            dbCon.ConnClose();
 
             //update the Active Record with the most new database record that was created
             string getMostCurrentRec = "Select Not_ID from NOTES ORDER BY Not_ID DESC LIMIT 1";
@@ -478,88 +514,111 @@ namespace TradingJournal.Forms
                 MessageBox.Show(ex.Message);
             }
 
-            //Update the fields 
-            //monthCalendar.AddBoldedDate(DateTime.Parse(thedatetime.ToString()));
-            //monthCalendar.UpdateBoldedDates();
-            //FillCombo();
-            //FillGrid();
-            //FillTreeView(startDate, endDate);
-            ResetFields();
         }
 
 
         private void SaveTheRecord()
         {
 
-            if (ActiveRecordID != 0)
+            //Collect and Validate Required Data
+            if (ActiveRecordID == 0)
             {
-                int intBody = 0;
-                if (chbBodyYes.Checked) { intBody = 1; }
-                if (chbBodyNo.Checked) { intBody = 2; }
-	            int intMind = 0;
-                if (chbMindYes.Checked) { intMind = 1; }
-                if (chbMindNo.Checked) { intMind = 2; }
-	            int intEmotion = 0;
-                if(chbEmotionsYes.Checked) { intEmotion = 1; }
-                if (chbEmotionsNo.Checked) { intEmotion = 2; }
-	            int intMonthly = 0;
-                if(chbMonthlyUp.Checked) { intMonthly = 1; }
-                if (chbMonthlyDown.Checked) { intMonthly = 2; }
-	            int intWeekly = 0;
-                if (chbWeeklyUp.Checked) { intWeekly = 1; }
-                if (chbWeeklyDown.Checked) { intWeekly = 2; }
-	            int intDaily = 0;
-                if (chbDailyUp.Checked) { intDaily = 1; }
-                if (chbDailyDown.Checked) { intDaily = 2; }
-	            string strInstrument;
-                strInstrument = txtInstrument.Text;
-                if (txtPnL.Text.Length == 0 || txtPnL.Text == " ") { txtPnL.Text = "0"; }
-                decimal decPnL;
-                if( Decimal.TryParse(txtPnL.Text, out decPnL)) { } 
-                else { MessageBox.Show("Only Numbers with decimal point allowed for PnL " + decPnL.ToString()); }
-                string strHashtag;
-                strHashtag = txtTags.Text;
-
-                string recordName = txtNameRec.Text;
+                //MessageBox.Show("You need to have an active record open.");
+                return;
+            }
+            string recordName = txtNameRec.Text;
+            if (txtNameRec.Text.Length > 0)
+            {
                 recordName = recordName.Replace("'", "''");
-                string myrichText = richTextBox1.Text;
-                myrichText = myrichText.Replace("'", "''");
-                string thedatetime = dateTimePicker1.Value.ToString("d");
-                string insertQuery = $"UPDATE NOTES SET Not_NAME ='{recordName}', Not_NOTES='{myrichText}', Not_DATETIME='{thedatetime}', " +
-                    $"Not_Usr_ID='{activeUsr}', Not_BODY='{intBody}', Not_MIND='{intMind}', Not_EMOTION='{intEmotion}', " +
-                    $"Not_MONTHLY='{intMonthly}', Not_WEEKLY='{intWeekly}', Not_DAILY='{intDaily}', " +
-                    $"Not_INSTRUMENT='{strInstrument}', Not_PNL='{decPnL}', Not_HASHTAG='{strHashtag}', " +
-                    $"Not_Ntp_ID=(select Ntp_ID from NOTETYPES where Ntp_NAME = '{cmbType.Text}') WHERE Not_ID = '{activeRecordID}'";
-                //string insertQuery = "INSERT INTO NOTES('Not_NAME', 'Not_NOTES', 'Not_DATETIME', 'Not_Usr_ID', 'Not_Ntp_ID') VALUES (@name, @note, @thedatetime, @notusrid, (select Ntp_ID from NOTETYPES where Ntp_NAME = @nottypid))";
-                cmd = new SQLiteCommand(insertQuery, dbCon.Conn);
-                dbCon.ConnOpen();
-                if (cmbType.Text != "")
-                {
-                    try
-                    {
-                        cmd.ExecuteNonQuery();
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show(ex.Message);
-                    }
-                }
-                else
-                {
-                    MessageBox.Show("Make sure you have selected a Record Type");
-                }
-                dbCon.ConnClose();
-                //fillTreeView(startDate, endDate);
-                monthCalendar.AddBoldedDate(DateTime.Parse(thedatetime.ToString()));
-                monthCalendar.UpdateBoldedDates();
-                FillCombo();
-                FillTreeView(startDate, endDate);
             }
             else
             {
-                MessageBox.Show("You need to have an active record open.");
+                //MessageBox.Show("Make sure you have selected a Record Name");
+                return;
             }
-            MessageBox.Show("Record has been saved.");
+            string comboType = cmbType.Text;
+            if (comboType.Length < 1)
+            {
+                //MessageBox.Show("Make sure you have selected a Record Type");
+                return;
+            }
+
+            //Collect the data to be saved
+            int intBody = 0;
+            if (chbBodyYes.Checked) { intBody = 1; }
+            if (chbBodyNo.Checked) { intBody = 2; }
+	        int intMind = 0;
+            if (chbMindYes.Checked) { intMind = 1; }
+            if (chbMindNo.Checked) { intMind = 2; }
+	        int intEmotion = 0;
+            if(chbEmotionsYes.Checked) { intEmotion = 1; }
+            if (chbEmotionsNo.Checked) { intEmotion = 2; }
+	        int intMonthly = 0;
+            if(chbMonthlyUp.Checked) { intMonthly = 1; }
+            if (chbMonthlyDown.Checked) { intMonthly = 2; }
+	        int intWeekly = 0;
+            if (chbWeeklyUp.Checked) { intWeekly = 1; }
+            if (chbWeeklyDown.Checked) { intWeekly = 2; }
+	        int intDaily = 0;
+            if (chbDailyUp.Checked) { intDaily = 1; }
+            if (chbDailyDown.Checked) { intDaily = 2; }
+	        string strInstrument = txtInstrument.Text;
+            if (txtPnL.Text.Length == 0 || txtPnL.Text == " ") { txtPnL.Text = "0"; }
+            decimal decPnL;
+            if( Decimal.TryParse(txtPnL.Text, out decPnL)) { } 
+            else { MessageBox.Show("Only Numbers with decimal point allowed for PnL " + decPnL.ToString()); }
+            string strHashtag = txtTags.Text;
+            string myrichText = richTextBox1.Text;
+            myrichText = myrichText.Replace("'", "''");
+            string thedatetime = dateTimePicker1.Value.ToString("d");
+
+            //Stage the SQL
+            string insertQuery = $"UPDATE NOTES SET Not_NAME ='{recordName}', Not_NOTES='{myrichText}', Not_DATETIME='{thedatetime}', " +
+                $"Not_Usr_ID='{activeUsr}', Not_BODY='{intBody}', Not_MIND='{intMind}', Not_EMOTION='{intEmotion}', " +
+                $"Not_MONTHLY='{intMonthly}', Not_WEEKLY='{intWeekly}', Not_DAILY='{intDaily}', " +
+                $"Not_INSTRUMENT='{strInstrument}', Not_PNL='{decPnL}', Not_HASHTAG='{strHashtag}', " +
+                $"Not_Ntp_ID=(select Ntp_ID from NOTETYPES where Ntp_NAME = '{comboType}') WHERE Not_ID = '{activeRecordID}'";
+            cmd = new SQLiteCommand(insertQuery, dbCon.Conn);
+
+            //Execute SQL and update the form
+            try
+            {
+                dbCon.ConnOpen();
+                cmd.ExecuteNonQuery();
+                dbCon.ConnClose();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            //MessageBox.Show("Record has been saved.");
+            monthCalendar.AddBoldedDate(DateTime.Parse(thedatetime.ToString()));
+            //monthCalendar.UpdateBoldedDates();
+            //FillCombo();
+            FillTreeView(startDate, endDate);
+        }
+
+
+        private void DelTheRecord()
+        {
+            if (MessageBox.Show("Are you sure you want to delete this Record?", "Delete Image", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+                string delrec = $"DELETE from NOTES where Not_ID = {ActiveRecordID}";
+                cmd = new SQLiteCommand(delrec, dbCon.Conn);
+                dbCon.ConnOpen();
+                try
+                {
+                    cmd.ExecuteNonQuery();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+                //Update the fields 
+                ActiveRecordID = 0;
+                ResetFields();
+                ActivateFields(false);
+            }
         }
 
 
@@ -574,17 +633,18 @@ namespace TradingJournal.Forms
                     btn.Checked = false;
                 }
             }
-            cmbType.Text = string.Empty;
+            cmbType.Text = "Other";
             richTextBox1.Text = string.Empty;
+            toolStripCmbTemplate.Text = string.Empty;
             txtNameRec.Clear();
             txtNameImg.Clear();
             pictureBox.Image = null;
             txtTags.Clear();
             txtInstrument.Clear();
             txtPnL.Text = "0";
-            string thedatetime = dateTimePicker1.Value.ToString("d");
-            monthCalendar.UpdateBoldedDates();
-            FillCombo();
+            //dateTimePicker1.Text = DateTime.Now.ToString();
+            //monthCalendar.UpdateBoldedDates();
+            //FillCombo();
             FillGrid();
             FillTreeView(startDate, endDate);
         }
@@ -754,9 +814,12 @@ namespace TradingJournal.Forms
 
 
         #region BUTTONS
+
         private void btnNewRec_Click(object sender, EventArgs e)
         {
             CreateTheRecord();
+            cmbType.Focus();
+            this.cmbType.GotFocus += (senders, args) => cmbType.DroppedDown = true;
         }
 
         private void btnSaveRec_Click(object sender, EventArgs e)
@@ -824,47 +887,16 @@ namespace TradingJournal.Forms
 
         private void btnDelImg_Click(object sender, EventArgs e)
         {
-            if (MessageBox.Show("Are you sure you want to delete this image?", "Delete Image", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
-            {
-                try
-                {
-                    if (dataGridView1.CurrentCell != null)
-                    {
-                        int rowIndex = dataGridView1.CurrentCell.RowIndex;
-                        dataGridView1.Rows.RemoveAt(rowIndex);
-                        scb = new SQLiteCommandBuilder(sda);
-                        sda.Update(ds.Tables["Nmd_THUMB"]);
-                        FillGrid();
-                        txtNameImg.Text = null;
-                        pictureBox.Image = null;
-                    }
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message);
-                }
-            }
+            DelFromGrid();
             LoadFirstRecImage();
         }
 
         private void btnDelRec_Click(object sender, EventArgs e)
         {
-            string delrec = $"DELETE from NOTES where Not_ID = {ActiveRecordID}";
-            cmd = new SQLiteCommand(delrec, dbCon.Conn);
-            dbCon.ConnOpen();
-            try
-            {
-                cmd.ExecuteNonQuery();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-            //Update the fields 
-            ActiveRecordID = 0;
-            ResetFields();
-            ActivateFields(false);
+            DelTheRecord();
         }
+
+
         #endregion
 
 
@@ -939,6 +971,34 @@ namespace TradingJournal.Forms
                 {
                     MessageBox.Show(ex.Message + "\n\nTry again and if it dosen't work then\n maybe something is wrong with the image source or my code");
                 }
+            }
+        }
+
+        private void richTextBox1_Leave(object sender, EventArgs e)
+        {
+            //SaveTheRecord();
+            //if(cmbType.Text == "")
+            //{
+            //    cmbType.Focus();
+            //    this.cmbType.GotFocus += (senders, args) => cmbType.DroppedDown = true;
+            //}
+            //if (txtNameRec.Text == "")
+            //{
+            //    txtNameRec.Focus();
+            //}
+        }
+
+        private void chbDM_CheckedChanged(object sender, EventArgs e)
+        {
+            if(chbDM.Checked)
+            {
+                this.BackColor = Color.Black;
+                richTextBox1.BackColor = Color.Black;
+                richTextBox1.ForeColor = Color.LightGray;
+            }
+            else
+            {
+                this.BackColor = FormJournal.DefaultBackColor;
             }
         }
     }
