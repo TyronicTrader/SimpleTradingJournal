@@ -288,7 +288,6 @@
             this.richTextBox1.TabIndex = 1;
             this.richTextBox1.Text = "";
             this.richTextBox1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.richTextBox1_KeyDown);
-            this.richTextBox1.Leave += new System.EventHandler(this.richTextBox1_Leave);
             // 
             // toolStrip1
             // 
@@ -466,6 +465,7 @@
             this.txtNameRec.Name = "txtNameRec";
             this.txtNameRec.Size = new System.Drawing.Size(150, 24);
             this.txtNameRec.TabIndex = 17;
+            this.txtNameRec.Leave += new System.EventHandler(this.txtNameRec_Leave);
             // 
             // lblNameRec
             // 

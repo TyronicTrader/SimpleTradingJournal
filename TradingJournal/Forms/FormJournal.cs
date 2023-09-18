@@ -27,12 +27,12 @@ namespace TradingJournal.Forms
         public int activeRecordID = 0;
         private CheckBox currentCheckbox;
         private CheckBox oldCheckbox;
-        string strDefaultTextboxMessage = "HINTS:\r\n<-- If you want to create a Template you can chose New Record and the Type called Template and it will add a template to the above template menu\r\n<-- Change color theme by clicking on the Journal icon in the left column  Keep pressing until you find a color scheme you prefer\r\n-->  After you have Loaded or Pasted an Image to your Record/Note then give it a name and Click \"Add Image to Record\" to include it into the active Record/Note\r\n<-- Tags allow you to add HashTags to your Record/Note for reference and will be used in future updates for reporting and searching\r\n<--The Monthly Calendar will allow you to highlight multiple dates to fill the tree below it with records from those selected dates\r\n";
-        string strDefaultTagsExamples = "EXAMPLES:\r\n FOMC\r\n CPI\r\n GDP\r\n nonFarmPayroll";
-        string strDefaultInstrumentExample = "EUR/USD or BTC";
-        string strDefaultImageName = "Image Name here";
-        string strDefaultType = "Record Type here";
-        string strDefaultRecordName = "Record Name here";
+        static string strDefaultTextboxMessage = "HINTS:\r\n<-- If you want to create a Template you can chose New Record and the Type called Template and it will add a template to the above template menu\r\n<-- Change color theme by clicking on the Journal icon in the left column  Keep pressing until you find a color scheme you prefer\r\n-->  After you have Loaded or Pasted an Image to your Record/Note then give it a name and Click \"Add Image to Record\" to include it into the active Record/Note\r\n<-- Tags allow you to add HashTags to your Record/Note for reference and will be used in future updates for reporting and searching\r\n<--The Monthly Calendar will allow you to highlight multiple dates to fill the tree below it with records from those selected dates\r\n";
+        static string strDefaultTagsExamples = "EXAMPLES:\r\n FOMC\r\n CPI\r\n GDP\r\n nonFarmPayroll";
+        static string strDefaultInstrumentExample = "EUR/USD or BTC";
+        static string strDefaultImageName = "Image Name here";
+        static string strDefaultType = "Record Type here";
+        static string strDefaultRecordName = "Record Name here";
 
         public int ActiveRecordID
         {
@@ -228,7 +228,7 @@ namespace TradingJournal.Forms
                     btn.Checked = false;
                 }
             }
-            string selectedRecord = $"Select * from NOTES, NOTETYPES where Not_ID = {activeRecordID} AND Not_Ntp_ID = Ntp_ID";
+            string selectedRecord = $"Select * from NOTES, NOTETYPES where Not_ID = {ActiveRecordID} AND Not_Ntp_ID = Ntp_ID";
             sda = new SQLiteDataAdapter(selectedRecord, dbCon.Conn);
             sda.Fill(ds, "SelectedTreeRecord");
             foreach (DataRow dr in ds.Tables["SelectedTreeRecord"].Rows)
@@ -474,8 +474,10 @@ namespace TradingJournal.Forms
         private void CreateTheRecord()
         {
             SaveTheRecord();
+            ActiveRecordID = 0;
             //activate and clear all the fields for a new record
             ActivateFields(true);
+            //ResetFields();
             ResetFields();
 
             //insert the new database record
@@ -492,6 +494,7 @@ namespace TradingJournal.Forms
                 dbCon.ConnOpen();
                 cmd.ExecuteNonQuery();
                 dbCon.ConnClose();
+                Console.WriteLine("record was created");
             }
             catch (Exception ex)
             {
@@ -577,7 +580,7 @@ namespace TradingJournal.Forms
                 $"Not_Usr_ID='{activeUsr}', Not_BODY='{intBody}', Not_MIND='{intMind}', Not_EMOTION='{intEmotion}', " +
                 $"Not_MONTHLY='{intMonthly}', Not_WEEKLY='{intWeekly}', Not_DAILY='{intDaily}', " +
                 $"Not_INSTRUMENT='{strInstrument}', Not_PNL='{decPnL}', Not_HASHTAG='{strHashtag}', " +
-                $"Not_Ntp_ID=(select Ntp_ID from NOTETYPES where Ntp_NAME = '{comboType}') WHERE Not_ID = '{activeRecordID}'";
+                $"Not_Ntp_ID=(select Ntp_ID from NOTETYPES where Ntp_NAME = '{comboType}') WHERE Not_ID = '{ActiveRecordID}'";
             cmd = new SQLiteCommand(insertQuery, dbCon.Conn);
 
             //Execute SQL and update the form
@@ -974,20 +977,6 @@ namespace TradingJournal.Forms
             }
         }
 
-        private void richTextBox1_Leave(object sender, EventArgs e)
-        {
-            //SaveTheRecord();
-            //if(cmbType.Text == "")
-            //{
-            //    cmbType.Focus();
-            //    this.cmbType.GotFocus += (senders, args) => cmbType.DroppedDown = true;
-            //}
-            //if (txtNameRec.Text == "")
-            //{
-            //    txtNameRec.Focus();
-            //}
-        }
-
         private void chbDM_CheckedChanged(object sender, EventArgs e)
         {
             if(chbDM.Checked)
@@ -999,6 +988,14 @@ namespace TradingJournal.Forms
             else
             {
                 this.BackColor = FormJournal.DefaultBackColor;
+            }
+        }
+
+        private void txtNameRec_Leave(object sender, EventArgs e)
+        {
+            if(txtNameRec.Text.Length > 0)
+            {
+                SaveTheRecord();
             }
         }
     }
