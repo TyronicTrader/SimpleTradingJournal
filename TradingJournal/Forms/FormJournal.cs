@@ -536,15 +536,15 @@ namespace TradingJournal.Forms
             }
             else
             {
-                //MessageBox.Show("Make sure you have selected a Record Name");
+                MessageBox.Show("Make sure you have selected a Record Name");
                 return;
             }
             string comboType = cmbType.Text;
-            if (comboType.Length < 1)
-            {
-                //MessageBox.Show("Make sure you have selected a Record Type");
-                return;
-            }
+            //if (comboType.Length < 1)
+            //{
+            //    //MessageBox.Show("Make sure you have selected a Record Type");
+            //    return;
+            //}
 
             //Collect the data to be saved
             int intBody = 0;
@@ -994,6 +994,14 @@ namespace TradingJournal.Forms
         private void txtNameRec_Leave(object sender, EventArgs e)
         {
             if(txtNameRec.Text.Length > 0)
+            {
+                SaveTheRecord();
+            }
+        }
+
+        private void richTextBox1_Leave(object sender, EventArgs e)
+        {
+            if(richTextBox1 != null)
             {
                 SaveTheRecord();
             }
