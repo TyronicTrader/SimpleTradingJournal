@@ -158,12 +158,6 @@ namespace TradingJournal.Forms
                 treeViewNotes.BeginUpdate();
                 foreach (DataRow dr in ds.Tables["Filltree"].Rows)
                 {
-                    if(dr["Not_NAME"].ToString() == "Blank Record")
-                    {
-
-                    }
-                    else
-                    {
                         //TreeNode topNode = new TreeNode( dr["Not_DATETIME"].ToString(), dr["Not_DATETIME"].ToString());
                         TreeNode topNode = treeViewNotes.Nodes.Add(dr["Not_ID"].ToString(), dr["Not_DATETIME"].ToString());
                         //node = new TreeNode( dr["Ntp_NAME"].ToString());
@@ -172,8 +166,6 @@ namespace TradingJournal.Forms
                         TreeNode subsubNode = subNode.Nodes.Add(dr["Not_ID"].ToString(), dr["Not_NAME"].ToString());
                         //Console.WriteLine("I have found the record here " + treeViewNotes.Nodes.Find("Record22", true).ToString());
                         //Console.WriteLine(topNode.Text.ToString() + " - " + subNode.Text.ToString() + " " + subsubNode.Text.ToString());
-
-                    }
                 }
                 treeViewNotes.EndUpdate();
             }
@@ -233,6 +225,8 @@ namespace TradingJournal.Forms
             sda.Fill(ds, "SelectedTreeRecord");
             foreach (DataRow dr in ds.Tables["SelectedTreeRecord"].Rows)
             {
+                //DateTime date = dr["Not_DATETIME"].ToString("d");
+                dateTimePicker1.Text = dr["Not_DATETIME"].ToString();
                 richTextBox1.Text = dr["Not_NOTES"].ToString();
                 cmbType.Text = dr["Ntp_NAME"].ToString();
                 txtNameRec.Text = dr["Not_NAME"].ToString();
@@ -335,8 +329,8 @@ namespace TradingJournal.Forms
                 ds = new DataSet();
                 scb = new SQLiteCommandBuilder(sda);
                 scb.DataAdapter = sda;
-                sda.Fill(ds, "Nmd_THUMB");
-                dataGridView1.DataSource = ds.Tables["Nmd_THUMB"];
+                sda.Fill(ds, "The_THUMB");
+                dataGridView1.DataSource = ds.Tables["The_THUMB"];
 
                 #region ONLY DIPLAY THUMBNAIL
                 //Only want the Thumbnail immage to show up
@@ -366,8 +360,8 @@ namespace TradingJournal.Forms
                     {
                         int rowIndex = dataGridView1.CurrentCell.RowIndex;
                         dataGridView1.Rows.RemoveAt(rowIndex);
-                        scb = new SQLiteCommandBuilder(sda);
-                        sda.Update(ds.Tables["Nmd_THUMB"]);
+                        //scb = new SQLiteCommandBuilder(sda);
+                        sda.Update(ds.Tables["The_THUMB"]);
                         FillGrid();
                         txtNameImg.Text = null;
                         pictureBox.Image = null;
@@ -378,6 +372,31 @@ namespace TradingJournal.Forms
                     MessageBox.Show(ex.Message);
                 }
             }
+        }
+
+
+        private void UpdateNameInGrid()
+        {
+            try
+            {
+                if (dataGridView1.CurrentCell != null)
+                {
+                    int theRowIndex = dataGridView1.CurrentCell.RowIndex;
+                    int theColNameIndex = dataGridView1.Columns.IndexOf(dataGridView1.Columns[1]);
+                    dataGridView1.Rows[theRowIndex].Cells["Nmd_DESCRIPTION"].Value = txtNameImg.Text;
+                    dataGridView1.UpdateCellValue(theColNameIndex, theRowIndex);
+                    Console.WriteLine(dataGridView1.Rows[theRowIndex].Cells["Nmd_DESCRIPTION"].Value + " - " + txtNameImg.Text);
+                    //scb = new SQLiteCommandBuilder(sda);
+                    sda.Update(ds.Tables["The_THUMB"]);
+                    FillGrid();
+                    Console.WriteLine(dataGridView1.Rows[theRowIndex].Cells["Nmd_DESCRIPTION"].Value + " - " + txtNameImg.Text);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
         }
 
 
@@ -430,27 +449,23 @@ namespace TradingJournal.Forms
 
                     if (ActiveRecordID != 0)
                     {
-                        if (txtNameImg.Text != "")
-                        {
-                            string description = txtNameImg.Text;
-                            string thedatetime = DateTime.Now.ToString("u");
-                            //string insertQuery = "INSERT INTO NOTEMEDIA('Nmd_ID', 'Nmd_DESCRIPTION', 'Nmd_MEDIA', 'Nmd_NOTEID', 'Nmd_THUMB', 'Nmd_DATETIME') VALUES (@id, @description, @img, '@nid', @thumb, @thedatetime)";
-                            string insertQuery = "INSERT INTO NOTEMEDIA('Nmd_DESCRIPTION', 'Nmd_MEDIA', 'Nmd_THUMB', 'Nmd_Not_ID', 'Nmd_DATETIME') VALUES (@description, @img, @thumb, @nid, @thedatetime)";
-                            cmd = new SQLiteCommand(insertQuery, dbCon.Conn);
-                            dbCon.ConnOpen();
-                            cmd.Parameters.AddWithValue("@description", description);
-                            cmd.Parameters.AddWithValue("@img", img);
-                            cmd.Parameters.AddWithValue("@thumb", thumb);
-                            cmd.Parameters.AddWithValue("@nid", ActiveRecordID);
-                            cmd.Parameters.AddWithValue("@thedatetime", thedatetime);
-                            cmd.ExecuteNonQuery();
-                            dbCon.ConnClose();
-
-                        }
-                        else
-                        {
-                            MessageBox.Show("You need to have a name for this image.");
-                        }
+                        string description = txtNameImg.Text;
+                        string thedatetime = DateTime.Now.ToString("u");
+                        //string insertQuery = "INSERT INTO NOTEMEDIA('Nmd_ID', 'Nmd_DESCRIPTION', 'Nmd_MEDIA', 'Nmd_NOTEID', 'Nmd_THUMB', 'Nmd_DATETIME') VALUES (@id, @description, @img, '@nid', @thumb, @thedatetime)";
+                        string insertQuery = "INSERT INTO NOTEMEDIA('Nmd_DESCRIPTION', 'Nmd_MEDIA', 'Nmd_THUMB', 'Nmd_Not_ID', 'Nmd_DATETIME') VALUES (@description, @img, @thumb, @nid, @thedatetime)";
+                        cmd = new SQLiteCommand(insertQuery, dbCon.Conn);
+                        dbCon.ConnOpen();
+                        cmd.Parameters.AddWithValue("@description", description);
+                        cmd.Parameters.AddWithValue("@img", img);
+                        cmd.Parameters.AddWithValue("@thumb", thumb);
+                        cmd.Parameters.AddWithValue("@nid", ActiveRecordID);
+                        cmd.Parameters.AddWithValue("@thedatetime", thedatetime);
+                        cmd.ExecuteNonQuery();
+                        dbCon.ConnClose();
+                        //else
+                        //{
+                        //    MessageBox.Show("You need to have a name for this image.");
+                        //}
 
                     }
                     else
@@ -484,8 +499,8 @@ namespace TradingJournal.Forms
             string thedatetime = dateTimePicker1.Value.ToString("d");
             string insertQuery = "INSERT INTO NOTES('Not_NAME', 'Not_NOTES', 'Not_DATETIME', 'Not_Usr_ID', 'Not_Ntp_ID') VALUES (@name, @note, @thedatetime, @notusrid, (select Ntp_ID from NOTETYPES where Ntp_NAME = @nottypid))";
             cmd = new SQLiteCommand(insertQuery, dbCon.Conn);
-            cmd.Parameters.AddWithValue("@name", "Blank Record");
-            cmd.Parameters.AddWithValue("@note", "Blank Record");
+            cmd.Parameters.AddWithValue("@name", "");
+            cmd.Parameters.AddWithValue("@note", "");
             cmd.Parameters.AddWithValue("@thedatetime", thedatetime);
             cmd.Parameters.AddWithValue("@notusrid", activeUsr);
             cmd.Parameters.AddWithValue("@nottypid", "Other");
@@ -511,6 +526,7 @@ namespace TradingJournal.Forms
                 {
                     ActiveRecordID = Convert.ToInt32(dr["Not_ID"]);
                 }
+                SaveTheRecord();
             }
             catch (Exception ex)
             {
@@ -536,8 +552,8 @@ namespace TradingJournal.Forms
             }
             else
             {
-                MessageBox.Show("Make sure you have selected a Record Name");
-                return;
+                //MessageBox.Show("Make sure you have selected a Record Name");
+                //return;
             }
             string comboType = cmbType.Text;
             //if (comboType.Length < 1)
@@ -860,6 +876,8 @@ namespace TradingJournal.Forms
                     txtNameImg.Text = opf.FileName;
                 }
             }
+            Picbox2db();
+            FillGrid();
             txtNameImg.Focus();
         }
 
@@ -873,6 +891,8 @@ namespace TradingJournal.Forms
                     pictureBox.SizeMode = PictureBoxSizeMode.Zoom;
                     pictureBox.Image = Clipboard.GetImage();
                     txtNameImg.Focus();
+                    Picbox2db();
+                    FillGrid();
                 }
             }
             catch (Exception ex)
@@ -967,7 +987,9 @@ namespace TradingJournal.Forms
                         pictureBox.Image = Clipboard.GetImage();
                         txtNameImg.Focus();
 
-                        MessageBox.Show("You can not paste directly to the text box\n\n      Type in the Image Name \n      Click on Add Image to Record");
+                        Picbox2db();
+                        FillGrid();
+                        //MessageBox.Show("You can not paste directly to the text box\n\n      Type in the Image Name \n      Click on Add Image to Record");
                     }
                 }
                 catch (Exception ex)
@@ -1005,6 +1027,16 @@ namespace TradingJournal.Forms
             {
                 SaveTheRecord();
             }
+        }
+
+        private void cmbType_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            SaveTheRecord();
+        }
+
+        private void txtNameImg_TextChanged(object sender, EventArgs e)
+        {
+            UpdateNameInGrid();
         }
     }
 }

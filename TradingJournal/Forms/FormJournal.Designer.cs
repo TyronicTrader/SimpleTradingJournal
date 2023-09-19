@@ -219,6 +219,7 @@
             this.btnSaveImg.TabIndex = 9;
             this.btnSaveImg.Text = "Add Image to Record";
             this.btnSaveImg.UseVisualStyleBackColor = true;
+            this.btnSaveImg.Visible = false;
             this.btnSaveImg.Click += new System.EventHandler(this.btnSaveImg_Click);
             // 
             // dataGridView1
@@ -252,6 +253,7 @@
             this.txtNameImg.Name = "txtNameImg";
             this.txtNameImg.Size = new System.Drawing.Size(150, 24);
             this.txtNameImg.TabIndex = 12;
+            this.txtNameImg.TextChanged += new System.EventHandler(this.txtNameImg_TextChanged);
             // 
             // splitContainer
             // 
@@ -448,6 +450,7 @@
             this.cmbType.Name = "cmbType";
             this.cmbType.Size = new System.Drawing.Size(150, 24);
             this.cmbType.TabIndex = 15;
+            this.cmbType.SelectionChangeCommitted += new System.EventHandler(this.cmbType_SelectionChangeCommitted);
             // 
             // lblType
             // 
