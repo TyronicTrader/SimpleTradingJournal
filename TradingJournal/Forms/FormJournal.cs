@@ -258,19 +258,27 @@ namespace TradingJournal.Forms
         private void FillCombo()
         {
             toolStripCmbTemplate.Items.Clear();
-            cmbType.Items.Clear();
             string templatequery = "Select Not_NAME from NOTES where Not_Ntp_ID = (select Ntp_ID from NOTETYPES where Ntp_NAME = 'Template')";
             sda = new SQLiteDataAdapter(templatequery, dbCon.Conn);
             sda.Fill(ds, "NoteTemplates");
-            string recordtypequery = "Select Ntp_NAME from NOTETYPES";
-            sda = new SQLiteDataAdapter(recordtypequery, dbCon.Conn);
-            sda.Fill(ds, "NoteTypes");
             try
             {
                 foreach (DataRow dr in ds.Tables["NoteTemplates"].Rows)
                 {
                     toolStripCmbTemplate.Items.Add(dr["Not_NAME"].ToString());
                 }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
+            cmbType.Items.Clear();
+            string recordtypequery = "Select Ntp_NAME from NOTETYPES";
+            sda = new SQLiteDataAdapter(recordtypequery, dbCon.Conn);
+            sda.Fill(ds, "NoteTypes");
+            try
+            {
                 foreach (DataRow dr in ds.Tables["NoteTypes"].Rows)
                 {
                     cmbType.Items.Add(dr["Ntp_NAME"].ToString());
@@ -280,6 +288,7 @@ namespace TradingJournal.Forms
             {
                 MessageBox.Show(ex.Message);
             }
+
             ds.Tables.Remove("NoteTemplates");
             ds.Tables.Remove("NoteTypes");
         }
@@ -331,6 +340,7 @@ namespace TradingJournal.Forms
                 scb.DataAdapter = sda;
                 sda.Fill(ds, "The_THUMB");
                 dataGridView1.DataSource = ds.Tables["The_THUMB"];
+                
 
                 #region ONLY DIPLAY THUMBNAIL
                 //Only want the Thumbnail immage to show up
@@ -360,7 +370,7 @@ namespace TradingJournal.Forms
                     {
                         int rowIndex = dataGridView1.CurrentCell.RowIndex;
                         dataGridView1.Rows.RemoveAt(rowIndex);
-                        //scb = new SQLiteCommandBuilder(sda);
+                        scb = new SQLiteCommandBuilder(sda);
                         sda.Update(ds.Tables["The_THUMB"]);
                         FillGrid();
                         txtNameImg.Text = null;
@@ -383,13 +393,17 @@ namespace TradingJournal.Forms
                 {
                     int theRowIndex = dataGridView1.CurrentCell.RowIndex;
                     int theColNameIndex = dataGridView1.Columns.IndexOf(dataGridView1.Columns[1]);
-                    dataGridView1.Rows[theRowIndex].Cells["Nmd_DESCRIPTION"].Value = txtNameImg.Text;
-                    dataGridView1.UpdateCellValue(theColNameIndex, theRowIndex);
-                    Console.WriteLine(dataGridView1.Rows[theRowIndex].Cells["Nmd_DESCRIPTION"].Value + " - " + txtNameImg.Text);
-                    //scb = new SQLiteCommandBuilder(sda);
-                    sda.Update(ds.Tables["The_THUMB"]);
+                    //dataGridView1.Rows[theRowIndex].Cells["Nmd_DESCRIPTION"].Value = txtNameImg.Text;
+                    //dataGridView1.UpdateCellValue(theColNameIndex, theRowIndex);
+                    Console.WriteLine("before the cell update " + dataGridView1.Rows[theRowIndex].Cells["Nmd_DESCRIPTION"].Value + " - " + txtNameImg.Text); 
+                    string updateMediaQuery = $"UPDATE NOTEMEDIA SET Nmd_DESCRIPTION = '{txtNameImg.Text}' WHERE Nmd_ID = {dataGridView1.Rows[theRowIndex].Cells[0].Value}";
+                    dbCon.ConnOpen();
+                    var schemaInit = dbCon.Conn.CreateCommand();
+                    schemaInit.CommandText = updateMediaQuery;
+                    schemaInit.ExecuteNonQuery();
+                    dbCon.ConnClose();
                     FillGrid();
-                    Console.WriteLine(dataGridView1.Rows[theRowIndex].Cells["Nmd_DESCRIPTION"].Value + " - " + txtNameImg.Text);
+                    Console.WriteLine("after the cell update " + dataGridView1.Rows[theRowIndex].Cells["Nmd_DESCRIPTION"].Value + " - " + txtNameImg.Text);
                 }
             }
             catch (Exception ex)
@@ -542,7 +556,6 @@ namespace TradingJournal.Forms
             //Collect and Validate Required Data
             if (ActiveRecordID == 0)
             {
-                //MessageBox.Show("You need to have an active record open.");
                 return;
             }
             string recordName = txtNameRec.Text;
@@ -550,17 +563,7 @@ namespace TradingJournal.Forms
             {
                 recordName = recordName.Replace("'", "''");
             }
-            else
-            {
-                //MessageBox.Show("Make sure you have selected a Record Name");
-                //return;
-            }
             string comboType = cmbType.Text;
-            //if (comboType.Length < 1)
-            //{
-            //    //MessageBox.Show("Make sure you have selected a Record Type");
-            //    return;
-            //}
 
             //Collect the data to be saved
             int intBody = 0;
@@ -612,7 +615,7 @@ namespace TradingJournal.Forms
             }
             //MessageBox.Show("Record has been saved.");
             monthCalendar.AddBoldedDate(DateTime.Parse(thedatetime.ToString()));
-            //monthCalendar.UpdateBoldedDates();
+            monthCalendar.UpdateBoldedDates();
             //FillCombo();
             FillTreeView(startDate, endDate);
         }
@@ -939,6 +942,7 @@ namespace TradingJournal.Forms
 
         private void txtTags_TextChanged(object sender, EventArgs e)
         {
+            // space will move text to new line and move cursor to top line
             string s = txtTags.Text;
             if (s.Contains(" "))
             {
@@ -1034,7 +1038,7 @@ namespace TradingJournal.Forms
             SaveTheRecord();
         }
 
-        private void txtNameImg_TextChanged(object sender, EventArgs e)
+        private void txtNameImg_Leave(object sender, EventArgs e)
         {
             UpdateNameInGrid();
         }

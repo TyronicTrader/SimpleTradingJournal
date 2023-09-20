@@ -253,7 +253,7 @@
             this.txtNameImg.Name = "txtNameImg";
             this.txtNameImg.Size = new System.Drawing.Size(150, 24);
             this.txtNameImg.TabIndex = 12;
-            this.txtNameImg.TextChanged += new System.EventHandler(this.txtNameImg_TextChanged);
+            this.txtNameImg.Leave += new System.EventHandler(this.txtNameImg_Leave);
             // 
             // splitContainer
             // 
