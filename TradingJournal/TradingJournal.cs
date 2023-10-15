@@ -32,7 +32,7 @@ namespace TradingJournal
             //removes the titlebar
             this.Text = string.Empty;
             this.ControlBox = false;
-
+            //does the window auto snap
             this.MaximizedBounds = Screen.FromHandle(this.Handle).WorkingArea;
         }
 
@@ -44,6 +44,12 @@ namespace TradingJournal
 
         [DllImport("user32.dll", EntryPoint = "SendMessage")]
         private extern static void SendMessage(System.IntPtr hWnd, int wMsg, int wParam, int IParam);
+
+        private void panelTitleBar_MouseDown(object sender, MouseEventArgs e)
+        {
+            ReleaseCapture();
+            SendMessage(this.Handle, 0x112, 0xf012, 0);
+        }
 
 
         #region THEME Section
@@ -159,27 +165,16 @@ namespace TradingJournal
 
         #endregion
 
+
+
+        #region TOP NAV BUTTONS
+
+
         private void btnCloseChildForm_Click(object sender, EventArgs e)
         {
             if (activeForm != null)
                 activeForm.Close();
             Reset();
-        }
-
-        private void Reset()
-        {
-            DisableButton();
-            lblTitle.Text = "DASHBOARD";
-            panelTitleBar.BackColor = Color.FromArgb(0, 150, 136);
-            panelLogo.BackColor = Color.FromArgb(39, 39, 58);
-            currentButton = null;
-            btnCloseChildForm.Visible = false;
-        }
-
-        private void panelTitleBar_MouseDown(object sender, MouseEventArgs e)
-        {
-            ReleaseCapture();
-            SendMessage(this.Handle, 0x112, 0xf012, 0);
         }
 
         private void btnExitApp_Click(object sender, EventArgs e)
@@ -189,7 +184,7 @@ namespace TradingJournal
 
         private void btnMaximize_Click(object sender, EventArgs e)
         {
-            if(WindowState == FormWindowState.Normal)
+            if (WindowState == FormWindowState.Normal)
             {
                 this.WindowState = FormWindowState.Maximized;
             }
@@ -203,5 +198,24 @@ namespace TradingJournal
         {
             this.WindowState |= FormWindowState.Minimized;
         }
+
+
+        #endregion
+
+
+
+        private void Reset()
+        {
+            DisableButton();
+            lblTitle.Text = "DASHBOARD";
+            panelTitleBar.BackColor = Color.FromArgb(0, 150, 136);
+            panelLogo.BackColor = Color.FromArgb(39, 39, 58);
+            currentButton = null;
+            btnCloseChildForm.Visible = false;
+        }
+
+
+
+
     }
 }
