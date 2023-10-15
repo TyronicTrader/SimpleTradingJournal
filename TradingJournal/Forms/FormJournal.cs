@@ -27,7 +27,7 @@ namespace TradingJournal.Forms
         public int activeRecordID = 0;
         private CheckBox currentCheckbox;
         private CheckBox oldCheckbox;
-        static string strDefaultTextboxMessage = "HINTS:\r\n<-- If you want to create a Template you can chose New Record and the Type called Template and it will add a template to the above template menu\r\n<-- Change color theme by clicking on the Journal icon in the left column  Keep pressing until you find a color scheme you prefer\r\n-->  After you have Loaded or Pasted an Image to your Record/Note then give it a name and Click \"Add Image to Record\" to include it into the active Record/Note\r\n<-- Tags allow you to add HashTags to your Record/Note for reference and will be used in future updates for reporting and searching\r\n<--The Monthly Calendar will allow you to highlight multiple dates to fill the tree below it with records from those selected dates\r\n";
+        static string strDefaultTextboxMessage = "HINTS:\r\n<-- If you want to create a Template you can chose New Record and the Type called Template and it will add a template to the above template menu\r\n<-- Change color theme by clicking on the Journal icon in the left column  Keep pressing until you find a color scheme you prefer\r\n<-- Tags allow you to add HashTags to your Record/Note for reference and will be used in future updates for reporting and searching\r\n<--The Monthly Calendar will allow you to highlight multiple dates to fill the tree below it with records from those selected dates\r\n";
         static string strDefaultTagsExamples = "EXAMPLES:\r\n FOMC\r\n CPI\r\n GDP\r\n nonFarmPayroll";
         static string strDefaultInstrumentExample = "EUR/USD or BTC";
         static string strDefaultImageName = "Image Name here";
@@ -250,7 +250,7 @@ namespace TradingJournal.Forms
             txtNameImg.Text = null;
             pictureBox.Image = null;
             ActivateFields(true); 
-            LoadFirstRecImage();
+            LoadRecImage();
 
         }
 
@@ -340,6 +340,12 @@ namespace TradingJournal.Forms
                 scb.DataAdapter = sda;
                 sda.Fill(ds, "The_THUMB");
                 dataGridView1.DataSource = ds.Tables["The_THUMB"];
+
+                Int32 index = dataGridView1.Rows.Count - 1;
+                if(index >= 0)
+                {
+                    dataGridView1.Rows[index].Cells[3].Selected = true;
+                }
                 
 
                 #region ONLY DIPLAY THUMBNAIL
@@ -387,34 +393,35 @@ namespace TradingJournal.Forms
 
         private void UpdateNameInGrid()
         {
-            try
+            if (dataGridView1.CurrentCell != null)
             {
-                if (dataGridView1.CurrentCell != null)
+                int theRowIndex = dataGridView1.CurrentCell.RowIndex;
+                //int theColNameIndex = dataGridView1.Columns.IndexOf(dataGridView1.Columns[1]);
+                //dataGridView1.Rows[theRowIndex].Cells["Nmd_DESCRIPTION"].Value = txtNameImg.Text;
+                //dataGridView1.UpdateCellValue(theColNameIndex, theRowIndex);/
+                string updateMediaQuery = $"UPDATE NOTEMEDIA SET Nmd_DESCRIPTION = '{txtNameImg.Text}' WHERE Nmd_ID = {dataGridView1.Rows[theRowIndex].Cells[0].Value}";
+                try
                 {
-                    int theRowIndex = dataGridView1.CurrentCell.RowIndex;
-                    int theColNameIndex = dataGridView1.Columns.IndexOf(dataGridView1.Columns[1]);
-                    //dataGridView1.Rows[theRowIndex].Cells["Nmd_DESCRIPTION"].Value = txtNameImg.Text;
-                    //dataGridView1.UpdateCellValue(theColNameIndex, theRowIndex);
-                    Console.WriteLine("before the cell update " + dataGridView1.Rows[theRowIndex].Cells["Nmd_DESCRIPTION"].Value + " - " + txtNameImg.Text); 
-                    string updateMediaQuery = $"UPDATE NOTEMEDIA SET Nmd_DESCRIPTION = '{txtNameImg.Text}' WHERE Nmd_ID = {dataGridView1.Rows[theRowIndex].Cells[0].Value}";
                     dbCon.ConnOpen();
                     var schemaInit = dbCon.Conn.CreateCommand();
                     schemaInit.CommandText = updateMediaQuery;
                     schemaInit.ExecuteNonQuery();
                     dbCon.ConnClose();
-                    FillGrid();
-                    Console.WriteLine("after the cell update " + dataGridView1.Rows[theRowIndex].Cells["Nmd_DESCRIPTION"].Value + " - " + txtNameImg.Text);
                 }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+                if (dataGridView1.CurrentCell.RowIndex != null)
+                {
+                    Console.WriteLine(theRowIndex);
+                }
+                FillGrid();
             }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-
         }
 
 
-        private void LoadFirstRecImage()
+        private void LoadRecImage()
         {
             if (dataGridView1.RowCount > 0)
             {
@@ -465,7 +472,6 @@ namespace TradingJournal.Forms
                     {
                         string description = txtNameImg.Text;
                         string thedatetime = DateTime.Now.ToString("u");
-                        //string insertQuery = "INSERT INTO NOTEMEDIA('Nmd_ID', 'Nmd_DESCRIPTION', 'Nmd_MEDIA', 'Nmd_NOTEID', 'Nmd_THUMB', 'Nmd_DATETIME') VALUES (@id, @description, @img, '@nid', @thumb, @thedatetime)";
                         string insertQuery = "INSERT INTO NOTEMEDIA('Nmd_DESCRIPTION', 'Nmd_MEDIA', 'Nmd_THUMB', 'Nmd_Not_ID', 'Nmd_DATETIME') VALUES (@description, @img, @thumb, @nid, @thedatetime)";
                         cmd = new SQLiteCommand(insertQuery, dbCon.Conn);
                         dbCon.ConnOpen();
@@ -476,10 +482,6 @@ namespace TradingJournal.Forms
                         cmd.Parameters.AddWithValue("@thedatetime", thedatetime);
                         cmd.ExecuteNonQuery();
                         dbCon.ConnClose();
-                        //else
-                        //{
-                        //    MessageBox.Show("You need to have a name for this image.");
-                        //}
 
                     }
                     else
@@ -914,7 +916,7 @@ namespace TradingJournal.Forms
         private void btnDelImg_Click(object sender, EventArgs e)
         {
             DelFromGrid();
-            LoadFirstRecImage();
+            LoadRecImage();
         }
 
         private void btnDelRec_Click(object sender, EventArgs e)

@@ -6,6 +6,7 @@ using System.Data.SQLite;
 using System.Drawing;
 using System.Linq;
 using System.Reflection.Emit;
+using System.Runtime.InteropServices;
 using System.Security.Policy;
 using System.Text;
 using System.Threading.Tasks;
@@ -26,8 +27,23 @@ namespace TradingJournal
         {
             InitializeComponent();
             random = new Random();
-        } 
+            btnCloseChildForm.Visible = false;
 
+            //removes the titlebar
+            this.Text = string.Empty;
+            this.ControlBox = false;
+
+            this.MaximizedBounds = Screen.FromHandle(this.Handle).WorkingArea;
+        }
+
+        /// <summary>
+        /// DLLImport sections are used for setting the title screen area for draging around window
+        /// </summary>
+        [DllImport("user32.dll", EntryPoint = "ReleaseCapture")]
+        private extern static void ReleaseCapture();
+
+        [DllImport("user32.dll", EntryPoint = "SendMessage")]
+        private extern static void SendMessage(System.IntPtr hWnd, int wMsg, int wParam, int IParam);
 
 
         #region THEME Section
@@ -58,6 +74,7 @@ namespace TradingJournal
                 panelLogo.BackColor = ThemeColor.ChangeColorBrightness(color, -0.3);
                 ThemeColor.PrimaryColor = color;
                 ThemeColor.SecondaryColor = ThemeColor.ChangeColorBrightness(color, -0.3);
+                btnCloseChildForm.Visible = true;
             }
         }
 
@@ -133,9 +150,58 @@ namespace TradingJournal
         {
             OpenChildForm(new Forms.FormSearch(), sender);
         }
+        private void btnV2Journal_Click(object sender, EventArgs e)
+        {
+            OpenChildForm(new Forms.FormV2Journal(), sender);
+        }
+
+
 
         #endregion
 
+        private void btnCloseChildForm_Click(object sender, EventArgs e)
+        {
+            if (activeForm != null)
+                activeForm.Close();
+            Reset();
+        }
 
+        private void Reset()
+        {
+            DisableButton();
+            lblTitle.Text = "DASHBOARD";
+            panelTitleBar.BackColor = Color.FromArgb(0, 150, 136);
+            panelLogo.BackColor = Color.FromArgb(39, 39, 58);
+            currentButton = null;
+            btnCloseChildForm.Visible = false;
+        }
+
+        private void panelTitleBar_MouseDown(object sender, MouseEventArgs e)
+        {
+            ReleaseCapture();
+            SendMessage(this.Handle, 0x112, 0xf012, 0);
+        }
+
+        private void btnExitApp_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+
+        private void btnMaximize_Click(object sender, EventArgs e)
+        {
+            if(WindowState == FormWindowState.Normal)
+            {
+                this.WindowState = FormWindowState.Maximized;
+            }
+            else
+            {
+                this.WindowState = FormWindowState.Normal;
+            }
+        }
+
+        private void btnMinimize_Click(object sender, EventArgs e)
+        {
+            this.WindowState |= FormWindowState.Minimized;
+        }
     }
 }

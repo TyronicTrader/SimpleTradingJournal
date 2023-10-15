@@ -105,11 +105,13 @@
             // monthCalendar
             // 
             this.monthCalendar.BackColor = System.Drawing.SystemColors.Window;
+            this.monthCalendar.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.monthCalendar.Location = new System.Drawing.Point(13, 13);
             this.monthCalendar.MaxSelectionCount = 43;
             this.monthCalendar.MinDate = new System.DateTime(1969, 7, 20, 0, 0, 0, 0);
             this.monthCalendar.Name = "monthCalendar";
             this.monthCalendar.TabIndex = 0;
+            this.monthCalendar.TabStop = false;
             this.monthCalendar.TitleBackColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.monthCalendar.DateSelected += new System.Windows.Forms.DateRangeEventHandler(this.monthCalendar_DateSelected);
             // 
@@ -151,11 +153,11 @@
             // btnNewRec
             // 
             this.btnNewRec.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnNewRec.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnNewRec.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnNewRec.Location = new System.Drawing.Point(1008, 16);
             this.btnNewRec.Margin = new System.Windows.Forms.Padding(0);
             this.btnNewRec.Name = "btnNewRec";
-            this.btnNewRec.Size = new System.Drawing.Size(150, 30);
+            this.btnNewRec.Size = new System.Drawing.Size(150, 38);
             this.btnNewRec.TabIndex = 4;
             this.btnNewRec.Text = "New Record";
             this.btnNewRec.UseVisualStyleBackColor = true;
@@ -227,9 +229,9 @@
             this.dataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(1008, 272);
+            this.dataGridView1.Location = new System.Drawing.Point(989, 272);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(150, 240);
+            this.dataGridView1.Size = new System.Drawing.Size(185, 240);
             this.dataGridView1.TabIndex = 10;
             this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
@@ -243,6 +245,7 @@
             this.lblNameImg.Size = new System.Drawing.Size(102, 18);
             this.lblNameImg.TabIndex = 11;
             this.lblNameImg.Text = "Image Name";
+            this.lblNameImg.Visible = false;
             // 
             // txtNameImg
             // 
@@ -253,6 +256,7 @@
             this.txtNameImg.Name = "txtNameImg";
             this.txtNameImg.Size = new System.Drawing.Size(150, 24);
             this.txtNameImg.TabIndex = 12;
+            this.txtNameImg.Visible = false;
             this.txtNameImg.Leave += new System.EventHandler(this.txtNameImg_Leave);
             // 
             // splitContainer
