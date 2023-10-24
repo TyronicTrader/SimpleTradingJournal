@@ -331,6 +331,7 @@
             this.toolStripCmbTemplate.Name = "toolStripCmbTemplate";
             this.toolStripCmbTemplate.Size = new System.Drawing.Size(121, 25);
             this.toolStripCmbTemplate.ToolTipText = "Select Template";
+            this.toolStripCmbTemplate.SelectedIndexChanged += new System.EventHandler(this.toolStripCmbTemplate_SelectedIndexChanged);
             // 
             // toolStripSeparator1
             // 

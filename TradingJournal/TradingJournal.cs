@@ -12,6 +12,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml.Serialization;
+using TradingJournal.Properties;
 
 namespace TradingJournal
 {
@@ -27,7 +28,6 @@ namespace TradingJournal
         {
             InitializeComponent();
             random = new Random();
-            btnCloseChildForm.Visible = false;
 
             //removes the titlebar
             this.Text = string.Empty;
@@ -80,7 +80,6 @@ namespace TradingJournal
                 panelLogo.BackColor = ThemeColor.ChangeColorBrightness(color, -0.3);
                 ThemeColor.PrimaryColor = color;
                 ThemeColor.SecondaryColor = ThemeColor.ChangeColorBrightness(color, -0.3);
-                btnCloseChildForm.Visible = true;
             }
         }
 
@@ -156,10 +155,6 @@ namespace TradingJournal
         {
             OpenChildForm(new Forms.FormSearch(), sender);
         }
-        private void btnV2Journal_Click(object sender, EventArgs e)
-        {
-            OpenChildForm(new Forms.FormV2Journal(), sender);
-        }
 
 
 
@@ -169,13 +164,6 @@ namespace TradingJournal
 
         #region TOP NAV BUTTONS
 
-
-        private void btnCloseChildForm_Click(object sender, EventArgs e)
-        {
-            if (activeForm != null)
-                activeForm.Close();
-            Reset();
-        }
 
         private void btnExitApp_Click(object sender, EventArgs e)
         {
@@ -211,11 +199,24 @@ namespace TradingJournal
             panelTitleBar.BackColor = Color.FromArgb(0, 150, 136);
             panelLogo.BackColor = Color.FromArgb(39, 39, 58);
             currentButton = null;
-            btnCloseChildForm.Visible = false;
         }
 
+        private void panelLogo_MouseClick(object sender, MouseEventArgs e)
+        {
+            if (activeForm != null)
+                activeForm.Close();
+            Reset();
 
+        }
 
+        private void panelLogo_MouseHover(object sender, EventArgs e)
+        {
+            panelLogo.BackgroundImage = Resources.dashboard;
+        }
 
+        private void panelLogo_MouseLeave(object sender, EventArgs e)
+        {
+            panelLogo.BackgroundImage = Resources.Logo;
+        }
     }
 }

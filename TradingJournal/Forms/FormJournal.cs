@@ -51,7 +51,7 @@ namespace TradingJournal.Forms
         {
             InitializeComponent();
             pictureBox.Image = pictureBox.InitialImage;
-            FillCombo();
+            FillCombo("both");
             HighlightMonthCalendar();
             FillTreeView(startDate, endDate);
             ActivateFields(false);
@@ -255,42 +255,65 @@ namespace TradingJournal.Forms
         }
 
 
-        private void FillCombo()
+        private void FillCombo(string e)
         {
             toolStripCmbTemplate.Items.Clear();
             string templatequery = "Select Not_NAME from NOTES where Not_Ntp_ID = (select Ntp_ID from NOTETYPES where Ntp_NAME = 'Template')";
             sda = new SQLiteDataAdapter(templatequery, dbCon.Conn);
             sda.Fill(ds, "NoteTemplates");
-            try
+            if (e == "both")
             {
-                foreach (DataRow dr in ds.Tables["NoteTemplates"].Rows)
+                try
                 {
-                    toolStripCmbTemplate.Items.Add(dr["Not_NAME"].ToString());
+                    foreach (DataRow dr in ds.Tables["NoteTemplates"].Rows)
+                    {
+                        toolStripCmbTemplate.Items.Add(dr["Not_NAME"].ToString());
+                    }
                 }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+
+                cmbType.Items.Clear();
+                string recordtypequery = "Select Ntp_NAME from NOTETYPES";
+                sda = new SQLiteDataAdapter(recordtypequery, dbCon.Conn);
+                sda.Fill(ds, "NoteTypes");
+                try
+                {
+                    foreach (DataRow dr in ds.Tables["NoteTypes"].Rows)
+                    {
+                        cmbType.Items.Add(dr["Ntp_NAME"].ToString());
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+                ds.Tables.Remove("NoteTemplates");
+                ds.Tables.Remove("NoteTypes");
             }
-            catch (Exception ex)
+            if (e == "template")
             {
-                MessageBox.Show(ex.Message);
+                try
+                {
+                    foreach (DataRow dr in ds.Tables["NoteTemplates"].Rows)
+                    {
+                        toolStripCmbTemplate.Items.Add(dr["Not_NAME"].ToString());
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+                ds.Tables.Remove("NoteTemplates");
+                //ds.Tables.Remove("NoteTypes");
+
             }
 
-            cmbType.Items.Clear();
-            string recordtypequery = "Select Ntp_NAME from NOTETYPES";
-            sda = new SQLiteDataAdapter(recordtypequery, dbCon.Conn);
-            sda.Fill(ds, "NoteTypes");
-            try
-            {
-                foreach (DataRow dr in ds.Tables["NoteTypes"].Rows)
-                {
-                    cmbType.Items.Add(dr["Ntp_NAME"].ToString());
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
 
-            ds.Tables.Remove("NoteTemplates");
-            ds.Tables.Remove("NoteTypes");
+            //ds.Tables.Remove("NoteTemplates");
+            //ds.Tables.Remove("NoteTypes");
         }
 
 
@@ -341,11 +364,11 @@ namespace TradingJournal.Forms
                 sda.Fill(ds, "The_THUMB");
                 dataGridView1.DataSource = ds.Tables["The_THUMB"];
 
-                Int32 index = dataGridView1.Rows.Count - 1;
-                if(index >= 0)
-                {
-                    dataGridView1.Rows[index].Cells[3].Selected = true;
-                }
+                //Int32 index = dataGridView1.Rows.Count - 1;
+                //if(index >= 0)
+                //{
+                //    dataGridView1.Rows[index].Cells[3].Selected = true;
+                //}
                 
 
                 #region ONLY DIPLAY THUMBNAIL
@@ -618,7 +641,7 @@ namespace TradingJournal.Forms
             //MessageBox.Show("Record has been saved.");
             monthCalendar.AddBoldedDate(DateTime.Parse(thedatetime.ToString()));
             monthCalendar.UpdateBoldedDates();
-            //FillCombo();
+            FillCombo("template");
             FillTreeView(startDate, endDate);
         }
 
@@ -1043,6 +1066,23 @@ namespace TradingJournal.Forms
         private void txtNameImg_Leave(object sender, EventArgs e)
         {
             UpdateNameInGrid();
+        }
+
+        private void toolStripCmbTemplate_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            //string fillTemplates = $"select Not_NOTES from NOTES where Not_NAME = {toolStripComboBoxSelectTemplate.SelectedItem}";
+            string fillTemplates = $"Select Not_NOTES from NOTES where Not_Ntp_ID = (select Ntp_ID from NOTETYPES where Ntp_NAME = 'Template') AND Not_NAME = '{toolStripCmbTemplate.SelectedItem}'";
+            sda = new SQLiteDataAdapter(fillTemplates, dbCon.Conn);
+            sda.Fill(ds, "NoteTemplate");
+            foreach (DataRow dr in ds.Tables["NoteTemplate"].Rows)
+            {
+                richTextBox1.Text = richTextBox1.Text + dr["Not_NOTES"].ToString();
+            }
+            //richTextBox1.Text = ds.Tables["NoteTemplates"].Rows[0].ItemArray[0].ToString();
+            //Console.WriteLine(sender.ToString());
+            //Console.WriteLine(e);
+            ds.Tables.Remove("NoteTemplate");
+
         }
     }
 }

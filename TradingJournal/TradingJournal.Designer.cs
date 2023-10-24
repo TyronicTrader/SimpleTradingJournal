@@ -30,15 +30,13 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TradingJournal));
             this.panelMenu = new System.Windows.Forms.Panel();
-            this.btnV2Journal = new System.Windows.Forms.Button();
             this.btnInfo = new System.Windows.Forms.Button();
             this.panelTitleBar = new System.Windows.Forms.Panel();
+            this.btnMinimize = new System.Windows.Forms.Button();
+            this.btnMaximize = new System.Windows.Forms.Button();
+            this.btnExitApp = new System.Windows.Forms.Button();
             this.lblTitle = new System.Windows.Forms.Label();
             this.panelWorkArea = new System.Windows.Forms.Panel();
-            this.btnCloseChildForm = new System.Windows.Forms.Button();
-            this.btnExitApp = new System.Windows.Forms.Button();
-            this.btnMaximize = new System.Windows.Forms.Button();
-            this.btnMinimize = new System.Windows.Forms.Button();
             this.btnSearch = new System.Windows.Forms.Button();
             this.btnSettings = new System.Windows.Forms.Button();
             this.btnRSS = new System.Windows.Forms.Button();
@@ -53,7 +51,6 @@
             // panelMenu
             // 
             this.panelMenu.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(76)))));
-            this.panelMenu.Controls.Add(this.btnV2Journal);
             this.panelMenu.Controls.Add(this.btnSearch);
             this.panelMenu.Controls.Add(this.btnSettings);
             this.panelMenu.Controls.Add(this.btnInfo);
@@ -67,21 +64,6 @@
             this.panelMenu.Name = "panelMenu";
             this.panelMenu.Size = new System.Drawing.Size(75, 681);
             this.panelMenu.TabIndex = 0;
-            // 
-            // btnV2Journal
-            // 
-            this.btnV2Journal.Dock = System.Windows.Forms.DockStyle.Top;
-            this.btnV2Journal.FlatAppearance.BorderSize = 0;
-            this.btnV2Journal.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnV2Journal.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnV2Journal.ForeColor = System.Drawing.Color.Gainsboro;
-            this.btnV2Journal.Location = new System.Drawing.Point(0, 455);
-            this.btnV2Journal.Name = "btnV2Journal";
-            this.btnV2Journal.Size = new System.Drawing.Size(75, 75);
-            this.btnV2Journal.TabIndex = 8;
-            this.btnV2Journal.Text = "V2\r\nJournal";
-            this.btnV2Journal.UseVisualStyleBackColor = true;
-            this.btnV2Journal.Click += new System.EventHandler(this.btnV2Journal_Click);
             // 
             // btnInfo
             // 
@@ -104,7 +86,6 @@
             this.panelTitleBar.Controls.Add(this.btnMinimize);
             this.panelTitleBar.Controls.Add(this.btnMaximize);
             this.panelTitleBar.Controls.Add(this.btnExitApp);
-            this.panelTitleBar.Controls.Add(this.btnCloseChildForm);
             this.panelTitleBar.Controls.Add(this.lblTitle);
             this.panelTitleBar.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelTitleBar.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -113,6 +94,52 @@
             this.panelTitleBar.Size = new System.Drawing.Size(1189, 80);
             this.panelTitleBar.TabIndex = 1;
             this.panelTitleBar.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panelTitleBar_MouseDown);
+            // 
+            // btnMinimize
+            // 
+            this.btnMinimize.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnMinimize.FlatAppearance.BorderSize = 0;
+            this.btnMinimize.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnMinimize.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnMinimize.ForeColor = System.Drawing.Color.Gainsboro;
+            this.btnMinimize.Location = new System.Drawing.Point(1094, 0);
+            this.btnMinimize.Name = "btnMinimize";
+            this.btnMinimize.Size = new System.Drawing.Size(25, 25);
+            this.btnMinimize.TabIndex = 4;
+            this.btnMinimize.Text = "-";
+            this.btnMinimize.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.btnMinimize.UseVisualStyleBackColor = true;
+            this.btnMinimize.Click += new System.EventHandler(this.btnMinimize_Click);
+            // 
+            // btnMaximize
+            // 
+            this.btnMaximize.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnMaximize.FlatAppearance.BorderSize = 0;
+            this.btnMaximize.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnMaximize.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnMaximize.ForeColor = System.Drawing.Color.Gainsboro;
+            this.btnMaximize.Location = new System.Drawing.Point(1125, 3);
+            this.btnMaximize.Name = "btnMaximize";
+            this.btnMaximize.Size = new System.Drawing.Size(25, 25);
+            this.btnMaximize.TabIndex = 3;
+            this.btnMaximize.Text = "o";
+            this.btnMaximize.UseVisualStyleBackColor = true;
+            this.btnMaximize.Click += new System.EventHandler(this.btnMaximize_Click);
+            // 
+            // btnExitApp
+            // 
+            this.btnExitApp.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnExitApp.FlatAppearance.BorderSize = 0;
+            this.btnExitApp.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnExitApp.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnExitApp.ForeColor = System.Drawing.Color.Gainsboro;
+            this.btnExitApp.Location = new System.Drawing.Point(1156, 3);
+            this.btnExitApp.Name = "btnExitApp";
+            this.btnExitApp.Size = new System.Drawing.Size(25, 25);
+            this.btnExitApp.TabIndex = 2;
+            this.btnExitApp.Text = "x";
+            this.btnExitApp.UseVisualStyleBackColor = true;
+            this.btnExitApp.Click += new System.EventHandler(this.btnExitApp_Click);
             // 
             // lblTitle
             // 
@@ -133,66 +160,6 @@
             this.panelWorkArea.Name = "panelWorkArea";
             this.panelWorkArea.Size = new System.Drawing.Size(1189, 601);
             this.panelWorkArea.TabIndex = 2;
-            // 
-            // btnCloseChildForm
-            // 
-            this.btnCloseChildForm.FlatAppearance.BorderSize = 0;
-            this.btnCloseChildForm.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnCloseChildForm.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCloseChildForm.ForeColor = System.Drawing.Color.Gainsboro;
-            this.btnCloseChildForm.Location = new System.Drawing.Point(3, 3);
-            this.btnCloseChildForm.Name = "btnCloseChildForm";
-            this.btnCloseChildForm.Size = new System.Drawing.Size(62, 71);
-            this.btnCloseChildForm.TabIndex = 1;
-            this.btnCloseChildForm.Text = "X";
-            this.btnCloseChildForm.UseVisualStyleBackColor = true;
-            this.btnCloseChildForm.Click += new System.EventHandler(this.btnCloseChildForm_Click);
-            // 
-            // btnExitApp
-            // 
-            this.btnExitApp.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnExitApp.FlatAppearance.BorderSize = 0;
-            this.btnExitApp.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnExitApp.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnExitApp.ForeColor = System.Drawing.Color.Gainsboro;
-            this.btnExitApp.Location = new System.Drawing.Point(1156, 3);
-            this.btnExitApp.Name = "btnExitApp";
-            this.btnExitApp.Size = new System.Drawing.Size(25, 25);
-            this.btnExitApp.TabIndex = 2;
-            this.btnExitApp.Text = "x";
-            this.btnExitApp.UseVisualStyleBackColor = true;
-            this.btnExitApp.Click += new System.EventHandler(this.btnExitApp_Click);
-            // 
-            // btnMaximize
-            // 
-            this.btnMaximize.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnMaximize.FlatAppearance.BorderSize = 0;
-            this.btnMaximize.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnMaximize.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnMaximize.ForeColor = System.Drawing.Color.Gainsboro;
-            this.btnMaximize.Location = new System.Drawing.Point(1125, 3);
-            this.btnMaximize.Name = "btnMaximize";
-            this.btnMaximize.Size = new System.Drawing.Size(25, 25);
-            this.btnMaximize.TabIndex = 3;
-            this.btnMaximize.Text = "o";
-            this.btnMaximize.UseVisualStyleBackColor = true;
-            this.btnMaximize.Click += new System.EventHandler(this.btnMaximize_Click);
-            // 
-            // btnMinimize
-            // 
-            this.btnMinimize.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnMinimize.FlatAppearance.BorderSize = 0;
-            this.btnMinimize.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnMinimize.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnMinimize.ForeColor = System.Drawing.Color.Gainsboro;
-            this.btnMinimize.Location = new System.Drawing.Point(1094, 0);
-            this.btnMinimize.Name = "btnMinimize";
-            this.btnMinimize.Size = new System.Drawing.Size(25, 25);
-            this.btnMinimize.TabIndex = 4;
-            this.btnMinimize.Text = "-";
-            this.btnMinimize.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnMinimize.UseVisualStyleBackColor = true;
-            this.btnMinimize.Click += new System.EventHandler(this.btnMinimize_Click);
             // 
             // btnSearch
             // 
@@ -282,13 +249,17 @@
             // panelLogo
             // 
             this.panelLogo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(39)))), ((int)(((byte)(58)))));
-            this.panelLogo.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("panelLogo.BackgroundImage")));
+            this.panelLogo.BackgroundImage = global::TradingJournal.Properties.Resources.Logo;
             this.panelLogo.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.panelLogo.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panelLogo.ForeColor = System.Drawing.Color.White;
             this.panelLogo.Location = new System.Drawing.Point(0, 0);
             this.panelLogo.Name = "panelLogo";
             this.panelLogo.Size = new System.Drawing.Size(75, 80);
             this.panelLogo.TabIndex = 1;
+            this.panelLogo.MouseClick += new System.Windows.Forms.MouseEventHandler(this.panelLogo_MouseClick);
+            this.panelLogo.MouseLeave += new System.EventHandler(this.panelLogo_MouseLeave);
+            this.panelLogo.MouseHover += new System.EventHandler(this.panelLogo_MouseHover);
             // 
             // TradingJournal
             // 
@@ -322,8 +293,6 @@
         private System.Windows.Forms.Label lblTitle;
         private System.Windows.Forms.Panel panelWorkArea;
         private System.Windows.Forms.Button btnSearch;
-        private System.Windows.Forms.Button btnV2Journal;
-        private System.Windows.Forms.Button btnCloseChildForm;
         private System.Windows.Forms.Button btnMinimize;
         private System.Windows.Forms.Button btnMaximize;
         private System.Windows.Forms.Button btnExitApp;
