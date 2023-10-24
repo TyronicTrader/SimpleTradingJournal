@@ -61,6 +61,7 @@ namespace TradingJournal.Forms
         private void FormJournal_Load(object sender, EventArgs e)
         {
             LoadTheme();
+            // implemented Autosaving
             btnSaveRec.Visible = false;
         }
 
@@ -416,6 +417,7 @@ namespace TradingJournal.Forms
 
         private void UpdateNameInGrid()
         {
+            //Didn't get this working so just removed naming of pics and will fiture it out in next project
             if (dataGridView1.CurrentCell != null)
             {
                 int theRowIndex = dataGridView1.CurrentCell.RowIndex;
@@ -778,6 +780,17 @@ namespace TradingJournal.Forms
             }
         }
 
+        private void toolStripCmbTemplate_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string fillTemplates = $"Select Not_NOTES from NOTES where Not_Ntp_ID = (select Ntp_ID from NOTETYPES where Ntp_NAME = 'Template') AND Not_NAME = '{toolStripCmbTemplate.SelectedItem}'";
+            sda = new SQLiteDataAdapter(fillTemplates, dbCon.Conn);
+            sda.Fill(ds, "NoteTemplate");
+            foreach (DataRow dr in ds.Tables["NoteTemplate"].Rows)
+            {
+                richTextBox1.Text = richTextBox1.Text + dr["Not_NOTES"].ToString();
+            }
+            ds.Tables.Remove("NoteTemplate");
+        }
 
         #endregion
 
@@ -978,6 +991,8 @@ namespace TradingJournal.Forms
 
         private void richTextBox1_KeyDown(object sender, KeyEventArgs e)
         {
+            //Redirects Ctrl-V paste function for pasting images
+
             if (e.Control && e.KeyCode == Keys.V)
             {
                 // suspend layout to avoid blinking
@@ -1030,6 +1045,7 @@ namespace TradingJournal.Forms
 
         private void chbDM_CheckedChanged(object sender, EventArgs e)
         {
+            //TESTING DARK MODE but redacted
             if(chbDM.Checked)
             {
                 this.BackColor = Color.Black;
@@ -1065,24 +1081,9 @@ namespace TradingJournal.Forms
 
         private void txtNameImg_Leave(object sender, EventArgs e)
         {
+            //Not working
             UpdateNameInGrid();
         }
 
-        private void toolStripCmbTemplate_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            //string fillTemplates = $"select Not_NOTES from NOTES where Not_NAME = {toolStripComboBoxSelectTemplate.SelectedItem}";
-            string fillTemplates = $"Select Not_NOTES from NOTES where Not_Ntp_ID = (select Ntp_ID from NOTETYPES where Ntp_NAME = 'Template') AND Not_NAME = '{toolStripCmbTemplate.SelectedItem}'";
-            sda = new SQLiteDataAdapter(fillTemplates, dbCon.Conn);
-            sda.Fill(ds, "NoteTemplate");
-            foreach (DataRow dr in ds.Tables["NoteTemplate"].Rows)
-            {
-                richTextBox1.Text = richTextBox1.Text + dr["Not_NOTES"].ToString();
-            }
-            //richTextBox1.Text = ds.Tables["NoteTemplates"].Rows[0].ItemArray[0].ToString();
-            //Console.WriteLine(sender.ToString());
-            //Console.WriteLine(e);
-            ds.Tables.Remove("NoteTemplate");
-
-        }
     }
 }

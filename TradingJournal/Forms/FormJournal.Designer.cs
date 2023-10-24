@@ -844,6 +844,7 @@
             this.chbDM.TabIndex = 60;
             this.chbDM.Text = "DarkMode";
             this.chbDM.UseVisualStyleBackColor = true;
+            this.chbDM.Visible = false;
             this.chbDM.CheckedChanged += new System.EventHandler(this.chbDM_CheckedChanged);
             // 
             // FormJournal
