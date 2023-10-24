@@ -1,6 +1,8 @@
 # SimpleTradingJournal
 
 Own Your Data....
+This was just done as a proof of concept for me to learn C#.
+First ever application in C#.  Fully functional as a general jounrnaling application with a few things for traders.
 Simple WinForms/SQLite application for Journaling Trades and much more.
 Provides the ability to add multiple screenshots either from file or clipboard to each Journal Entry.
 Provides the ability to add HashTags, Instrument traded, and PnL to each Journal Entry though search features are not in place to utilize that data.
