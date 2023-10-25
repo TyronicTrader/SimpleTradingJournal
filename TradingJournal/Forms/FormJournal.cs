@@ -415,35 +415,35 @@ namespace TradingJournal.Forms
         }
 
 
-        private void UpdateNameInGrid()
-        {
-            //Didn't get this working so just removed naming of pics and will fiture it out in next project
-            if (dataGridView1.CurrentCell != null)
-            {
-                int theRowIndex = dataGridView1.CurrentCell.RowIndex;
-                //int theColNameIndex = dataGridView1.Columns.IndexOf(dataGridView1.Columns[1]);
-                //dataGridView1.Rows[theRowIndex].Cells["Nmd_DESCRIPTION"].Value = txtNameImg.Text;
-                //dataGridView1.UpdateCellValue(theColNameIndex, theRowIndex);/
-                string updateMediaQuery = $"UPDATE NOTEMEDIA SET Nmd_DESCRIPTION = '{txtNameImg.Text}' WHERE Nmd_ID = {dataGridView1.Rows[theRowIndex].Cells[0].Value}";
-                try
-                {
-                    dbCon.ConnOpen();
-                    var schemaInit = dbCon.Conn.CreateCommand();
-                    schemaInit.CommandText = updateMediaQuery;
-                    schemaInit.ExecuteNonQuery();
-                    dbCon.ConnClose();
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message);
-                }
-                if (dataGridView1.CurrentCell.RowIndex != null)
-                {
-                    Console.WriteLine(theRowIndex);
-                }
-                FillGrid();
-            }
-        }
+        //private void UpdateNameInGrid()
+        //{
+        //    //Didn't get this working so just removed naming of pics and will fiture it out in next project
+        //    if (dataGridView1.CurrentCell != null)
+        //    {
+        //        int theRowIndex = dataGridView1.CurrentCell.RowIndex;
+        //        //int theColNameIndex = dataGridView1.Columns.IndexOf(dataGridView1.Columns[1]);
+        //        //dataGridView1.Rows[theRowIndex].Cells["Nmd_DESCRIPTION"].Value = txtNameImg.Text;
+        //        //dataGridView1.UpdateCellValue(theColNameIndex, theRowIndex);/
+        //        string updateMediaQuery = $"UPDATE NOTEMEDIA SET Nmd_DESCRIPTION = '{txtNameImg.Text}' WHERE Nmd_ID = {dataGridView1.Rows[theRowIndex].Cells[0].Value}";
+        //        try
+        //        {
+        //            dbCon.ConnOpen();
+        //            var schemaInit = dbCon.Conn.CreateCommand();
+        //            schemaInit.CommandText = updateMediaQuery;
+        //            schemaInit.ExecuteNonQuery();
+        //            dbCon.ConnClose();
+        //        }
+        //        catch (Exception ex)
+        //        {
+        //            MessageBox.Show(ex.Message);
+        //        }
+        //        //if (dataGridView1.CurrentCell.RowIndex != null)
+        //        //{
+        //        //    Console.WriteLine(theRowIndex);
+        //        //}
+        //        FillGrid();
+        //    }
+        //}
 
 
         private void LoadRecImage()
@@ -1079,11 +1079,6 @@ namespace TradingJournal.Forms
             SaveTheRecord();
         }
 
-        private void txtNameImg_Leave(object sender, EventArgs e)
-        {
-            //Not working
-            UpdateNameInGrid();
-        }
 
     }
 }

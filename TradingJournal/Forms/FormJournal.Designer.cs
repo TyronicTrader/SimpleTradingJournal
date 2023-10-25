@@ -257,7 +257,6 @@
             this.txtNameImg.Size = new System.Drawing.Size(150, 24);
             this.txtNameImg.TabIndex = 12;
             this.txtNameImg.Visible = false;
-            this.txtNameImg.Leave += new System.EventHandler(this.txtNameImg_Leave);
             // 
             // splitContainer
             // 
