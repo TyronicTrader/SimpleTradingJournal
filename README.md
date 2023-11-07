@@ -10,7 +10,7 @@ Can create Journal entry Templates and those Templates will then be available in
 Can resize and adjust orientation of the Text/Picture working area which can be helpful for wide screens.
 Can hightlight multiple dates in Calendar to show multiple days of Journal entries in the tree view below the calendar.
 
-Color Theme is random and can be changed by clickign on the Journal icon in left side menu.
+Color Theme is random and can be changed by clicking on any of the icon in left side menu.
 
 
 ![image](https://github.com/TyronicTrader/SimpleTradingJournal/assets/82331418/94097284-3717-4fcc-a4f7-f308e7231df5)
