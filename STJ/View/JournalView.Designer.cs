@@ -750,6 +750,7 @@
             this.btnDelImg.TabIndex = 65;
             this.btnDelImg.Text = "Delete Image";
             this.btnDelImg.UseVisualStyleBackColor = true;
+            this.btnDelImg.Click += new System.EventHandler(this.btnDelImg_Click);
             // 
             // btnDelRec
             // 

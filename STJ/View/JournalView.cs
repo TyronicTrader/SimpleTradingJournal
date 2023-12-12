@@ -44,7 +44,7 @@ namespace STJ.View
             InitializeComponent();
             pictureBox.Image = pictureBox.InitialImage;
             FillCombo("both");
-            JournalViewModel.HighlightMonthCalendar();
+            HighlightMonthCalendar();
             FillTreeView(startDate, endDate);
             ActivateFields(false);
 
@@ -103,39 +103,39 @@ namespace STJ.View
 
 
 
-        //private void HighlightMonthCalendar()
-        //{
-        //    string boldDatesQuery = "select Not_DATETIME from NOTES";
-        //    sda = new SQLiteDataAdapter(boldDatesQuery, dbCon.Conn);
-        //    sda.Fill(ds, "boldDates");
-        //    try
-        //    {
-        //        foreach (DataRow dr in ds.Tables["boldDates"].Rows)
-        //        {
-        //            monthCalendar.AddBoldedDate(DateTime.Parse(dr["Not_DATETIME"].ToString()));
-        //        }
-        //        monthCalendar.UpdateBoldedDates();
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        MessageBox.Show(ex.Message);
-        //    }
-        //    ds.Tables.Remove("boldDates");
-        //}
+        private void HighlightMonthCalendar()
+        {
+            string boldDatesQuery = "select Not_DATETIME from NOTES";
+            sda = new SQLiteDataAdapter(boldDatesQuery, dbCon.Conn);
+            sda.Fill(ds, "boldDates");
+            try
+            {
+                foreach (DataRow dr in ds.Tables["boldDates"].Rows)
+                {
+                    monthCalendar.AddBoldedDate(DateTime.Parse(dr["Not_DATETIME"].ToString()));
+                }
+                monthCalendar.UpdateBoldedDates();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            ds.Tables.Remove("boldDates");
+        }
 
 
-        //private void monthCalendar_DateSelected(object sender, DateRangeEventArgs e)
-        //{
-        //    startDate = monthCalendar.SelectionStart.ToString("d");
-        //    endDate = monthCalendar.SelectionEnd.ToString("d");
-        //    FillTreeView(startDate, endDate);
+        private void monthCalendar_DateSelected(object sender, DateRangeEventArgs e)
+        {
+            startDate = monthCalendar.SelectionStart.ToString("d");
+            endDate = monthCalendar.SelectionEnd.ToString("d");
+            FillTreeView(startDate, endDate);
 
-        //    //Update the fields 
-        //    ActiveRecordID = 0;
-        //    ResetFields();
-        //    ActivateFields(false);
-        //    dateTimePicker1.Value = monthCalendar.SelectionStart;
-        //}
+            //Update the fields 
+            ActiveRecordID = 0;
+            ResetFields();
+            ActivateFields(false);
+            dateTimePicker1.Value = monthCalendar.SelectionStart;
+        }
 
 
         private void FillTreeView(string startDate, string endDate)
