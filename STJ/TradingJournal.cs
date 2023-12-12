@@ -1,10 +1,19 @@
-﻿using System;
+﻿using STJ.Properties;
+using STJ.ViewModel;
+using STJ.View;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
 using System.Drawing;
+using System.Linq;
 using System.Runtime.InteropServices;
+using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Forms;
-using TradingJournal.Properties;
 
-namespace TradingJournal
+
+namespace STJ
 {
     public partial class TradingJournal : Form
     {
@@ -12,7 +21,6 @@ namespace TradingJournal
         private Random random;
         private int tempIndex;
         private Form activeForm;
-
 
         public TradingJournal()
         {
@@ -23,7 +31,7 @@ namespace TradingJournal
             this.Text = string.Empty;
             this.ControlBox = false;
             //does the window auto snap
-            this.MaximizedBounds = Screen.FromHandle(this.Handle).WorkingArea;
+            this.MaximizedBounds = Screen.FromHandle(Handle).WorkingArea;
         }
 
         /// <summary>
@@ -113,37 +121,38 @@ namespace TradingJournal
 
         private void btnJournal_Click(object sender, EventArgs e)
         {
-            OpenChildForm(new Forms.FormJournal(), sender);
+            OpenChildForm(new JournalView(), sender);
+
         }
 
         private void btnMetrics_Click(object sender, EventArgs e)
         {
-            OpenChildForm(new Forms.FormMetrics(), sender);
+            OpenChildForm(new MetricsView(), sender);
         }
 
         private void btnEvents_Click(object sender, EventArgs e)
         {
-            OpenChildForm(new Forms.FormEvents(), sender);
+            OpenChildForm(new EventsView(), sender);
         }
 
         private void btnRSS_Click(object sender, EventArgs e)
         {
-            OpenChildForm(new Forms.FormRSS(), sender);
+            OpenChildForm(new RSSView(), sender);
         }
 
         private void btnSettings_Click(object sender, EventArgs e)
         {
-            OpenChildForm(new Forms.FormSettings(), sender);
+            OpenChildForm(new SettingsView(), sender);
         }
 
         private void btnInfo_Click(object sender, EventArgs e)
         {
-            OpenChildForm(new Forms.FormInfo(), sender);
+            OpenChildForm(new InfoView(), sender);
         }
 
         private void btnSearch_Click(object sender, EventArgs e)
         {
-            OpenChildForm(new Forms.FormSearch(), sender);
+            OpenChildForm(new SearchView(), sender);
         }
 
 
@@ -196,7 +205,6 @@ namespace TradingJournal
             if (activeForm != null)
                 activeForm.Close();
             Reset();
-
         }
 
         private void panelLogo_MouseHover(object sender, EventArgs e)
