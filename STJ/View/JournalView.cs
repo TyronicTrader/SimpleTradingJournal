@@ -28,6 +28,7 @@ namespace STJ.View
         static string strDefaultImageName = "Image Name here";
         static string strDefaultType = "Record Type here";
         static string strDefaultRecordName = "Record Name here";
+
         public int ActiveRecordID
         {
             get { return activeRecordID; }
