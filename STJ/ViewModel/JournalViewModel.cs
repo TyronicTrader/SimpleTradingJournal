@@ -459,54 +459,54 @@ namespace STJ.ViewModel
         //}
 
 
-        //private void CreateTheRecord()
-        //{
-        //    SaveTheRecord();
-        //    ActiveRecordID = 0;
-        //    //activate and clear all the fields for a new record
-        //    ActivateFields(true);
-        //    //ResetFields();
-        //    ResetFields();
+        private void CreateTheRecord()
+        {
+            SaveTheRecord();
+            ActiveRecordID = 0;
+            //activate and clear all the fields for a new record
+            ActivateFields(true);
+            //ResetFields();
+            ResetFields();
 
-        //    //insert the new database record
-        //    string thedatetime = dateTimePicker1.Value.ToString("d");
-        //    string insertQuery = "INSERT INTO NOTES('Not_NAME', 'Not_NOTES', 'Not_DATETIME', 'Not_Usr_ID', 'Not_Ntp_ID') VALUES (@name, @note, @thedatetime, @notusrid, (select Ntp_ID from NOTETYPES where Ntp_NAME = @nottypid))";
-        //    cmd = new SQLiteCommand(insertQuery, dbCon.Conn);
-        //    cmd.Parameters.AddWithValue("@name", "");
-        //    cmd.Parameters.AddWithValue("@note", "");
-        //    cmd.Parameters.AddWithValue("@thedatetime", thedatetime);
-        //    cmd.Parameters.AddWithValue("@notusrid", activeUsr);
-        //    cmd.Parameters.AddWithValue("@nottypid", "Other");
-        //    try
-        //    {
-        //        dbCon.ConnOpen();
-        //        cmd.ExecuteNonQuery();
-        //        dbCon.ConnClose();
-        //        Console.WriteLine("record was created");
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        MessageBox.Show(ex.Message);
-        //    }
+            //insert the new database record
+            string thedatetime = dateTimePicker1.Value.ToString("d");
+            string insertQuery = "INSERT INTO NOTES('Not_NAME', 'Not_NOTES', 'Not_DATETIME', 'Not_Usr_ID', 'Not_Ntp_ID') VALUES (@name, @note, @thedatetime, @notusrid, (select Ntp_ID from NOTETYPES where Ntp_NAME = @nottypid))";
+            cmd = new SQLiteCommand(insertQuery, dbCon.Conn);
+            cmd.Parameters.AddWithValue("@name", "");
+            cmd.Parameters.AddWithValue("@note", "");
+            cmd.Parameters.AddWithValue("@thedatetime", thedatetime);
+            cmd.Parameters.AddWithValue("@notusrid", activeUsr);
+            cmd.Parameters.AddWithValue("@nottypid", "Other");
+            try
+            {
+                dbCon.ConnOpen();
+                cmd.ExecuteNonQuery();
+                dbCon.ConnClose();
+                Console.WriteLine("record was created");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
 
-        //    //update the Active Record with the most new database record that was created
-        //    string getMostCurrentRec = "Select Not_ID from NOTES ORDER BY Not_ID DESC LIMIT 1";
-        //    try
-        //    {
-        //        sda = new SQLiteDataAdapter(getMostCurrentRec, dbCon.Conn);
-        //        sda.Fill(ds, "CurrentRec");
-        //        foreach (DataRow dr in ds.Tables["CurrentRec"].Rows)
-        //        {
-        //            ActiveRecordID = Convert.ToInt32(dr["Not_ID"]);
-        //        }
-        //        SaveTheRecord();
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        MessageBox.Show(ex.Message);
-        //    }
+            //update the Active Record with the most new database record that was created
+            string getMostCurrentRec = "Select Not_ID from NOTES ORDER BY Not_ID DESC LIMIT 1";
+            try
+            {
+                sda = new SQLiteDataAdapter(getMostCurrentRec, dbCon.Conn);
+                sda.Fill(ds, "CurrentRec");
+                foreach (DataRow dr in ds.Tables["CurrentRec"].Rows)
+                {
+                    ActiveRecordID = Convert.ToInt32(dr["Not_ID"]);
+                }
+                SaveTheRecord();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
 
-        //}
+        }
 
 
         //private void SaveTheRecord()
