@@ -13,43 +13,70 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 namespace STJ.ViewModel
 {
-    internal partial class JournalViewModel
+    internal partial class JournalViewModel : ViewModelBase
     {
+        DBCon dbCon = new DBCon();
+        SQLiteCommand cmd;
+        SQLiteDataAdapter sda;
+        SQLiteCommandBuilder scb;
+        DataSet ds = new DataSet();
+        //string activeUsr = "1";
+        string startDate = DateTime.Now.ToString("d");
+        string endDate = DateTime.Now.ToString("d");
+        public int activeRecordID = 0;
+        //private CheckBox currentCheckbox;
+        //private CheckBox oldCheckbox;
+        //static string strDefaultTextboxMessage = "HINTS:\r\n<-- If you want to create a Template you can chose New Record and the Type called Template and it will add a template to the above template menu\r\n<-- Change color theme by clicking on the Journal icon in the left column  Keep pressing until you find a color scheme you prefer\r\n<-- Tags allow you to add HashTags to your Record/Note for reference and will be used in future updates for reporting and searching\r\n<--The Monthly Calendar will allow you to highlight multiple dates to fill the tree below it with records from those selected dates\r\n";
+        //static string strDefaultTagsExamples = "EXAMPLES:\r\n FOMC\r\n CPI\r\n GDP\r\n nonFarmPayroll";
+        //static string strDefaultInstrumentExample = "EUR/USD or BTC";
+        //static string strDefaultImageName = "Image Name here";
+        //static string strDefaultType = "Record Type here";
+        //static string strDefaultRecordName = "Record Name here";
+        public int ActiveRecordID
+        {
+            get { return activeRecordID; }
+            set
+            {
+                SaveTheRecord();
+                activeRecordID = value;
+                lblCurRec.Text = activeRecordID.ToString();
+            }
+        }
 
 
-        //private void HighlightMonthCalendar()
-        //{
-        //    string boldDatesQuery = "select Not_DATETIME from NOTES";
-        //    sda = new SQLiteDataAdapter(boldDatesQuery, dbCon.Conn);
-        //    sda.Fill(ds, "boldDates");
-        //    try
-        //    {
-        //        foreach (DataRow dr in ds.Tables["boldDates"].Rows)
-        //        {
-        //            monthCalendar.AddBoldedDate(DateTime.Parse(dr["Not_DATETIME"].ToString()));
-        //        }
-        //        monthCalendar.UpdateBoldedDates();
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        MessageBox.Show(ex.Message);
-        //    }
-        //    ds.Tables.Remove("boldDates");
-        //}
+        private void HighlightMonthCalendar()
+        {
+            string boldDatesQuery = "select Not_DATETIME from NOTES";
+            sda = new SQLiteDataAdapter(boldDatesQuery, dbCon.Conn);
+            sda.Fill(ds, "boldDates");
+            try
+            {
+                foreach (DataRow dr in ds.Tables["boldDates"].Rows)
+                {
+                    monthCalendar.AddBoldedDate(DateTime.Parse(dr["Not_DATETIME"].ToString()));
+                }
+                monthCalendar.UpdateBoldedDates();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            ds.Tables.Remove("boldDates");
+        }
 
 
-        //private void monthCalendar_DateSelected(object sender, DateRangeEventArgs e)
-        //{
-        //    startDate = monthCalendar.SelectionStart.ToString("d");
-        //    endDate = monthCalendar.SelectionEnd.ToString("d");
-        //    FillTreeView(startDate, endDate);
+        private void monthCalendar_DateSelected(object sender, DateRangeEventArgs e)
+        {
+            startDate = monthCalendar.SelectionStart.ToString("d");
+            endDate = monthCalendar.SelectionEnd.ToString("d");
+            FillTreeView(startDate, endDate);
 
-        //    //Update the fields 
-        //    ActiveRecordID = 0;
-        //    ResetFields();
-        //    ActivateFields(false);
-        //    dateTimePicker1.Value = monthCalendar.SelectionStart;
-        //}
+            //Update the fields 
+            ActiveRecordID = 0;
+            ResetFields();
+            ActivateFields(false);
+            dateTimePicker1.Value = monthCalendar.SelectionStart;
+        }
 
 
         //private void FillTreeView(string startDate, string endDate)

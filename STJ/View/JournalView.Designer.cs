@@ -738,6 +738,7 @@
             this.btnNewRec.TabIndex = 66;
             this.btnNewRec.Text = "New Record";
             this.btnNewRec.UseVisualStyleBackColor = true;
+            this.btnNewRec.Click += new System.EventHandler(this.btnNewRec_Click);
             // 
             // btnDelImg
             // 

@@ -1,8 +1,4 @@
 ﻿using System.Data.SQLite;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
 
@@ -14,29 +10,27 @@ namespace STJ.Model
         public string dbfileName = "./TheDatabase.sqlite3";
         public string dbschemaFile = "../../Resources/SQLiteSchema.sql";
 
-        public string connectionstring { get; set; }
+        public string Connectionstring { get; set; }
 
         string connection;
 
-        public void getconnection()
+        public void Getconnection()
         {
             connection = $"Data Source={dbfileName};Version=3;Compress=True;FailIfMissing=True;Synchronous=OFF;Journal Mode=WAL;";
-            connectionstring = connection;
-            System.Console.WriteLine(connectionstring);
+            Connectionstring = connection;
+            //System.Console.WriteLine(connectionstring);
         }
 
         public DBCon()
         {
-            getconnection();
-            Conn = new SQLiteConnection(connectionstring);
+            Getconnection();
+            Conn = new SQLiteConnection(Connectionstring);
             if (!File.Exists($"{dbfileName}"))
             {
                 if (!File.Exists($"{dbschemaFile}"))
                 {
                     MessageBox.Show("Schema File Missing.");
-                    //System.Windows.Forms.Application.Exit();
                     System.Environment.Exit(1);
-                    //System.Windows.Forms.Application.ExitThread();
                 }
                 else
                 {

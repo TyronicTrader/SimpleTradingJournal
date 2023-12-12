@@ -44,9 +44,10 @@ namespace STJ.View
             InitializeComponent();
             pictureBox.Image = pictureBox.InitialImage;
             FillCombo("both");
-            HighlightMonthCalendar();
+            JournalViewModel.HighlightMonthCalendar();
             FillTreeView(startDate, endDate);
             ActivateFields(false);
+
         }
 
         private void JournalView_Load(object sender, EventArgs e)
@@ -102,39 +103,39 @@ namespace STJ.View
 
 
 
-        private void HighlightMonthCalendar()
-        {
-            string boldDatesQuery = "select Not_DATETIME from NOTES";
-            sda = new SQLiteDataAdapter(boldDatesQuery, dbCon.Conn);
-            sda.Fill(ds, "boldDates");
-            try
-            {
-                foreach (DataRow dr in ds.Tables["boldDates"].Rows)
-                {
-                    monthCalendar.AddBoldedDate(DateTime.Parse(dr["Not_DATETIME"].ToString()));
-                }
-                monthCalendar.UpdateBoldedDates();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-            ds.Tables.Remove("boldDates");
-        }
+        //private void HighlightMonthCalendar()
+        //{
+        //    string boldDatesQuery = "select Not_DATETIME from NOTES";
+        //    sda = new SQLiteDataAdapter(boldDatesQuery, dbCon.Conn);
+        //    sda.Fill(ds, "boldDates");
+        //    try
+        //    {
+        //        foreach (DataRow dr in ds.Tables["boldDates"].Rows)
+        //        {
+        //            monthCalendar.AddBoldedDate(DateTime.Parse(dr["Not_DATETIME"].ToString()));
+        //        }
+        //        monthCalendar.UpdateBoldedDates();
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        MessageBox.Show(ex.Message);
+        //    }
+        //    ds.Tables.Remove("boldDates");
+        //}
 
 
-        private void monthCalendar_DateSelected(object sender, DateRangeEventArgs e)
-        {
-            startDate = monthCalendar.SelectionStart.ToString("d");
-            endDate = monthCalendar.SelectionEnd.ToString("d");
-            FillTreeView(startDate, endDate);
+        //private void monthCalendar_DateSelected(object sender, DateRangeEventArgs e)
+        //{
+        //    startDate = monthCalendar.SelectionStart.ToString("d");
+        //    endDate = monthCalendar.SelectionEnd.ToString("d");
+        //    FillTreeView(startDate, endDate);
 
-            //Update the fields 
-            ActiveRecordID = 0;
-            ResetFields();
-            ActivateFields(false);
-            dateTimePicker1.Value = monthCalendar.SelectionStart;
-        }
+        //    //Update the fields 
+        //    ActiveRecordID = 0;
+        //    ResetFields();
+        //    ActivateFields(false);
+        //    dateTimePicker1.Value = monthCalendar.SelectionStart;
+        //}
 
 
         private void FillTreeView(string startDate, string endDate)
@@ -535,17 +536,17 @@ namespace STJ.View
             cmd.Parameters.AddWithValue("@thedatetime", thedatetime);
             cmd.Parameters.AddWithValue("@notusrid", activeUsr);
             cmd.Parameters.AddWithValue("@nottypid", "Other");
+            dbCon.ConnOpen();
             try
             {
-                dbCon.ConnOpen();
                 cmd.ExecuteNonQuery();
-                dbCon.ConnClose();
                 Console.WriteLine("record was created");
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
+            dbCon.ConnClose();
 
             //update the Active Record with the most new database record that was created
             string getMostCurrentRec = "Select Not_ID from NOTES ORDER BY Not_ID DESC LIMIT 1";
@@ -620,16 +621,16 @@ namespace STJ.View
             cmd = new SQLiteCommand(insertQuery, dbCon.Conn);
 
             //Execute SQL and update the form
+            dbCon.ConnOpen();
             try
             {
-                dbCon.ConnOpen();
                 cmd.ExecuteNonQuery();
-                dbCon.ConnClose();
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
+            dbCon.ConnClose();
             //MessageBox.Show("Record has been saved.");
             monthCalendar.AddBoldedDate(DateTime.Parse(thedatetime.ToString()));
             monthCalendar.UpdateBoldedDates();
@@ -647,12 +648,13 @@ namespace STJ.View
                 dbCon.ConnOpen();
                 try
                 {
-                    cmd.ExecuteNonQuery();
+                    cmd.ExecuteNonQuery(); 
                 }
                 catch (Exception ex)
                 {
                     MessageBox.Show(ex.Message);
                 }
+                dbCon.ConnClose();
                 //Update the fields 
                 ActiveRecordID = 0;
                 ResetFields();
