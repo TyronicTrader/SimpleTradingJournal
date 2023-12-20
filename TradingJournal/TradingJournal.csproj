@@ -200,8 +200,12 @@
     <Content Include="images\settings.png" />
     <Content Include="images\undo.png" />
     <Content Include="SQLiteSchema.sql" />
-    <Content Include="x64\SQLite.Interop.dll" />
-    <Content Include="x86\SQLite.Interop.dll" />
+    <Content Include="x64\SQLite.Interop.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="x86\SQLite.Interop.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
