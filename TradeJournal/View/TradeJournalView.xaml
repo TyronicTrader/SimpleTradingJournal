@@ -5,13 +5,59 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TradeJournal.View" xmlns:viewmodel="clr-namespace:TradeJournal.ViewModel" d:DataContext="{d:DesignInstance Type=viewmodel:TradeJournalViewModel}"
         mc:Ignorable="d"
-        Title="TradeJournal" Height="720" Width="1280">
+        Title="TradeJournal" Height="720" Width="1280"
+        WindowStartupLocation="CenterScreen"
+        MinHeight="720" MinWidth="1280"
+        Background="Black">
     <Grid>
-        <StackPanel>
-            <TextBox x:Name="theTextBox" Text="{Binding TheTextBox}"/>
-            <Button x:Name="ClickMe" Content="ClickIT!!!" Command="{Binding ButtonOnClickCommand}"/>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="80"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="80"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="160"/>
+        </Grid.RowDefinitions>
 
-        </StackPanel>
+        <Grid Grid.Column="0" Grid.Row="0">
+            <StackPanel>
+                <Image Source="/Resources/images/Logo.png" Width="75" Height="75" Stretch="Fill" />
+            </StackPanel>
+            
+        </Grid>
+        <Grid Grid.Column="0" Grid.Row="1">
+            <StackPanel >
+                <Button x:Name="Journal" Content="Journal!!!" Command="{Binding ButtonOnClickCommand}" Width="75" Height="75"/>
+                <Button x:Name="Metrics" Content="Metrics!!!" Command="{Binding ButtonOnClickCommand}" Width="75" Height="75"/>
+                <Button x:Name="Events" Content="Events!!!" Command="{Binding ButtonOnClickCommand}" Width="75" Height="75"/>
+                <Button x:Name="RSS" Content="RSS!!!" Command="{Binding ButtonOnClickCommand}" Width="75" Height="75"/>
+
+            </StackPanel>
+        </Grid>
+        <Grid Grid.Column="0" Grid.Row="2">
+            <StackPanel >
+                <Button x:Name="Search" Content="Search!!!" Command="{Binding ButtonOnClickCommand}" Width="75" Height="75" VerticalAlignment="Bottom"/>
+                <Button x:Name="Info" Content="Info!!!" Command="{Binding ButtonOnClickCommand}" Width="75" Height="75" VerticalAlignment="Bottom"/>
+
+            </StackPanel>
+        </Grid>
+
+        <Grid Grid.Column="1" Grid.Row="0">
+            <StackPanel>
+                <TextBox x:Name="theTextBox" Text="{Binding TheTextBox}"/>
+                <Button x:Name="ClickMe" Content="ClickIT!!!" Command="{Binding ButtonOnClickCommand}"/>
+                <Button x:Name="ClickMeToo" Content="ClickItAgain" Command="{Binding ButtonOnClickCommand}"/>
+
+            </StackPanel>
+        </Grid>
+        <Grid Grid.Column="1" Grid.Row="1" Grid.RowSpan="2">
+            <StackPanel>
+                <TextBox x:Name="theTextBox2" Text="{Binding TheTextBox}"/>
+                <Image Source="/Resources/images/dashboard.png" Width="275" Height="275"  Stretch="UniformToFill" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+            </StackPanel>
+        </Grid>
+
 
     </Grid>
 </Window>

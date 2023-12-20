@@ -16,7 +16,14 @@ namespace TradeJournal.ViewModel
         [RelayCommand]
         internal void ButtonOnClick()
         {
-            TheTextBox = "The Silly String has Changed!!!";
+            if (TheTextBox == "The Silly String")
+            {
+                TheTextBox = "The Silly String has Changed!!!";
+            }
+            else
+            {
+                TheTextBox = "The Silly String";
+            }
         }
     }
 }
