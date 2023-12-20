@@ -77,7 +77,6 @@ namespace TradingJournal
                 schemaInit.ExecuteNonQuery();
                 ConnClose();
             }
-            //System.Console.WriteLine(dbschema);
             string version = Conn.ServerVersion;
             System.Console.WriteLine($"JUST CREATED A SQLite Version: {version} DATABASE FOR YOU");
         }
