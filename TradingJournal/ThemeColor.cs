@@ -32,14 +32,14 @@ namespace TradingJournal
             "#F37521",
             "#A12059",
             "#126881",
-            //"#8BC240",x
             "#364D5B",
-            //"#C7DC5B",x
             "#0094BC",
             "#E4126B",
             "#43B76E",
-            //"#78CFE9",x
             "#B71C46"
+            //"#8BC240",x
+            //"#C7DC5B",x
+            //"#78CFE9",x
         };
 
         public static Color ChangeColorBrightness(Color color, double correctionFactor)

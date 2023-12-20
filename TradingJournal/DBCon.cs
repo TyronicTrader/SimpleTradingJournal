@@ -17,7 +17,7 @@ namespace TradingJournal
 
         public void getconnection()
         {
-            connection = $"Data Source={dbfileName};Version=3;Compress=True;FailIfMissing=True;UTF16Encoding=True;UseUTF16Encoding=True;Synchronous=OFF;Journal Mode=WAL;";
+            connection = $"Data Source={dbfileName};Version=3;Compress=True;FailIfMissing=True;Synchronous=OFF;Journal Mode=WAL;";
             connectionstring = connection;
             System.Console.WriteLine(connectionstring);
         }

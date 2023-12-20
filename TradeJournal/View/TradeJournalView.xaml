@@ -1,0 +1,17 @@
+﻿<Window x:Class="TradeJournal.View.TradeJournalView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TradeJournal.View" xmlns:viewmodel="clr-namespace:TradeJournal.ViewModel" d:DataContext="{d:DesignInstance Type=viewmodel:TradeJournalViewModel}"
+        mc:Ignorable="d"
+        Title="TradeJournal" Height="720" Width="1280">
+    <Grid>
+        <StackPanel>
+            <TextBox x:Name="theTextBox" Text="{Binding TheTextBox}"/>
+            <Button x:Name="ClickMe" Content="ClickIT!!!" Command="{Binding ButtonOnClickCommand}"/>
+
+        </StackPanel>
+
+    </Grid>
+</Window>

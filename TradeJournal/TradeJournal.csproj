@@ -1,0 +1,64 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net8.0-windows10.0.22621.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Resources\images\alert.png" />
+    <None Remove="Resources\images\arrow-down-right.png" />
+    <None Remove="Resources\images\arrow-down.png" />
+    <None Remove="Resources\images\arrow-up-right.png" />
+    <None Remove="Resources\images\arrow-up.png" />
+    <None Remove="Resources\images\calendar-clock.png" />
+    <None Remove="Resources\images\copy.png" />
+    <None Remove="Resources\images\cut.png" />
+    <None Remove="Resources\images\dashboard.png" />
+    <None Remove="Resources\images\graph.png" />
+    <None Remove="Resources\images\Logo.png" />
+    <None Remove="Resources\images\notebook.png" />
+    <None Remove="Resources\images\orientation.png" />
+    <None Remove="Resources\images\paste.png" />
+    <None Remove="Resources\images\placeholder.png" />
+    <None Remove="Resources\images\redo.png" />
+    <None Remove="Resources\images\rss.png" />
+    <None Remove="Resources\images\search.png" />
+    <None Remove="Resources\images\settings.png" />
+    <None Remove="Resources\images\undo.png" />
+    <None Remove="Resources\SQLiteSchema.sql" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Resources\images\alert.png" />
+    <Content Include="Resources\images\arrow-down-right.png" />
+    <Content Include="Resources\images\arrow-down.png" />
+    <Content Include="Resources\images\arrow-up-right.png" />
+    <Content Include="Resources\images\arrow-up.png" />
+    <Content Include="Resources\images\calendar-clock.png" />
+    <Content Include="Resources\images\copy.png" />
+    <Content Include="Resources\images\cut.png" />
+    <Content Include="Resources\images\dashboard.png" />
+    <Content Include="Resources\images\graph.png" />
+    <Content Include="Resources\images\Logo.png" />
+    <Content Include="Resources\images\notebook.png" />
+    <Content Include="Resources\images\orientation.png" />
+    <Content Include="Resources\images\paste.png" />
+    <Content Include="Resources\images\placeholder.png" />
+    <Content Include="Resources\images\redo.png" />
+    <Content Include="Resources\images\rss.png" />
+    <Content Include="Resources\images\search.png" />
+    <Content Include="Resources\images\settings.png" />
+    <Content Include="Resources\images\undo.png" />
+    <Content Include="Resources\SQLiteSchema.sql" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.2" />
+    <PackageReference Include="System.Data.SQLite.Core" Version="1.0.118" />
+  </ItemGroup>
+
+</Project>

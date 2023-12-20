@@ -5,6 +5,8 @@ VisualStudioVersion = 17.8.34309.116
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TradingJournal", "TradingJournal\TradingJournal.csproj", "{52F8F56B-DE94-49D5-B420-C9C015544FE5}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TradeJournal", "TradeJournal\TradeJournal.csproj", "{93F7E643-806A-4B9D-AD15-D1B762CFDCA4}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{52F8F56B-DE94-49D5-B420-C9C015544FE5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{52F8F56B-DE94-49D5-B420-C9C015544FE5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{52F8F56B-DE94-49D5-B420-C9C015544FE5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{93F7E643-806A-4B9D-AD15-D1B762CFDCA4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{93F7E643-806A-4B9D-AD15-D1B762CFDCA4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{93F7E643-806A-4B9D-AD15-D1B762CFDCA4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{93F7E643-806A-4B9D-AD15-D1B762CFDCA4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
