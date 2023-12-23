@@ -1,10 +1,46 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
     <!--remember to set each font property -  BuildAction: Resource and Copy To Output Directory: Do not copy -->
+    <!-- also remember to use the name of the font and not the font file name after the # .... this can be found wihthin a font viewer-->
+    <FontFamily x:Key="LatoThinest">pack://application:,,,/Fonts/#Lato Hairline</FontFamily>
+    <FontFamily x:Key="LatoThinestItalic">pack://application:,,,/Fonts/#Lato Hairline Italic</FontFamily>
+    <FontFamily x:Key="LatoThiner">pack://application:,,,/Fonts/#Lato Thin</FontFamily>
+    <FontFamily x:Key="LatoThinerItalic">pack://application:,,,/Fonts/#Lato Thin Italic</FontFamily>
+    <FontFamily x:Key="LatoThin">pack://application:,,,/Fonts/#Lato Light</FontFamily>
+    <FontFamily x:Key="LatoThinItalic">pack://application:,,,/Fonts/#Lato Light Italic</FontFamily>
     <FontFamily x:Key="LatoRegular">pack://application:,,,/Fonts/#Lato Regular</FontFamily>
-    <FontFamily x:Key="LatoHeavy">pack://application:,,,/Fonts/#Lato Heavy</FontFamily>
-    <FontFamily x:Key="LatoThin">pack://application:,,,/Fonts/#Lato Thin</FontFamily>
+    <FontFamily x:Key="LatoRegularItalic">pack://application:,,,/Fonts/#Lato Italic</FontFamily>
+    <FontFamily x:Key="LatoMedium">pack://application:,,,/Fonts/#Lato Medium</FontFamily>
+    <FontFamily x:Key="LatoMediumItalic">pack://application:,,,/Fonts/#Lato Medium Italic</FontFamily>
+    <FontFamily x:Key="LatoSemiBold">pack://application:,,,/Fonts/#Lato Semibold</FontFamily>
+    <FontFamily x:Key="LatoSemiBoldItalic">pack://application:,,,/Fonts/#Lato SemiBold Italic</FontFamily>
     <FontFamily x:Key="LatoBold">pack://application:,,,/Fonts/#Lato Bold</FontFamily>
+    <FontFamily x:Key="LatoBoldItalic">pack://application:,,,/Fonts/#Lato Bold Italic</FontFamily>
+    <FontFamily x:Key="LatoBolder">pack://application:,,,/Fonts/#Lato Heavy</FontFamily>
+    <FontFamily x:Key="LatoBolderItalic">pack://application:,,,/Fonts/#Lato Heavy Italic</FontFamily>
+    <FontFamily x:Key="LatoBoldest">pack://application:,,,/Fonts/#Lato Black</FontFamily>
+    <FontFamily x:Key="LatoBoldestItalic">pack://application:,,,/Fonts/#Lato Black Italic</FontFamily>
+
+
+    <Style TargetType="{x:Type Control}"  x:Key="BaseStyle">
+        <Setter Property="FontFamily" Value="{StaticResource LatoRegular}" />
+    </Style>
+    <Style TargetType="{x:Type Control}"  x:Key="ThinBaseStyle">
+        <Setter Property="FontFamily" Value="{StaticResource LatoThinest}" />
+    </Style>
+    <Style TargetType="{x:Type Control}"  x:Key="BoldBaseStyle">
+        <Setter Property="FontFamily" Value="{StaticResource LatoBoldest}" />
+    </Style>
+    <Style TargetType="{x:Type Label}"  BasedOn="{StaticResource BoldBaseStyle}" />
+    <Style TargetType="{x:Type TextBox}"  BasedOn="{StaticResource BaseStyle}" />
+    <Style TargetType="{x:Type Button}"  BasedOn="{StaticResource ThinBaseStyle}" />
+
+    <Style TargetType="{x:Type TextBlock}"  x:Key="TextBlockBaseStyle">
+        <Setter Property="FontFamily" Value="{StaticResource LatoBoldest}" />
+    </Style>
+    <!-- This next line will over-ride Buttons and other Controls 
+    <Style TargetType="{x:Type TextBlock}"  BasedOn="{StaticResource BaseStyle}" />
+    -->
 
 
 </ResourceDictionary>

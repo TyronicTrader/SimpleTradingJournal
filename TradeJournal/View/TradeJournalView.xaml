@@ -5,10 +5,12 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TradeJournal.View" xmlns:viewmodel="clr-namespace:TradeJournal.ViewModel" d:DataContext="{d:DesignInstance Type=viewmodel:TradeJournalViewModel}"
         mc:Ignorable="d"
+        Icon="/Images/Notebook.png"
+        x:Name="TradeJournalAppWindow"
         Title="TradeJournal" Height="720" Width="1280"
         WindowStartupLocation="CenterScreen"
         MinHeight="720" MinWidth="1280"
-        Background="black">
+        Background="{StaticResource BackgroundColorBrush}">
     
     <Grid>
         <Grid.ColumnDefinitions>
@@ -47,25 +49,39 @@
             </StackPanel>
         </Grid>
         <Grid Grid.Column="1" Grid.Row="0">
-            <StackPanel>
-                
-                <TextBox x:Name="theTextBox" Text="{Binding TheTextBox}" FontSize="10"/>
-                <Button x:Name="ClickMe" Content="ClickIT!!!" Background="blue" Command="{Binding ButtonOnClickCommand}"/>
-                <Button x:Name="ClickMeToo" Content="ClickItAgain" Command="{Binding ButtonOnClickCommand}"/>
+            <StackPanel Margin="0,25,0,0">
+
+                <Label Content="{Binding TheTextBox}" FontSize="20" Foreground="{StaticResource ForegroundColorBrush}" HorizontalAlignment="Center" />
 
             </StackPanel>
         </Grid>
         <Grid Grid.Column="1" Grid.Row="1" Grid.RowSpan="2">
             <StackPanel>
                 
-                <TextBox x:Name="theTextBox2" Text="{Binding TheTextBox}" FontFamily="{StaticResource LatoThin}" FontSize="12"/>
+                <TextBox x:Name="theTextBox2" Text="{Binding TheTextBox}" FontSize="12"/>
                 <Image Source="/Images/dashboard.png" Width="100" Height="100"/>
-                <Image Source="/Images/Logo.png" Width="100" Height="100"/>
-                <Image Source="/Images/rss.png" Width="100" Height="100" />
-                <TextBlock Text="Hello World" FontFamily="{StaticResource LatoRegular}" FontSize="20" Foreground="White" HorizontalAlignment="Center"/>
-                <TextBlock Text="Hello World" FontFamily="{StaticResource LatoHeavy}" FontSize="20" Foreground="White" HorizontalAlignment="Center"/>
-                <TextBlock Text="Hello World" FontFamily="{StaticResource LatoThin}" FontSize="20" Foreground="White" HorizontalAlignment="Center"/>
-                <TextBlock Text="Hello World" FontFamily="{StaticResource LatoBold}" FontSize="20" Foreground="White" HorizontalAlignment="Center"/>
+                <Button x:Name="thebutton" Content="TheButton" FontSize="12" />
+                <Label Content="TheLabel" FontSize="12" Foreground="{StaticResource ForegroundColorBrush}"/>
+                <TextBlock Text="{Binding TheTextBox}" FontSize="12"/>
+                
+                <TextBlock Text="{Binding TheTextBox}" FontSize="15" Foreground="{StaticResource ForegroundColorBrush}" HorizontalAlignment="Center" FontFamily="{StaticResource LatoThinest}" />
+                <TextBlock Text="{Binding TheTextBox}" FontSize="15" Foreground="{StaticResource ForegroundColorBrush}" HorizontalAlignment="Center" FontFamily="{StaticResource LatoThinestItalic}"/>
+                <TextBlock Text="{Binding TheTextBox}" FontSize="15" Foreground="{StaticResource ForegroundColorBrush}" HorizontalAlignment="Center" FontFamily="{StaticResource LatoThiner}"/>
+                <TextBlock Text="{Binding TheTextBox}" FontSize="15" Foreground="{StaticResource ForegroundColorBrush}" HorizontalAlignment="Center" FontFamily="{StaticResource LatoThinerItalic}"/>
+                <TextBlock Text="{Binding TheTextBox}" FontSize="15" Foreground="{StaticResource ForegroundColorBrush}" HorizontalAlignment="Center" FontFamily="{StaticResource LatoThin}"/>
+                <TextBlock Text="{Binding TheTextBox}" FontSize="15" Foreground="{StaticResource ForegroundColorBrush}" HorizontalAlignment="Center" FontFamily="{StaticResource LatoThinItalic}"/>
+                <TextBlock Text="{Binding TheTextBox}" FontSize="15" Foreground="{StaticResource ForegroundColorBrush}" HorizontalAlignment="Center" FontFamily="{StaticResource LatoRegular}"/>
+                <TextBlock Text="{Binding TheTextBox}" FontSize="15" Foreground="{StaticResource ForegroundColorBrush}" HorizontalAlignment="Center" FontFamily="{StaticResource LatoRegularItalic}"/>
+                <TextBlock Text="{Binding TheTextBox}" FontSize="15" Foreground="{StaticResource ForegroundColorBrush}" HorizontalAlignment="Center" FontFamily="{StaticResource LatoMedium}"/>
+                <TextBlock Text="{Binding TheTextBox}" FontSize="15" Foreground="{StaticResource ForegroundColorBrush}" HorizontalAlignment="Center" FontFamily="{StaticResource LatoMediumItalic}"/>
+                <TextBlock Text="{Binding TheTextBox}" FontSize="15" Foreground="{StaticResource ForegroundColorBrush}" HorizontalAlignment="Center" FontFamily="{StaticResource LatoSemiBold}"/>
+                <TextBlock Text="{Binding TheTextBox}" FontSize="15" Foreground="{StaticResource ForegroundColorBrush}" HorizontalAlignment="Center" FontFamily="{StaticResource LatoSemiBoldItalic}"/>
+                <TextBlock Text="{Binding TheTextBox}" FontSize="15" Foreground="{StaticResource ForegroundColorBrush}" HorizontalAlignment="Center" FontFamily="{StaticResource LatoBold}"/>
+                <TextBlock Text="{Binding TheTextBox}" FontSize="15" Foreground="{StaticResource ForegroundColorBrush}" HorizontalAlignment="Center" FontFamily="{StaticResource LatoBoldItalic}"/>
+                <TextBlock Text="{Binding TheTextBox}" FontSize="15" Foreground="{StaticResource ForegroundColorBrush}" HorizontalAlignment="Center" FontFamily="{StaticResource LatoBolder}"/>
+                <TextBlock Text="{Binding TheTextBox}" FontSize="15" Foreground="{StaticResource ForegroundColorBrush}" HorizontalAlignment="Center" FontFamily="{StaticResource LatoBolderItalic}"/>
+                <TextBlock Text="{Binding TheTextBox}" FontSize="15" Foreground="{StaticResource ForegroundColorBrush}" HorizontalAlignment="Center" FontFamily="{StaticResource LatoBoldest}"/>
+                <TextBlock Text="{Binding TheTextBox}" FontSize="15" Foreground="{StaticResource ForegroundColorBrush}" HorizontalAlignment="Center" FontFamily="{StaticResource LatoBoldestItalic}"/>
                 
 
 

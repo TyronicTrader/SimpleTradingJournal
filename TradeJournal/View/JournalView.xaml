@@ -5,8 +5,40 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:TradeJournal.View"
              mc:Ignorable="d" 
+             x:Name="JournalWindow"
              d:DesignHeight="450" d:DesignWidth="800">
+    
+    
     <Grid>
-            
+        <StackPanel>
+
+            <TextBox x:Name="theTextBox2" Text="{Binding TheTextBox}" FontFamily="{StaticResource LatoThin}" FontSize="12"/>
+            <Image Source="/Images/dashboard.png" Width="100" Height="100"/>
+            <Image Source="/Images/Logo.png" Width="100" Height="100"/>
+            <Image Source="/Images/rss.png" Width="100" Height="100" />
+
+            <TextBlock Text="{Binding TheTextBox}" FontSize="12" Foreground="White" HorizontalAlignment="Center" FontFamily="{StaticResource LatoThinest}" />
+            <TextBlock Text="{Binding TheTextBox}" FontSize="12" Foreground="White" HorizontalAlignment="Center" FontFamily="{StaticResource LatoThinestItalic}"/>
+            <TextBlock Text="{Binding TheTextBox}" FontSize="12" Foreground="White" HorizontalAlignment="Center" FontFamily="{StaticResource LatoThiner}"/>
+            <TextBlock Text="{Binding TheTextBox}" FontSize="12" Foreground="White" HorizontalAlignment="Center" FontFamily="{StaticResource LatoThinerItalic}"/>
+            <TextBlock Text="{Binding TheTextBox}" FontSize="12" Foreground="White" HorizontalAlignment="Center" FontFamily="{StaticResource LatoThin}"/>
+            <TextBlock Text="{Binding TheTextBox}" FontSize="12" Foreground="White" HorizontalAlignment="Center" FontFamily="{StaticResource LatoThinItalic}"/>
+            <TextBlock Text="{Binding TheTextBox}" FontSize="12" Foreground="White" HorizontalAlignment="Center" FontFamily="{StaticResource LatoRegular}"/>
+            <TextBlock Text="{Binding TheTextBox}" FontSize="12" Foreground="White" HorizontalAlignment="Center" FontFamily="{StaticResource LatoRegularItalic}"/>
+            <TextBlock Text="{Binding TheTextBox}" FontSize="12" Foreground="White" HorizontalAlignment="Center" FontFamily="{StaticResource LatoMedium}"/>
+            <TextBlock Text="{Binding TheTextBox}" FontSize="12" Foreground="White" HorizontalAlignment="Center" FontFamily="{StaticResource LatoMediumItalic}"/>
+            <TextBlock Text="{Binding TheTextBox}" FontSize="12" Foreground="White" HorizontalAlignment="Center" FontFamily="{StaticResource LatoSemiBold}"/>
+            <TextBlock Text="{Binding TheTextBox}" FontSize="12" Foreground="White" HorizontalAlignment="Center" FontFamily="{StaticResource LatoSemiBoldItalic}"/>
+            <TextBlock Text="{Binding TheTextBox}" FontSize="12" Foreground="White" HorizontalAlignment="Center" FontFamily="{StaticResource LatoBold}"/>
+            <TextBlock Text="{Binding TheTextBox}" FontSize="12" Foreground="White" HorizontalAlignment="Center" FontFamily="{StaticResource LatoBoldItalic}"/>
+            <TextBlock Text="{Binding TheTextBox}" FontSize="12" Foreground="White" HorizontalAlignment="Center" FontFamily="{StaticResource LatoBolder}"/>
+            <TextBlock Text="{Binding TheTextBox}" FontSize="12" Foreground="White" HorizontalAlignment="Center" FontFamily="{StaticResource LatoBolderItalic}"/>
+            <TextBlock Text="{Binding TheTextBox}" FontSize="12" Foreground="White" HorizontalAlignment="Center" FontFamily="{StaticResource LatoBoldest}"/>
+            <TextBlock Text="{Binding TheTextBox}" FontSize="12" Foreground="White" HorizontalAlignment="Center" FontFamily="{StaticResource LatoBoldestItalic}"/>
+
+
+
+
+        </StackPanel>
     </Grid>
 </UserControl>
