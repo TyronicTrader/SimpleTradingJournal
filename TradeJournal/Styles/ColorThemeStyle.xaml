@@ -1,8 +1,9 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
-    
+
     <!-- Color Palette -->
-    <SolidColorBrush x:Key="color1"  Color="#3F5185"/>
+    <Color x:Key="color1">#3F5185</Color>
+    <SolidColorBrush x:Key="color1"  Color="{StaticResource color1}"/>
     <SolidColorBrush x:Key="color2"  Color="#FF5722"/>
     <SolidColorBrush x:Key="color3"  Color="#603D8B"/>
     <SolidColorBrush x:Key="color4"  Color="#FF9800"/>
@@ -25,6 +26,10 @@
     <SolidColorBrush x:Key="color21" Color="#E4126B"/>
     <SolidColorBrush x:Key="color22" Color="#43B76E"/>
     <SolidColorBrush x:Key="color23" Color="#B71C46"/>
+    <SolidColorBrush x:Key="color24" Color="#8BC240"/>
+    <SolidColorBrush x:Key="color25" Color="#C7DC5B"/>
+    <SolidColorBrush x:Key="color26" Color="#78CFE9"/>
+    
     
 
 </ResourceDictionary>

@@ -9,56 +9,131 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="Resources\images\alert.png" />
-    <None Remove="Resources\images\arrow-down-right.png" />
-    <None Remove="Resources\images\arrow-down.png" />
-    <None Remove="Resources\images\arrow-up-right.png" />
-    <None Remove="Resources\images\arrow-up.png" />
-    <None Remove="Resources\images\calendar-clock.png" />
-    <None Remove="Resources\images\copy.png" />
-    <None Remove="Resources\images\cut.png" />
-    <None Remove="Resources\images\dashboard.png" />
-    <None Remove="Resources\images\graph.png" />
-    <None Remove="Resources\images\Logo.png" />
-    <None Remove="Resources\images\notebook.png" />
-    <None Remove="Resources\images\orientation.png" />
-    <None Remove="Resources\images\paste.png" />
-    <None Remove="Resources\images\placeholder.png" />
-    <None Remove="Resources\images\redo.png" />
-    <None Remove="Resources\images\rss.png" />
-    <None Remove="Resources\images\search.png" />
-    <None Remove="Resources\images\settings.png" />
-    <None Remove="Resources\images\undo.png" />
+    <None Remove="Fonts\Lato-Black.ttf" />
+    <None Remove="Fonts\Lato-BlackItalic.ttf" />
+    <None Remove="Fonts\Lato-Bold.ttf" />
+    <None Remove="Fonts\Lato-BoldItalic.ttf" />
+    <None Remove="Fonts\Lato-Hairline.ttf" />
+    <None Remove="Fonts\Lato-HairlineItalic.ttf" />
+    <None Remove="Fonts\Lato-Heavy.ttf" />
+    <None Remove="Fonts\Lato-HeavyItalic.ttf" />
+    <None Remove="Fonts\Lato-Italic.ttf" />
+    <None Remove="Fonts\Lato-Light.ttf" />
+    <None Remove="Fonts\Lato-LightItalic.ttf" />
+    <None Remove="Fonts\Lato-Medium.ttf" />
+    <None Remove="Fonts\Lato-MediumItalic.ttf" />
+    <None Remove="Fonts\Lato-Regular.ttf" />
+    <None Remove="Fonts\Lato-Semibold.ttf" />
+    <None Remove="Fonts\Lato-SemiboldItalic.ttf" />
+    <None Remove="Fonts\Lato-Thin.ttf" />
+    <None Remove="Fonts\Lato-ThinItalic.ttf" />
+    <None Remove="Images\alert.png" />
+    <None Remove="Images\arrow-down-right.png" />
+    <None Remove="Images\arrow-down.png" />
+    <None Remove="Images\arrow-up-right.png" />
+    <None Remove="Images\arrow-up.png" />
+    <None Remove="Images\calendar-clock.png" />
+    <None Remove="Images\copy.png" />
+    <None Remove="Images\cut.png" />
+    <None Remove="Images\dashboard.png" />
+    <None Remove="Images\graph.png" />
+    <None Remove="Images\Logo.png" />
+    <None Remove="Images\notebook.png" />
+    <None Remove="Images\orientation.png" />
+    <None Remove="Images\paste.png" />
+    <None Remove="Images\placeholder.png" />
+    <None Remove="Images\redo.png" />
+    <None Remove="Images\rss.png" />
+    <None Remove="Images\search.png" />
+    <None Remove="Images\settings.png" />
+    <None Remove="Images\undo.png" />
     <None Remove="Resources\SQLiteSchema.sql" />
   </ItemGroup>
 
   <ItemGroup>
-    <Content Include="Resources\images\alert.png" />
-    <Content Include="Resources\images\arrow-down-right.png" />
-    <Content Include="Resources\images\arrow-down.png" />
-    <Content Include="Resources\images\arrow-up-right.png" />
-    <Content Include="Resources\images\arrow-up.png" />
-    <Content Include="Resources\images\calendar-clock.png" />
-    <Content Include="Resources\images\copy.png" />
-    <Content Include="Resources\images\cut.png" />
-    <Content Include="Resources\images\dashboard.png" />
-    <Content Include="Resources\images\graph.png" />
-    <Content Include="Resources\images\Logo.png" />
-    <Content Include="Resources\images\notebook.png" />
-    <Content Include="Resources\images\orientation.png" />
-    <Content Include="Resources\images\paste.png" />
-    <Content Include="Resources\images\placeholder.png" />
-    <Content Include="Resources\images\redo.png" />
-    <Content Include="Resources\images\rss.png" />
-    <Content Include="Resources\images\search.png" />
-    <Content Include="Resources\images\settings.png" />
-    <Content Include="Resources\images\undo.png" />
+    <Resource Include="Fonts\Lato-Black.ttf">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Fonts\Lato-BlackItalic.ttf">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Fonts\Lato-BoldItalic.ttf">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Fonts\Lato-Hairline.ttf">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Fonts\Lato-HairlineItalic.ttf">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Fonts\Lato-HeavyItalic.ttf">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Fonts\Lato-Italic.ttf">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Fonts\Lato-Light.ttf">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Fonts\Lato-LightItalic.ttf">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Fonts\Lato-Medium.ttf">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Fonts\Lato-MediumItalic.ttf">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Fonts\Lato-Semibold.ttf">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Fonts\Lato-SemiboldItalic.ttf">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Fonts\Lato-ThinItalic.ttf">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
     <Content Include="Resources\SQLiteSchema.sql" />
   </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.2" />
     <PackageReference Include="System.Data.SQLite.Core" Version="1.0.118" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Fonts\Lato-Bold.ttf">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Fonts\Lato-Heavy.ttf">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Fonts\Lato-Regular.ttf">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Fonts\Lato-Thin.ttf">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\alert.png" />
+    <Resource Include="Images\arrow-down-right.png" />
+    <Resource Include="Images\arrow-down.png" />
+    <Resource Include="Images\arrow-up-right.png" />
+    <Resource Include="Images\arrow-up.png" />
+    <Resource Include="Images\calendar-clock.png" />
+    <Resource Include="Images\copy.png" />
+    <Resource Include="Images\cut.png" />
+    <Resource Include="Images\dashboard.png" />
+    <Resource Include="Images\graph.png" />
+    <Resource Include="Images\Logo.png" />
+    <Resource Include="Images\notebook.png" />
+    <Resource Include="Images\orientation.png" />
+    <Resource Include="Images\paste.png" />
+    <Resource Include="Images\placeholder.png" />
+    <Resource Include="Images\redo.png" />
+    <Resource Include="Images\rss.png" />
+    <Resource Include="Images\search.png" />
+    <Resource Include="Images\settings.png" />
+    <Resource Include="Images\undo.png" />
   </ItemGroup>
 
 </Project>

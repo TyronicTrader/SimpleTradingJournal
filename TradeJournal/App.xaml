@@ -4,6 +4,15 @@
              xmlns:local="clr-namespace:TradeJournal"
              StartupUri="View\TradeJournalView.xaml">
     <Application.Resources>
-         
-    </Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <!-- Order in which these are is important-->
+                <ResourceDictionary Source="Styles/Colors.xaml"/>
+                <ResourceDictionary Source="Styles/Fonts.xaml"/>
+                <ResourceDictionary Source="Styles/Buttons.xaml"/>
+                <ResourceDictionary Source="Styles/Texts.xaml"/>
+                <ResourceDictionary Source="Styles/Windows.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+     </Application.Resources>
 </Application>
