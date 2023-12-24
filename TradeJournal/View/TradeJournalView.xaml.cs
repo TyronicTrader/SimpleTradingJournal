@@ -25,5 +25,6 @@ namespace TradeJournal.View
             InitializeComponent();
             DataContext = new TradeJournalViewModel();
         }
+
     }
 }

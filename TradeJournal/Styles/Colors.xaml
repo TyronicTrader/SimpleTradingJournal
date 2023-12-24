@@ -3,9 +3,92 @@
     
     <Color x:Key="BackgroundColor">#000000</Color>
     <SolidColorBrush x:Key="BackgroundColorBrush" Color="{StaticResource BackgroundColor}"/>
+    
     <Color x:Key="ForegroundColor">#ffffff</Color>
     <SolidColorBrush x:Key="ForegroundColorBrush" Color="{StaticResource ForegroundColor}"/>
-    
-    
 
+
+    <!-- Accent Color Palette -->
+    <Color x:Key="color1" >#3F5185</Color>
+    <Color x:Key="color2" >#603D8B</Color>
+    <Color x:Key="color3" >#5978BB</Color>
+    <Color x:Key="color4" >#018790</Color>
+    <Color x:Key="color5" >#0E3441</Color>
+    <Color x:Key="color6" >#9C27B0</Color>
+    <Color x:Key="color7" >#721D47</Color>
+    <Color x:Key="color8" >#EA4833</Color>
+    <Color x:Key="color9" >#A12059</Color>
+    <Color x:Key="color10">#126881</Color>
+    <Color x:Key="color11">#364D5B</Color>
+    <Color x:Key="color12">#43B76E</Color>
+    <Color x:Key="color13">#B71C46</Color>
+    <Color x:Key="color14">#FF5722</Color>
+    <Color x:Key="color15">#F37521</Color>
+    <Color x:Key="color16">#2196F3</Color>
+    <Color x:Key="color17">#0094BC</Color>
+    <Color x:Key="color18">#EA676C</Color>
+    <Color x:Key="color19">#E41A4A</Color>
+    <Color x:Key="color20">#00B0AD</Color>
+    <Color x:Key="color21">#FF9800</Color>
+    <Color x:Key="color22">#EF937E</Color>
+    <Color x:Key="color23">#E4126B</Color>
+    <Color x:Key="color24">#8BC240</Color>
+    <Color x:Key="color25">#C7DC5B</Color>
+    <Color x:Key="color26">#78CFE9</Color>
+
+
+    <SolidColorBrush x:Key="bcolor1"   Color="{StaticResource color1}" />
+    <SolidColorBrush x:Key="bcolor2"   Color="{StaticResource color2}" />
+    <SolidColorBrush x:Key="bcolor3"   Color="{StaticResource color3}" />
+    <SolidColorBrush x:Key="bcolor4"   Color="{StaticResource color4}" />
+    <SolidColorBrush x:Key="bcolor5"   Color="{StaticResource color5}" />
+    <SolidColorBrush x:Key="bcolor6"   Color="{StaticResource color6}" />
+    <SolidColorBrush x:Key="bcolor7"   Color="{StaticResource color7}" />
+    <SolidColorBrush x:Key="bcolor8"   Color="{StaticResource color8}" />
+    <SolidColorBrush x:Key="bcolor9"   Color="{StaticResource color9}" />
+    <SolidColorBrush x:Key="bcolor10"  Color="{StaticResource color10}"/>
+    <SolidColorBrush x:Key="bcolor11"  Color="{StaticResource color11}"/>
+    <SolidColorBrush x:Key="bcolor12"  Color="{StaticResource color12}"/>
+    <SolidColorBrush x:Key="bcolor13"  Color="{StaticResource color13}"/>
+    <SolidColorBrush x:Key="bcolor14"  Color="{StaticResource color14}"/>
+    <SolidColorBrush x:Key="bcolor15"  Color="{StaticResource color15}"/>
+    <SolidColorBrush x:Key="bcolor16"  Color="{StaticResource color16}"/>
+    <SolidColorBrush x:Key="bcolor17"  Color="{StaticResource color17}"/>
+    <SolidColorBrush x:Key="bcolor18"  Color="{StaticResource color18}"/>
+    <SolidColorBrush x:Key="bcolor19"  Color="{StaticResource color19}"/>
+    <SolidColorBrush x:Key="bcolor20"  Color="{StaticResource color20}"/>
+    <SolidColorBrush x:Key="bcolor21"  Color="{StaticResource color21}"/>
+    <SolidColorBrush x:Key="bcolor22"  Color="{StaticResource color22}"/>
+    <SolidColorBrush x:Key="bcolor23"  Color="{StaticResource color23}"/>
+    <SolidColorBrush x:Key="bcolor24"  Color="{StaticResource color24}"/>
+    <SolidColorBrush x:Key="bcolor25"  Color="{StaticResource color25}"/>
+    <SolidColorBrush x:Key="bcolor26"  Color="{StaticResource color26}"/>
+
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
 </ResourceDictionary>
