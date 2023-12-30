@@ -1,7 +1,7 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
     
-    <Color x:Key="BackgroundColor">#000000</Color>
+    <Color x:Key="BackgroundColor">#222222</Color>
     <SolidColorBrush x:Key="BackgroundColorBrush" Color="{StaticResource BackgroundColor}"/>
     
     <Color x:Key="ForegroundColor">#ffffff</Color>
@@ -35,6 +35,7 @@
     <Color x:Key="color24">#8BC240</Color>
     <Color x:Key="color25">#C7DC5B</Color>
     <Color x:Key="color26">#78CFE9</Color>
+    <Color x:Key="color27">#aaaaaa</Color>
 
 
     <SolidColorBrush x:Key="bcolor1"   Color="{StaticResource color1}" />
@@ -63,6 +64,7 @@
     <SolidColorBrush x:Key="bcolor24"  Color="{StaticResource color24}"/>
     <SolidColorBrush x:Key="bcolor25"  Color="{StaticResource color25}"/>
     <SolidColorBrush x:Key="bcolor26"  Color="{StaticResource color26}"/>
+    <SolidColorBrush x:Key="bcolor27"  Color="{StaticResource color27}"/>
 
 
     

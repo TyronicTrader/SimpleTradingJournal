@@ -26,5 +26,9 @@ namespace TradeJournal.View
             DataContext = new TradeJournalViewModel();
         }
 
+        private void StackPanel_Scroll(object sender, System.Windows.Controls.Primitives.ScrollEventArgs e)
+        {
+
+        }
     }
 }

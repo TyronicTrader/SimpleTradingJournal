@@ -14,55 +14,37 @@
     
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="80"/>
+            <ColumnDefinition Width="65"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="80"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="160"/>
-        </Grid.RowDefinitions>
 
-        <Grid Grid.Column="0" Grid.Row="0">
+        <Grid Grid.Column="0">
             <StackPanel>
+                <RadioButton x:Name="Dashboard" Content="Dashboard" Command="{Binding ButtonOnClickCommand}" Style="{StaticResource menuButton}" GroupName="menuButton"/>
+                <RadioButton x:Name="Journal" Content="Journal!!!" Command="{Binding ButtonOnClickCommand}" Style="{StaticResource menuButton}" GroupName="menuButton"/>
+                <RadioButton x:Name="Metrics" Content="Metrics!!!" Command="{Binding ButtonOnClickCommand}" Style="{StaticResource menuButton}" GroupName="menuButton"/>
+                <RadioButton x:Name="Events" Content="Events!!!" Command="{Binding ButtonOnClickCommand}" Style="{StaticResource menuButton}" GroupName="menuButton"/>
+                <RadioButton x:Name="RSS" Content="RSS!!!" Command="{Binding ButtonOnClickCommand}" Style="{StaticResource menuButton}" GroupName="menuButton"/>
+                <RadioButton x:Name="Search" Content="Search!!!" Command="{Binding ButtonOnClickCommand}" Style="{StaticResource menuButton}" GroupName="menuButton"/>
 
-                <Image Source="/Images/Logo.png" Width="75" Height="75"/>
+            </StackPanel>
+            <StackPanel VerticalAlignment="Bottom">
+                <RadioButton x:Name="Settings" Content="Settings!!!" Command="{Binding ButtonOnClickCommand}" VerticalAlignment="Bottom" Style="{StaticResource menuButton}" GroupName="menuButton"/>
+                <RadioButton x:Name="Info" Content="Info!!!" Command="{Binding ButtonOnClickCommand}" VerticalAlignment="Bottom" Style="{StaticResource menuButton}" GroupName="menuButton"/>
                 
             </StackPanel>
         </Grid>
-        <Grid Grid.Column="0" Grid.Row="1">
+        <Grid Grid.Column="1">
             <StackPanel >
 
-                <RadioButton x:Name="Journal" Content="Journal!!!" Command="{Binding ButtonOnClickCommand}" Width="75" Height="75" Background="{StaticResource bcolor16}" Style="{StaticResource menuButton}"/>
-                <RadioButton x:Name="Metrics" Content="Metrics!!!" Command="{Binding ButtonOnClickCommand}" Width="75" Height="75" Background="{StaticResource bcolor15}" Style="{StaticResource menuButton}"/>
-                <RadioButton x:Name="Events" Content="Events!!!" Command="{Binding ButtonOnClickCommand}" Width="75" Height="75" Background="{StaticResource bcolor14}" Style="{StaticResource menuButton}"/>
-                <RadioButton x:Name="RSS" Content="RSS!!!" Command="{Binding ButtonOnClickCommand}" Width="75" Height="75" Background="{StaticResource bcolor13}" Style="{StaticResource menuButton}"/>
+                <Label Content="{Binding TheTextBox}" FontSize="20" Foreground="{StaticResource ForegroundColorBrush}" HorizontalAlignment="Center" Padding="21"/>
 
-            </StackPanel>
-        </Grid>
-        <Grid Grid.Column="0" Grid.Row="2">
-            <StackPanel >
-
-                <RadioButton x:Name="Search" Content="Search!!!" Command="{Binding ButtonOnClickCommand}" Width="75" Height="75" VerticalAlignment="Bottom" Background="{StaticResource bcolor12}" Style="{StaticResource menuButton}"/>
-                <RadioButton x:Name="Info" Content="Info!!!" Command="{Binding ButtonOnClickCommand}" Width="75" Height="75" VerticalAlignment="Bottom" Background="{StaticResource bcolor11}" Style="{StaticResource menuButton}"/>
-
-            </StackPanel>
-        </Grid>
-        <Grid Grid.Column="1" Grid.Row="0">
-            <StackPanel Margin="0,25,0,0">
-
-                <Label Content="{Binding TheTextBox}" FontSize="20" Foreground="{StaticResource ForegroundColorBrush}" HorizontalAlignment="Center" />
-
-            </StackPanel>
-        </Grid>
-        <Grid Grid.Column="1" Grid.Row="1" Grid.RowSpan="2">
-            <StackPanel>
                 
                 <TextBox x:Name="theTextBox2" Text="{Binding TheTextBox}" FontSize="12"/>
                 <Image Source="/Images/dashboard.png" Width="100" Height="100"/>
-                <Button x:Name="thebutton" Content="TheButton" FontSize="12"  Background="{StaticResource bcolor10}"/>
-                <Label Content="TheLabel" FontSize="12" Foreground="{StaticResource ForegroundColorBrush}"/>
-                <TextBlock Text="{Binding TheTextBox}" FontSize="12"/>
+                <Button x:Name="thebutton" Content="TheButton" Command="{Binding ButtonOnClickCommand}"  FontSize="12"  Background="{StaticResource bcolor10}"/>
+                <Label Content="TheLabel" FontSize="12" HorizontalAlignment="Center" Foreground="{StaticResource ForegroundColorBrush}"/>
+                <TextBlock Text="{Binding TheTextBox}" FontSize="12" Foreground="Red" HorizontalAlignment="Center"/>
                 
                 <TextBlock Text="{Binding TheTextBox}" FontSize="15" Foreground="{StaticResource ForegroundColorBrush}" HorizontalAlignment="Center" FontFamily="{StaticResource LatoThinest}" />
                 <TextBlock Text="{Binding TheTextBox}" FontSize="15" Foreground="{StaticResource ForegroundColorBrush}" HorizontalAlignment="Center" FontFamily="{StaticResource LatoThinestItalic}"/>
