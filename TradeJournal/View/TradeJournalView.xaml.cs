@@ -12,6 +12,9 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using TradeJournal.ViewModel;
+using System.Configuration;
+using Microsoft.Win32.SafeHandles;
+using System.Collections.Specialized;
 
 namespace TradeJournal.View
 {
@@ -20,15 +23,55 @@ namespace TradeJournal.View
     /// </summary>
     public partial class TradeJournalView : Window
     {
+
+        private Configuration AppConfig = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
+
+        
+
         public TradeJournalView()
         {
+            
             InitializeComponent();
-            DataContext = new TradeJournalViewModel();
+            DataContext = new TradeJournalViewModel(); 
+            System.Diagnostics.Debug.WriteLine("HELLO MO JO!!!!!!!!");
+
+
+            string? test = ConfigurationManager.AppSettings["Setting1"];
+            System.Diagnostics.Debug.WriteLine(ConfigurationManager.AppSettings["Setting2"]);
+            System.Diagnostics.Debug.WriteLine(test);
+
+
+            //string? test2 = Properties.Settings.Default.Setting3;
+            //System.Diagnostics.Debug.WriteLine(Properties.Settings.Default.Setting3);
+            //System.Diagnostics.Debug.WriteLine(ConfigurationManager.UserSettings["Setting3"]);
+
+            //System.Diagnostics.Debug.WriteLine(test2);
+
+
+            //test = "this is the other string VALUE";
+            //Properties.Settings.Default.Setting3 = test;
+            ////Properties.Settings.Default.Setting4 = test;
+            //Properties.Settings.Default.Save();
+
+            var applicationSettings = ConfigurationManager.GetSection("TradingJournalAppSettings") as NameValueCollection;
+            if (applicationSettings.Count == 0)
+            {
+                Console.WriteLine("Application Settings are not defined");
+            }
+            else
+            {
+                foreach (var key in applicationSettings.AllKeys)
+                {
+                    System.Diagnostics.Debug.WriteLine(key + " = " + applicationSettings[key]);
+                }
+            }
+            System.Diagnostics.Debug.WriteLine(applicationSettings.GetKey(2));
+            System.Diagnostics.Debug.WriteLine(applicationSettings.GetValues(1));
+            System.Diagnostics.Debug.WriteLine(applicationSettings.Get("SecretKey"));
+            
+            //applicationSettings.Set("Testing", "TestingValue");
+            //System.Diagnostics.Debug.WriteLine(applicationSettings.Get("Testing"));
         }
 
-        private void StackPanel_Scroll(object sender, System.Windows.Controls.Primitives.ScrollEventArgs e)
-        {
-
-        }
     }
 }

@@ -18,6 +18,8 @@
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
+        <!-- <GridSplitter Grid.Column="1" Height="5" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" ShowsPreview="True" /> -->
+
         <Grid Grid.Column="0">
             <StackPanel>
                 <RadioButton x:Name="Dashboard" Content="Dashboard" Command="{Binding ButtonOnClickCommand}" Style="{StaticResource menuButton}" GroupName="menuButton"/>
@@ -25,7 +27,7 @@
                 <RadioButton x:Name="Metrics" Content="Metrics!!!" Command="{Binding ButtonOnClickCommand}" Style="{StaticResource menuButton}" GroupName="menuButton"/>
                 <RadioButton x:Name="Events" Content="Events!!!" Command="{Binding ButtonOnClickCommand}" Style="{StaticResource menuButton}" GroupName="menuButton"/>
                 <RadioButton x:Name="RSS" Content="RSS!!!" Command="{Binding ButtonOnClickCommand}" Style="{StaticResource menuButton}" GroupName="menuButton"/>
-                <RadioButton x:Name="Search" Content="Search!!!" Command="{Binding ButtonOnClickCommand}" Style="{StaticResource menuButton}" GroupName="menuButton"/>
+                <RadioButton x:Name="Search" Content="Search!!!" Command="{Binding ButtonOnClickCommand}" Style="{StaticResource menuButton}" GroupName="menuButton" />
 
             </StackPanel>
             <StackPanel VerticalAlignment="Bottom">
@@ -41,7 +43,7 @@
 
                 
                 <TextBox x:Name="theTextBox2" Text="{Binding TheTextBox}" FontSize="12"/>
-                <Image Source="/Images/dashboard.png" Width="100" Height="100"/>
+                <!-- <Image Source="/Images/dashboard.png" Width="100" Height="100"/> -->
                 <Button x:Name="thebutton" Content="TheButton" Command="{Binding ButtonOnClickCommand}"  FontSize="12"  Background="{StaticResource bcolor10}"/>
                 <Label Content="TheLabel" FontSize="12" HorizontalAlignment="Center" Foreground="{StaticResource ForegroundColorBrush}"/>
                 <TextBlock Text="{Binding TheTextBox}" FontSize="12" Foreground="Red" HorizontalAlignment="Center"/>

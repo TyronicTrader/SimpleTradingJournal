@@ -7,11 +7,38 @@
              mc:Ignorable="d" 
              x:Name="JournalWindow"
              d:DesignHeight="450" d:DesignWidth="800">
-    
-    
-    <Grid>
-        <StackPanel>
 
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="65"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <StackPanel>
+            <Calendar Height="165" HorizontalAlignment="Left" Margin="8,5,0,10" Name="calendar1" VerticalAlignment="Top" Width="175"   >   
+                <Calendar.BorderBrush>
+                    <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                        <GradientStop Color="Blue" Offset="0" />
+                        <GradientStop Color="Red" Offset="1.0" />
+                    </LinearGradientBrush>
+                </Calendar.BorderBrush>
+                <Calendar.Background>
+                    <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                        <GradientStop Color="Blue" Offset="0.1" />
+                        <GradientStop Color="Orange" Offset="0.25" />
+                        <GradientStop Color="Green" Offset="0.75" />
+                        <GradientStop Color="Red" Offset="1.0" />
+                    </LinearGradientBrush>
+                </Calendar.Background>
+                <Calendar.Foreground>
+                    <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                        <GradientStop Color="Black" Offset="0.25" />
+                        <GradientStop Color="Green" Offset="1.0" />
+                    </LinearGradientBrush>
+                </Calendar.Foreground>
+            </Calendar>
+                
             <TextBox x:Name="theTextBox2" Text="{Binding TheTextBox}" FontFamily="{StaticResource LatoThin}" FontSize="12"/>
             <Image Source="/Images/dashboard.png" Width="100" Height="100"/>
             <Image Source="/Images/Logo.png" Width="100" Height="100"/>

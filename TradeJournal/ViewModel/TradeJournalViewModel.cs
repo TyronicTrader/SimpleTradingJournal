@@ -8,11 +8,13 @@ using System.Linq;
 using System.Reflection.Metadata.Ecma335;
 using System.Text;
 using System.Threading.Tasks;
+using Windows.UI.WindowManagement;
 
 namespace TradeJournal.ViewModel
 {
     internal partial class TradeJournalViewModel : ViewModelBase
     {
+
         [ObservableProperty]
         string theTextBox = "The Silly String";
 
@@ -29,6 +31,7 @@ namespace TradeJournal.ViewModel
             }
         }
 
+        
 
     }
 }
