@@ -73,7 +73,7 @@
                     <Image Source="/Images/settings.png" Margin="5,5,5,5"/>
                 </RadioButton>
                 <RadioButton x:Name="Info" Command="{Binding ExecuteShowInfoViewCommand}" VerticalAlignment="Bottom" Style="{StaticResource menuButton}" GroupName="menuButton">
-                    <Image Source="/Images/info.png" Margin="5,5,5,5"/>
+                    <Image Source="/Images/info.png" Stretch="Uniform" Margin="5,5,5,5"/>
                 </RadioButton>
                 
             </StackPanel>
