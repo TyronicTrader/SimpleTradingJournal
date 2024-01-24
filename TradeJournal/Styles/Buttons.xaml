@@ -32,7 +32,7 @@
             <!--Active Button-->
             <Trigger Property="IsChecked" Value="True">
                 <Setter Property="Margin" Value="0,0,0,0"/>
-                <Setter Property="Background" Value="{Binding Path=Tag, RelativeSource={RelativeSource Self}}"/>
+                <Setter Property="Background" Value="{StaticResource bcolor4}"/>
                 <Setter Property="Foreground" Value="{StaticResource bcolor3}"/>
                 <Setter Property="BorderBrush" Value="{Binding Path=Tag, RelativeSource={RelativeSource Self}}"/>
             </Trigger>

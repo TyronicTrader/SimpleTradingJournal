@@ -5,12 +5,38 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TradeJournal.View" xmlns:viewmodel="clr-namespace:TradeJournal.ViewModel" d:DataContext="{d:DesignInstance Type=viewmodel:TradeJournalViewModel}"
         mc:Ignorable="d"
-        Icon="/Images/Notebook.png"
+        Icon="/Images/journal.png"
         x:Name="TradeJournalAppWindow"
         Title="SimpleTradeJournal" Height="720" Width="1280"
         WindowStartupLocation="CenterScreen"
         MinHeight="720" MinWidth="1280"
         Background="{StaticResource BackgroundColorBrush}">
+    <Window.Resources>
+        <DataTemplate DataType="{x:Type viewmodel:DashboardViewModel}">
+            <local:DashboardView/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type viewmodel:JournalViewModel}">
+            <local:JournalView/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type viewmodel:MetricsViewModel}">
+            <local:MetricsView/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type viewmodel:EventsViewModel}">
+            <local:EventsView/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type viewmodel:RSSViewModel}">
+            <local:RSSView/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type viewmodel:SearchViewModel}">
+            <local:SearchView/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type viewmodel:SettingsViewModel}">
+            <local:SettingsView/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type viewmodel:InfoViewModel}">
+            <local:InfoView/>
+        </DataTemplate>
+    </Window.Resources>
     
     <Grid>
         <Grid.ColumnDefinitions>
@@ -21,56 +47,53 @@
         <!-- <GridSplitter Grid.Column="1" Height="5" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" ShowsPreview="True" /> -->
 
         <Grid Grid.Column="0">
-            <StackPanel>
-                <RadioButton x:Name="Dashboard" Content="Dashboard" Command="{Binding ButtonOnClickCommand}" Style="{StaticResource menuButton}" GroupName="menuButton"/>
-                <RadioButton x:Name="Journal" Content="Journal!!!" Command="{Binding ButtonOnClickCommand}" Style="{StaticResource menuButton}" GroupName="menuButton"/>
-                <RadioButton x:Name="Metrics" Content="Metrics!!!" Command="{Binding ButtonOnClickCommand}" Style="{StaticResource menuButton}" GroupName="menuButton"/>
-                <RadioButton x:Name="Events" Content="Events!!!" Command="{Binding ButtonOnClickCommand}" Style="{StaticResource menuButton}" GroupName="menuButton"/>
-                <RadioButton x:Name="RSS" Content="RSS!!!" Command="{Binding ButtonOnClickCommand}" Style="{StaticResource menuButton}" GroupName="menuButton"/>
-                <RadioButton x:Name="Search" Content="Search!!!" Command="{Binding ButtonOnClickCommand}" Style="{StaticResource menuButton}" GroupName="menuButton" />
+            <StackPanel Background="{StaticResource bcolor10}" >
+                <RadioButton x:Name="Dashboard" Command="{Binding ExecuteShowDashboardViewCommand}" Style="{StaticResource menuButton}" GroupName="menuButton">
+                    <Image Source="/Images/Logo.png" Margin="5,5,5,5"/>
+                </RadioButton>
+                <RadioButton x:Name="Journal" Command="{Binding ExecuteShowJournalViewCommand}" Style="{StaticResource menuButton}" GroupName="menuButton">
+                    <Image Source="/Images/journal.png" Margin="5,5,5,5"/>
+                </RadioButton>
+                <RadioButton x:Name="Metrics" Command="{Binding ExecuteShowMetricsViewCommand}" Style="{StaticResource menuButton}" GroupName="menuButton">
+                    <Image Source="/Images/metrics.png" Margin="5,5,5,5"/>
+                </RadioButton>
+                <RadioButton x:Name="Events" Command="{Binding ExecuteShowEventsViewCommand}" Style="{StaticResource menuButton}" GroupName="menuButton">
+                    <Image Source="/Images/events.png" Margin="5,5,5,5"/>
+                </RadioButton>
+                <RadioButton x:Name="RSS" Command="{Binding ExecuteShowRSSViewCommand}" Style="{StaticResource menuButton}" GroupName="menuButton">
+                    <Image Source="/Images/rss.png" Margin="5,5,5,5"/>
+                </RadioButton>
+                <RadioButton x:Name="Search" Command="{Binding ExecuteShowSearchViewCommand}" Style="{StaticResource menuButton}" GroupName="menuButton">
+                    <Image Source="/Images/search.png" Margin="5,5,5,5"/>
+                </RadioButton>
 
             </StackPanel>
             <StackPanel VerticalAlignment="Bottom">
-                <RadioButton x:Name="Settings" Content="Settings!!!" Command="{Binding ButtonOnClickCommand}" VerticalAlignment="Bottom" Style="{StaticResource menuButton}" GroupName="menuButton"/>
-                <RadioButton x:Name="Info" Content="Info!!!" Command="{Binding ButtonOnClickCommand}" VerticalAlignment="Bottom" Style="{StaticResource menuButton}" GroupName="menuButton"/>
+                <RadioButton x:Name="Settings"  Command="{Binding ExecuteShowSettingsViewCommand}" VerticalAlignment="Bottom" Style="{StaticResource menuButton}" GroupName="menuButton">
+                    <Image Source="/Images/settings.png" Margin="5,5,5,5"/>
+                </RadioButton>
+                <RadioButton x:Name="Info" Command="{Binding ExecuteShowInfoViewCommand}" VerticalAlignment="Bottom" Style="{StaticResource menuButton}" GroupName="menuButton">
+                    <Image Source="/Images/info.png" Margin="5,5,5,5"/>
+                </RadioButton>
                 
             </StackPanel>
         </Grid>
         <Grid Grid.Column="1">
-            <StackPanel >
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="65"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions >
+                    
+                <Grid Grid.Row="0" Background="{StaticResource bcolor10}" >
+                    <Label Content="{Binding Caption}" FontSize="20" Foreground="{StaticResource ForegroundColorBrush}" HorizontalAlignment="Center" Padding="21"/>
+                </Grid>
 
-                <Label Content="{Binding TheTextBox}" FontSize="20" Foreground="{StaticResource ForegroundColorBrush}" HorizontalAlignment="Center" Padding="21"/>
-
+                <ContentControl Content="{Binding CurrentChildView}"
+                                Grid.Row="1"
+                                Margin="10"/>
+            </Grid>
                 
-                <TextBox x:Name="theTextBox2" Text="{Binding TheTextBox}" FontSize="12"/>
-                <!-- <Image Source="/Images/dashboard.png" Width="100" Height="100"/> -->
-                <Button x:Name="thebutton" Content="TheButton" Command="{Binding ButtonOnClickCommand}"  FontSize="12"  Background="{StaticResource bcolor10}"/>
-                <Label Content="TheLabel" FontSize="12" HorizontalAlignment="Center" Foreground="{StaticResource ForegroundColorBrush}"/>
-                <TextBlock Text="{Binding TheTextBox}" FontSize="12" Foreground="Red" HorizontalAlignment="Center"/>
-                
-                <TextBlock Text="{Binding TheTextBox}" FontSize="15" Foreground="{StaticResource ForegroundColorBrush}" HorizontalAlignment="Center" FontFamily="{StaticResource LatoThinest}" />
-                <TextBlock Text="{Binding TheTextBox}" FontSize="15" Foreground="{StaticResource ForegroundColorBrush}" HorizontalAlignment="Center" FontFamily="{StaticResource LatoThinestItalic}"/>
-                <TextBlock Text="{Binding TheTextBox}" FontSize="15" Foreground="{StaticResource ForegroundColorBrush}" HorizontalAlignment="Center" FontFamily="{StaticResource LatoThiner}"/>
-                <TextBlock Text="{Binding TheTextBox}" FontSize="15" Foreground="{StaticResource ForegroundColorBrush}" HorizontalAlignment="Center" FontFamily="{StaticResource LatoThinerItalic}"/>
-                <TextBlock Text="{Binding TheTextBox}" FontSize="15" Foreground="{StaticResource ForegroundColorBrush}" HorizontalAlignment="Center" FontFamily="{StaticResource LatoThin}"/>
-                <TextBlock Text="{Binding TheTextBox}" FontSize="15" Foreground="{StaticResource ForegroundColorBrush}" HorizontalAlignment="Center" FontFamily="{StaticResource LatoThinItalic}"/>
-                <TextBlock Text="{Binding TheTextBox}" FontSize="15" Foreground="{StaticResource ForegroundColorBrush}" HorizontalAlignment="Center" FontFamily="{StaticResource LatoRegular}"/>
-                <TextBlock Text="{Binding TheTextBox}" FontSize="15" Foreground="{StaticResource ForegroundColorBrush}" HorizontalAlignment="Center" FontFamily="{StaticResource LatoRegularItalic}"/>
-                <TextBlock Text="{Binding TheTextBox}" FontSize="15" Foreground="{StaticResource ForegroundColorBrush}" HorizontalAlignment="Center" FontFamily="{StaticResource LatoMedium}"/>
-                <TextBlock Text="{Binding TheTextBox}" FontSize="15" Foreground="{StaticResource ForegroundColorBrush}" HorizontalAlignment="Center" FontFamily="{StaticResource LatoMediumItalic}"/>
-                <TextBlock Text="{Binding TheTextBox}" FontSize="15" Foreground="{StaticResource ForegroundColorBrush}" HorizontalAlignment="Center" FontFamily="{StaticResource LatoSemiBold}"/>
-                <TextBlock Text="{Binding TheTextBox}" FontSize="15" Foreground="{StaticResource ForegroundColorBrush}" HorizontalAlignment="Center" FontFamily="{StaticResource LatoSemiBoldItalic}"/>
-                <TextBlock Text="{Binding TheTextBox}" FontSize="15" Foreground="{StaticResource ForegroundColorBrush}" HorizontalAlignment="Center" FontFamily="{StaticResource LatoBold}"/>
-                <TextBlock Text="{Binding TheTextBox}" FontSize="15" Foreground="{StaticResource ForegroundColorBrush}" HorizontalAlignment="Center" FontFamily="{StaticResource LatoBoldItalic}"/>
-                <TextBlock Text="{Binding TheTextBox}" FontSize="15" Foreground="{StaticResource ForegroundColorBrush}" HorizontalAlignment="Center" FontFamily="{StaticResource LatoBolder}"/>
-                <TextBlock Text="{Binding TheTextBox}" FontSize="15" Foreground="{StaticResource ForegroundColorBrush}" HorizontalAlignment="Center" FontFamily="{StaticResource LatoBolderItalic}"/>
-                <TextBlock Text="{Binding TheTextBox}" FontSize="15" Foreground="{StaticResource ForegroundColorBrush}" HorizontalAlignment="Center" FontFamily="{StaticResource LatoBoldest}"/>
-                <TextBlock Text="{Binding TheTextBox}" FontSize="15" Foreground="{StaticResource ForegroundColorBrush}" HorizontalAlignment="Center" FontFamily="{StaticResource LatoBoldestItalic}"/>
-                
-
-
-
-            </StackPanel>
         </Grid>
 
 

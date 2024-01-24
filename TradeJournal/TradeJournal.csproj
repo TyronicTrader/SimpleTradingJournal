@@ -27,18 +27,19 @@
     <None Remove="Fonts\Lato-SemiboldItalic.ttf" />
     <None Remove="Fonts\Lato-Thin.ttf" />
     <None Remove="Fonts\Lato-ThinItalic.ttf" />
-    <None Remove="Images\alert.png" />
     <None Remove="Images\arrow-down-right.png" />
     <None Remove="Images\arrow-down.png" />
     <None Remove="Images\arrow-up-right.png" />
     <None Remove="Images\arrow-up.png" />
-    <None Remove="Images\calendar-clock.png" />
+    <None Remove="Images\calendar.png" />
     <None Remove="Images\copy.png" />
     <None Remove="Images\cut.png" />
     <None Remove="Images\dashboard.png" />
-    <None Remove="Images\graph.png" />
+    <None Remove="Images\events.png" />
+    <None Remove="Images\info.png" />
+    <None Remove="Images\journal.png" />
     <None Remove="Images\Logo.png" />
-    <None Remove="Images\notebook.png" />
+    <None Remove="Images\metrics.png" />
     <None Remove="Images\orientation.png" />
     <None Remove="Images\paste.png" />
     <None Remove="Images\placeholder.png" />
@@ -114,18 +115,19 @@
     <Resource Include="Fonts\Lato-Thin.ttf">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="Images\alert.png" />
+    <Resource Include="Images\events.png" />
     <Resource Include="Images\arrow-down-right.png" />
     <Resource Include="Images\arrow-down.png" />
     <Resource Include="Images\arrow-up-right.png" />
     <Resource Include="Images\arrow-up.png" />
-    <Resource Include="Images\calendar-clock.png" />
+    <Resource Include="Images\calendar.png" />
     <Resource Include="Images\copy.png" />
     <Resource Include="Images\cut.png" />
     <Resource Include="Images\dashboard.png" />
-    <Resource Include="Images\graph.png" />
+    <Resource Include="Images\info.png" />
+    <Resource Include="Images\metrics.png" />
     <Resource Include="Images\Logo.png" />
-    <Resource Include="Images\notebook.png" />
+    <Resource Include="Images\journal.png" />
     <Resource Include="Images\orientation.png" />
     <Resource Include="Images\paste.png" />
     <Resource Include="Images\placeholder.png" />

@@ -4,7 +4,7 @@
     <Color x:Key="BackgroundColor">#222222</Color>
     <SolidColorBrush x:Key="BackgroundColorBrush" Color="{StaticResource BackgroundColor}"/>
     
-    <Color x:Key="ForegroundColor">#ffffff</Color>
+    <Color x:Key="ForegroundColor">#cccccc</Color>
     <SolidColorBrush x:Key="ForegroundColorBrush" Color="{StaticResource ForegroundColor}"/>
 
 
