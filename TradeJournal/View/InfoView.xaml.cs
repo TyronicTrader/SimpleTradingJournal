@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using TradeJournal.ViewModel;
+using System.Diagnostics;
 
 namespace TradeJournal.View
 {
@@ -26,5 +27,16 @@ namespace TradeJournal.View
             InitializeComponent();
             DataContext = new InfoViewModel();
         }
+
+        /// <summary>
+        /// this will be called to open up URLs into the default browser but deprecated after finding way to do in viewModel
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        //public void Hyperlink_RequestNavigate(object sender, RequestNavigateEventArgs e)
+        //{
+        //    Process.Start(new ProcessStartInfo(e.Uri.AbsoluteUri) { UseShellExecute = true });
+        //    e.Handled = true;
+        //}
     }
 }
