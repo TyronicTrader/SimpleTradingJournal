@@ -6,17 +6,26 @@
              xmlns:local="clr-namespace:TradeJournal.View"
              mc:Ignorable="d" 
              x:Name="JournalWindow"
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="655" d:DesignWidth="1215">
 
 
     <Grid>
         <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="auto"/>
             <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="65"/>
-            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="auto"/>
         </Grid.ColumnDefinitions>
-        <StackPanel>
-            <Calendar Height="165" HorizontalAlignment="Left" Margin="8,5,0,10" Name="calendar1" VerticalAlignment="Top" Width="175"   >   
+        <!--<Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>-->
+
+        <!--<GridSplitter Grid.Column ="0" Width="5" HorizontalAlignment="Right" VerticalAlignment="Stretch" Background="Blue" />-->
+        
+        <StackPanel Grid.Column="0">
+            <Calendar Height="165" HorizontalAlignment="Left" Margin="8,5,0,10" Name="calendar1" VerticalAlignment="Top" Width="175"   >
                 <Calendar.BorderBrush>
                     <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
                         <GradientStop Color="Blue" Offset="0" />
@@ -38,12 +47,67 @@
                     </LinearGradientBrush>
                 </Calendar.Foreground>
             </Calendar>
-                
-            <TextBox x:Name="theTextBox2" Text="{Binding TheTextBox}" FontFamily="{StaticResource LatoThin}" FontSize="12"/>
+        </StackPanel>
+        <StackPanel Grid.Column="1">
+             <TextBox x:Name="theTextBox2" Text="{Binding TheTextBox}" FontFamily="{StaticResource LatoThin}" FontSize="12"/>
             <Image Source="/Images/dashboard.png" Width="100" Height="100"/>
             <Image Source="/Images/Logo.png" Width="100" Height="100"/>
-            <Image Source="/Images/rss.png" Width="100" Height="100" />
+            <Image Source="/Images/rss.png" Width="100" Height="100" />           
+            
+        </StackPanel>
+        <Grid Grid.Column="2">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50*" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="50*" />
+            </Grid.RowDefinitions>
+            <DockPanel Grid.Row="0" Grid.Column="1" >
+                <ToolBarTray DockPanel.Dock="Top" MinHeight="20" Background="{StaticResource bcolor10}" >
 
+                    <ToolBar DockPanel.Dock="Top" HorizontalAlignment="Right" Background="{StaticResource bcolor10}" >
+
+                        <Label Name="lblToolbarTemplate" Content="Template:" FontFamily="{StaticResource LatoThin}" FontSize="15" Background="{StaticResource bcolor10}"/>
+                        <ComboBox Name="cmbToolbarTemplate" MinWidth="140" FontFamily="{StaticResource LatoThin}" FontSize="15" Background="{StaticResource bcolor10}"/>
+                        <Separator Margin="5,0,5,0"/>
+                        <Button Name="btnToolbarUndo" MaxWidth="20" >
+                            <Image Source="/Images/undo.png"/>
+                        </Button>
+                        <Button Name="btnToolbarRedo" MaxWidth="20" >
+                            <Image Source="/Images/redo.png"/>
+                        </Button>
+                        <Separator Margin="5,0,5,0"/>
+                        <Button Name="btnToolbarCut" MaxWidth="20" >
+                            <Image Source="/Images/cut.png"/>
+                        </Button>
+                        <Button Name="btnToolbarCopy" MaxWidth="20" >
+                            <Image Source="/Images/copy.png"/>
+                        </Button>
+                        <Button Name="btnToolbarPaste" MaxWidth="20" >
+                            <Image Source="/Images/paste.png"/>
+                        </Button>
+                        <Separator Margin="5,0,5,0"/>
+                        <Button Name="btnToolbarTimeStamp" MaxWidth="20" >
+                            <Image Source="/Images/timestamp.png"/>
+                        </Button>
+                        <Separator Margin="5,0,5,0"/>
+                        <Button Name="btnToolbarChangeOrientation" MaxWidth="20" HorizontalAlignment="Right" ToolTip="Change Window Orientation" >
+                            <Image Source="/Images/orientation.png"/>
+                        </Button>
+
+                    </ToolBar>
+                    
+                </ToolBarTray>
+                <RichTextBox VerticalScrollBarVisibility="Visible" />
+            </DockPanel>
+            <GridSplitter Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Center" Background="{StaticResource bcolor10}" Height="5"/>
+            <DockPanel Grid.Row="2" Grid.Column="0" Background="Black">
+                <Image Source="/Images/placeholder.png" Stretch="Uniform"/>
+            </DockPanel>
+
+        </Grid>
+        
+
+        <StackPanel Grid.Column="3">
             <TextBlock Text="{Binding TheTextBox}" FontSize="12" Foreground="White" HorizontalAlignment="Center" FontFamily="{StaticResource LatoThinest}" />
             <TextBlock Text="{Binding TheTextBox}" FontSize="12" Foreground="White" HorizontalAlignment="Center" FontFamily="{StaticResource LatoThinestItalic}"/>
             <TextBlock Text="{Binding TheTextBox}" FontSize="12" Foreground="White" HorizontalAlignment="Center" FontFamily="{StaticResource LatoThiner}"/>
@@ -61,11 +125,8 @@
             <TextBlock Text="{Binding TheTextBox}" FontSize="12" Foreground="White" HorizontalAlignment="Center" FontFamily="{StaticResource LatoBolder}"/>
             <TextBlock Text="{Binding TheTextBox}" FontSize="12" Foreground="White" HorizontalAlignment="Center" FontFamily="{StaticResource LatoBolderItalic}"/>
             <TextBlock Text="{Binding TheTextBox}" FontSize="12" Foreground="White" HorizontalAlignment="Center" FontFamily="{StaticResource LatoBoldest}"/>
-            <TextBlock Text="{Binding TheTextBox}" FontSize="12" Foreground="White" HorizontalAlignment="Center" FontFamily="{StaticResource LatoBoldestItalic}"/>
-
-
-
-
+            <TextBlock Text="{Binding TheTextBox}" FontSize="12" Foreground="White" HorizontalAlignment="Center" FontFamily="{StaticResource LatoBoldestItalic}"/>            
+            
         </StackPanel>
     </Grid>
 </UserControl>

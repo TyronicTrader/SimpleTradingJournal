@@ -6,24 +6,20 @@
              xmlns:local="clr-namespace:TradeJournal.View" xmlns:viewmodel="clr-namespace:TradeJournal.ViewModel" d:DataContext="{d:DesignInstance Type=viewmodel:InfoViewModel}"
              mc:Ignorable="d" 
              x:Name="InfohWindow"
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="655" d:DesignWidth="1215">
     <Grid>
         <StackPanel >
 
             <Label Content="{Binding AppName}" FontSize="20" Foreground="{StaticResource ForegroundColorBrush}" HorizontalAlignment="Center" Padding="21"/>
             <Label Content="{Binding DevName}" FontSize="20" Foreground="{StaticResource ForegroundColorBrush}" HorizontalAlignment="Center" />
-
-            <TextBox x:Name="devCrypto" IsReadOnly="True" Text="{Binding DevCrypto}" FontSize="20" Foreground="{StaticResource ForegroundColorBrush}"
-                     HorizontalAlignment="Center" Background="Transparent" BorderBrush="Transparent" BorderThickness="0" />
-            
-            
-            <Image Source="/Images/Logo.png" Width="100" Height="100"/>
+            <Label Content="Please support me using the following:" FontSize="20" Foreground="{StaticResource ForegroundColorBrush}" HorizontalAlignment="Center" />
+            <Button x:Name="devCrypto" Content="{Binding DevCrypto}" Command="{Binding CopyCryptoToClipboardCommand}" Style="{StaticResource URLinfoButton}" />
             <Button x:Name="devPayPal" Content="{Binding DevPaypal}" Command="{Binding OpenThePayPalHyperlinkCommand}" Style="{StaticResource URLinfoButton}" />
             <Button x:Name="devPatreon" Content="{Binding DevPatreon}" Command="{Binding OpenThePatreonHyperlinkCommand}" Style="{StaticResource URLinfoButton}" />
-            <Button Name="test" Content="test" />
+            
 
             
-            <!-- Used if I wanted to have actual text hyperlinks but these will not work with viewModel
+            <!-- Used if I wanted to have actual text hyperlinks but these will not work with viewModel so just here for reference
             <Label FontSize="15" Foreground="{StaticResource ForegroundColorBrush}" HorizontalAlignment="Center" FontFamily="{StaticResource LatoThin}">
                 <Hyperlink RequestNavigate="Hyperlink_RequestNavigate" NavigateUri="{Binding DevPatreon}">http://www.patreon.com</Hyperlink>
             </Label>
@@ -33,8 +29,7 @@
             -->
             
             <!--#region  random stuff-->
-            <Label Content="TheLabel" FontSize="12" HorizontalAlignment="Center" Foreground="{StaticResource ForegroundColorBrush}"/>
-            <TextBlock Text="{Binding DevCrypto}" FontSize="12" Foreground="Red" HorizontalAlignment="Center"/>
+            <TextBlock Text="{Binding DevCrypto}" FontSize="15" Foreground="Red" HorizontalAlignment="Center"/>
 
             <TextBlock Text="{Binding DevCrypto}" FontSize="15" Foreground="{StaticResource ForegroundColorBrush}" HorizontalAlignment="Center" FontFamily="{StaticResource LatoThinest}" />
             <TextBlock Text="{Binding DevCrypto}" FontSize="15" Foreground="{StaticResource ForegroundColorBrush}" HorizontalAlignment="Center" FontFamily="{StaticResource LatoThinestItalic}"/>

@@ -26,5 +26,10 @@ namespace TradeJournal.View
             InitializeComponent();
             DataContext = new EventsViewModel();
         }
+
+        private void RichTextBox_Scroll(object sender, System.Windows.Controls.Primitives.ScrollEventArgs e)
+        {
+
+        }
     }
 }

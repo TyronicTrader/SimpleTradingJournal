@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:TradeJournal.View"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="655" d:DesignWidth="1215">
     <Grid>
         <StackPanel>
             <Image Source="/Images/dashboard.png" Width="100" Height="100"/>

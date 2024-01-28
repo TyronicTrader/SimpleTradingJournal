@@ -31,7 +31,6 @@
     <None Remove="Images\arrow-down.png" />
     <None Remove="Images\arrow-up-right.png" />
     <None Remove="Images\arrow-up.png" />
-    <None Remove="Images\calendar.png" />
     <None Remove="Images\copy.png" />
     <None Remove="Images\cut.png" />
     <None Remove="Images\dashboard.png" />
@@ -47,6 +46,7 @@
     <None Remove="Images\rss.png" />
     <None Remove="Images\search.png" />
     <None Remove="Images\settings.png" />
+    <None Remove="Images\timestamp.png" />
     <None Remove="Images\undo.png" />
     <None Remove="Resources\SQLiteSchema.sql" />
   </ItemGroup>
@@ -120,7 +120,7 @@
     <Resource Include="Images\arrow-down.png" />
     <Resource Include="Images\arrow-up-right.png" />
     <Resource Include="Images\arrow-up.png" />
-    <Resource Include="Images\calendar.png" />
+    <Resource Include="Images\timestamp.png" />
     <Resource Include="Images\copy.png" />
     <Resource Include="Images\cut.png" />
     <Resource Include="Images\dashboard.png" />

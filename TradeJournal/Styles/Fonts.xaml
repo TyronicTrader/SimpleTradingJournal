@@ -38,7 +38,7 @@
     <Style TargetType="{x:Type TextBlock}"  x:Key="TextBlockBaseStyle">
         <Setter Property="FontFamily" Value="{StaticResource LatoBoldest}" />
     </Style>
-    <!-- This next line will over-ride Buttons and other Controls 
+    <!-- This next line will over-ride Buttons and other Controls that are dirrived from the TextBlock property
     <Style TargetType="{x:Type TextBlock}"  BasedOn="{StaticResource BaseStyle}" />
     -->
 

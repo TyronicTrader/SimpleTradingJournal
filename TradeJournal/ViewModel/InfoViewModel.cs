@@ -17,7 +17,7 @@ namespace TradeJournal.ViewModel
         private string appName = "Simple Trade Journal";
 
         [ObservableProperty]
-        private string devName = "TyronicTrader";
+        private string devName = "Developer";
 
         [ObservableProperty]
         private string devCrypto = "placeholder12309487oiqjfoklajsdfasdfkjhjkhuwe";
@@ -53,6 +53,13 @@ namespace TradeJournal.ViewModel
             {
                 MessageBox.Show("Link didn't work or can't open your default browser.");
             }
+        }
+
+        [RelayCommand]
+        public void CopyCryptoToClipboard()
+        {
+            Clipboard.SetText(DevCrypto);
+            MessageBox.Show("Crypto Address copied to your clipboard");
         }
     }
 }

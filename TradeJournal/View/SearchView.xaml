@@ -3,11 +3,92 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:TradeJournal.View"
+             xmlns:local="clr-namespace:TradeJournal.View" xmlns:viewmodel="clr-namespace:TradeJournal.ViewModel" d:DataContext="{d:DesignInstance Type=viewmodel:SearchViewModel}"
              mc:Ignorable="d" 
              x:Name="SearchWindow"
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="655" d:DesignWidth="1215">
+    
+    
     <Grid>
-            
+        <!--<Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="265"/>
+            <ColumnDefinition Width="auto"/>
+        </Grid.ColumnDefinitions>-->
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto" MinHeight="180"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!--<GridSplitter Grid.Column ="0" Width="5" HorizontalAlignment="Right" VerticalAlignment="Stretch" Background="Blue" />-->
+
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="195"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid Grid.Column="0">
+                <Calendar Height="165" Width="175" HorizontalAlignment="Left" Margin="8,5,0,10" Name="SearchCalendar1" VerticalAlignment="Top"   >
+                    <Calendar.BorderBrush>
+                        <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                            <GradientStop Color="Blue" Offset="0" />
+                            <GradientStop Color="Red" Offset="1.0" />
+                        </LinearGradientBrush>
+                    </Calendar.BorderBrush>
+                    <Calendar.Background>
+                        <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                            <GradientStop Color="Blue" Offset="0.1" />
+                            <GradientStop Color="Orange" Offset="0.25" />
+                            <GradientStop Color="Green" Offset="0.75" />
+                            <GradientStop Color="Red" Offset="1.0" />
+                        </LinearGradientBrush>
+                    </Calendar.Background>
+                    <Calendar.Foreground>
+                        <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                            <GradientStop Color="Black" Offset="0.25" />
+                            <GradientStop Color="Green" Offset="1.0" />
+                        </LinearGradientBrush>
+                    </Calendar.Foreground>
+                </Calendar>               
+            </Grid>
+            <Grid Grid.Column="1">
+                <WrapPanel>
+                    <Label Content="TestLabel" FontSize="20" Foreground="{StaticResource ForegroundColorBrush}" HorizontalAlignment="Center" />
+                    <TextBox>TheTestFilter</TextBox>
+                    <Label Content="TestLabel" FontSize="20" Foreground="{StaticResource ForegroundColorBrush}" HorizontalAlignment="Center" />
+                    <TextBox>TheTestFilter</TextBox>
+                    <Label Content="TestLabel" FontSize="20" Foreground="{StaticResource ForegroundColorBrush}" HorizontalAlignment="Center" />
+                    <TextBox>TheTestFilter</TextBox>
+                    <Label Content="TestLabel" FontSize="20" Foreground="{StaticResource ForegroundColorBrush}" HorizontalAlignment="Center" />
+                    <TextBox>TheTestFilter</TextBox>
+                    <Label Content="TestLabel" FontSize="20" Foreground="{StaticResource ForegroundColorBrush}" HorizontalAlignment="Center" />
+                    <TextBox>TheTestFilter</TextBox>
+                    <Label Content="TestLabel" FontSize="20" Foreground="{StaticResource ForegroundColorBrush}" HorizontalAlignment="Center" />
+                    <TextBox>TheTestFilter</TextBox>
+                    <Label Content="TestLabel" FontSize="20" Foreground="{StaticResource ForegroundColorBrush}" HorizontalAlignment="Center" />
+                    <TextBox>TheTestFilter</TextBox>
+                    <Label Content="TestLabel" FontSize="20" Foreground="{StaticResource ForegroundColorBrush}" HorizontalAlignment="Center" />
+                    <TextBox>TheTestFilter</TextBox>
+                    <Label Content="TestLabel" FontSize="20" Foreground="{StaticResource ForegroundColorBrush}" HorizontalAlignment="Center" />
+                    <TextBox>TheTestFilter</TextBox>
+                    <Label Content="TestLabel" FontSize="20" Foreground="{StaticResource ForegroundColorBrush}" HorizontalAlignment="Center" />
+                    <TextBox>TheTestFilter</TextBox>
+                    <Label Content="TestLabel" FontSize="20" Foreground="{StaticResource ForegroundColorBrush}" HorizontalAlignment="Center" />
+                    <TextBox>TheTestFilter</TextBox>
+                </WrapPanel>
+
+            </Grid>
+        </Grid>
+
+        <GridSplitter Grid.Row ="1" Height="5" HorizontalAlignment="Stretch" VerticalAlignment="Top" Background="Green"  />
+        
+        <Grid Grid.Row="2">
+            <DockPanel>
+                <DataGrid GridLinesVisibility="All" VerticalGridLinesBrush="Black" HorizontalGridLinesBrush="black" AutoGenerateColumns="True"/>
+            </DockPanel>
+        </Grid>
+
+
     </Grid>
 </UserControl>
